@@ -1,0 +1,190 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.bloomberg.com/schemas/buyside/security.json",
+  "title": "Bloomberg Buyside Security",
+  "description": "A financial security representing an instrument in Bloomberg's data universe, including equities, fixed income, derivatives, funds, and other asset classes with reference data, identifiers, and classification information.",
+  "type": "object",
+  "required": ["ticker"],
+  "properties": {
+    "ticker": {
+      "type": "string",
+      "description": "Bloomberg ticker symbol (e.g., 'AAPL US Equity')"
+    },
+    "name": {
+      "type": "string",
+      "description": "Full security name"
+    },
+    "shortName": {
+      "type": "string",
+      "description": "Abbreviated security name"
+    },
+    "assetClass": {
+      "type": "string",
+      "enum": ["Equity", "Fixed Income", "Commodity", "Currency", "Index", "Fund", "Mortgage", "Municipal", "Preferred", "Derivative"],
+      "description": "Primary asset class classification"
+    },
+    "securityType": {
+      "type": "string",
+      "description": "Specific security type within the asset class"
+    },
+    "exchange": {
+      "type": "string",
+      "description": "Primary exchange where the security is listed"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country of domicile (ISO 3166-1 alpha-2)",
+      "pattern": "^[A-Z]{2}$"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Trading currency (ISO 4217)",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "identifiers": {
+      "$ref": "#/$defs/SecurityIdentifiers"
+    },
+    "classification": {
+      "$ref": "#/$defs/SecurityClassification"
+    },
+    "issuer": {
+      "type": "string",
+      "description": "Issuer name"
+    },
+    "issueDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Original issue date"
+    },
+    "maturityDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Maturity date (for fixed income and derivatives)"
+    },
+    "couponRate": {
+      "type": "number",
+      "description": "Coupon rate for fixed income securities"
+    },
+    "couponFrequency": {
+      "type": "string",
+      "enum": ["ANNUAL", "SEMI_ANNUAL", "QUARTERLY", "MONTHLY", "ZERO"],
+      "description": "Coupon payment frequency"
+    },
+    "parAmount": {
+      "type": "number",
+      "description": "Par or face value"
+    },
+    "marketCap": {
+      "type": "number",
+      "description": "Market capitalization (for equities)"
+    },
+    "sharesOutstanding": {
+      "type": "number",
+      "description": "Total shares outstanding (for equities)"
+    },
+    "dividendYield": {
+      "type": "number",
+      "description": "Indicated dividend yield"
+    },
+    "rating": {
+      "$ref": "#/$defs/CreditRating"
+    },
+    "active": {
+      "type": "boolean",
+      "description": "Whether the security is currently active and trading"
+    }
+  },
+  "$defs": {
+    "SecurityIdentifiers": {
+      "type": "object",
+      "description": "Standard financial instrument identifiers",
+      "properties": {
+        "isin": {
+          "type": "string",
+          "description": "International Securities Identification Number",
+          "pattern": "^[A-Z]{2}[A-Z0-9]{9}[0-9]$"
+        },
+        "cusip": {
+          "type": "string",
+          "description": "Committee on Uniform Securities Identification Procedures number",
+          "pattern": "^[A-Z0-9]{9}$"
+        },
+        "sedol": {
+          "type": "string",
+          "description": "Stock Exchange Daily Official List number",
+          "pattern": "^[A-Z0-9]{7}$"
+        },
+        "figi": {
+          "type": "string",
+          "description": "Financial Instrument Global Identifier",
+          "pattern": "^[A-Z]{3}[A-Z0-9]{9}$"
+        },
+        "lei": {
+          "type": "string",
+          "description": "Legal Entity Identifier of the issuer",
+          "pattern": "^[A-Z0-9]{20}$"
+        },
+        "bloombergId": {
+          "type": "string",
+          "description": "Bloomberg unique identifier"
+        }
+      }
+    },
+    "SecurityClassification": {
+      "type": "object",
+      "description": "Industry and sector classification details",
+      "properties": {
+        "gicsSector": {
+          "type": "string",
+          "description": "GICS sector name"
+        },
+        "gicsIndustryGroup": {
+          "type": "string",
+          "description": "GICS industry group name"
+        },
+        "gicsIndustry": {
+          "type": "string",
+          "description": "GICS industry name"
+        },
+        "gicsSubIndustry": {
+          "type": "string",
+          "description": "GICS sub-industry name"
+        },
+        "bicsLevel1": {
+          "type": "string",
+          "description": "Bloomberg Industry Classification System level 1"
+        },
+        "bicsLevel2": {
+          "type": "string",
+          "description": "Bloomberg Industry Classification System level 2"
+        },
+        "bicsLevel3": {
+          "type": "string",
+          "description": "Bloomberg Industry Classification System level 3"
+        }
+      }
+    },
+    "CreditRating": {
+      "type": "object",
+      "description": "Credit ratings from major rating agencies",
+      "properties": {
+        "sp": {
+          "type": "string",
+          "description": "S&P Global credit rating"
+        },
+        "moodys": {
+          "type": "string",
+          "description": "Moody's credit rating"
+        },
+        "fitch": {
+          "type": "string",
+          "description": "Fitch credit rating"
+        },
+        "compositeRating": {
+          "type": "string",
+          "description": "Bloomberg composite credit rating"
+        }
+      }
+    }
+  }
+}

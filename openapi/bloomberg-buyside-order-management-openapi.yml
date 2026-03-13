@@ -1,0 +1,925 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Order Management API
+  description: >-
+    API for order and execution management, enabling algorithmic trading, smart
+    order routing, and integration with trading platforms for buy-side workflows.
+    Supports the full order lifecycle from creation through execution and
+    settlement for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+externalDocs:
+  description: Bloomberg Buy-Side Trading Documentation
+  url: https://www.bloomberg.com/professional/product/buy-side-trading/
+servers:
+  - url: https://api.bloomberg.com/oms
+    description: Bloomberg Order Management API Production
+tags:
+  - name: Orders
+    description: Create, manage, and monitor trading orders
+  - name: Executions
+    description: View execution reports and trade fills
+  - name: Allocations
+    description: Post-trade allocation of executions to portfolios
+  - name: Brokers
+    description: Broker routing and counterparty management
+  - name: Blotters
+    description: Trading blotter views and filtering
+security:
+  - bearerAuth: []
+paths:
+  /v1/orders:
+    get:
+      operationId: listOrders
+      summary: List orders
+      description: >-
+        Retrieve a list of orders with optional filtering by status, side,
+        security, date range, or portfolio.
+      tags:
+        - Orders
+      parameters:
+        - name: status
+          in: query
+          description: Filter by order status
+          schema:
+            type: string
+            enum:
+              - NEW
+              - PENDING
+              - PARTIALLY_FILLED
+              - FILLED
+              - CANCELLED
+              - REJECTED
+              - EXPIRED
+        - name: side
+          in: query
+          description: Filter by order side
+          schema:
+            type: string
+            enum:
+              - BUY
+              - SELL
+              - SHORT_SELL
+              - BUY_TO_COVER
+        - name: security
+          in: query
+          description: Filter by security identifier
+          schema:
+            type: string
+        - name: portfolioId
+          in: query
+          description: Filter by portfolio
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          description: Filter orders created on or after this date
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: Filter orders created on or before this date
+          schema:
+            type: string
+            format: date
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+            maximum: 200
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of orders
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalCount:
+                    type: integer
+                  orders:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      operationId: createOrder
+      summary: Create an order
+      description: >-
+        Create a new trading order with the specified parameters including
+        security, side, quantity, order type, and routing instructions.
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+      responses:
+        '201':
+          description: Order created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Invalid order parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden - insufficient trading permissions
+        '422':
+          description: Order rejected by compliance pre-trade check
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplianceRejection'
+  /v1/orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: Get order details
+      description: >-
+        Retrieve detailed information about a specific order, including
+        current status, fill information, and audit trail.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/orderId'
+      responses:
+        '200':
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Order not found
+    patch:
+      operationId: amendOrder
+      summary: Amend an order
+      description: >-
+        Amend an existing order's quantity, limit price, or time in force.
+        Only open orders can be amended.
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/orderId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AmendOrderRequest'
+      responses:
+        '200':
+          description: Order amended successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          description: Invalid amendment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Order not found
+        '409':
+          description: Order cannot be amended in its current state
+  /v1/orders/{orderId}/cancel:
+    post:
+      operationId: cancelOrder
+      summary: Cancel an order
+      description: >-
+        Request cancellation of an open order. The order must be in a
+        cancellable state (NEW, PENDING, or PARTIALLY_FILLED).
+      tags:
+        - Orders
+      parameters:
+        - $ref: '#/components/parameters/orderId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: Reason for cancellation
+      responses:
+        '200':
+          description: Cancellation request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Order not found
+        '409':
+          description: Order cannot be cancelled in its current state
+  /v1/orders/{orderId}/executions:
+    get:
+      operationId: getOrderExecutions
+      summary: Get order executions
+      description: >-
+        Retrieve all execution reports (fills) for a specific order.
+      tags:
+        - Executions
+      parameters:
+        - $ref: '#/components/parameters/orderId'
+      responses:
+        '200':
+          description: List of executions for the order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderId:
+                    type: string
+                  executions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Execution'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Order not found
+  /v1/executions:
+    get:
+      operationId: listExecutions
+      summary: List executions
+      description: >-
+        Retrieve execution reports across all orders, with optional filtering
+        by date range, security, or portfolio.
+      tags:
+        - Executions
+      parameters:
+        - name: startDate
+          in: query
+          description: Filter executions on or after this date
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          description: Filter executions on or before this date
+          schema:
+            type: string
+            format: date
+        - name: security
+          in: query
+          description: Filter by security identifier
+          schema:
+            type: string
+        - name: portfolioId
+          in: query
+          description: Filter by portfolio
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+            maximum: 500
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of executions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalCount:
+                    type: integer
+                  executions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Execution'
+        '401':
+          description: Unauthorized
+  /v1/allocations:
+    post:
+      operationId: createAllocation
+      summary: Create post-trade allocation
+      description: >-
+        Allocate executed trades to one or more portfolios. Supports
+        pro-rata, manual, and rule-based allocation methods.
+      tags:
+        - Allocations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AllocationRequest'
+      responses:
+        '201':
+          description: Allocation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationResponse'
+        '400':
+          description: Invalid allocation request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+    get:
+      operationId: listAllocations
+      summary: List allocations
+      description: >-
+        Retrieve post-trade allocations with optional filtering by date,
+        execution, or portfolio.
+      tags:
+        - Allocations
+      parameters:
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: executionId
+          in: query
+          schema:
+            type: string
+        - name: portfolioId
+          in: query
+          schema:
+            type: string
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of allocations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalCount:
+                    type: integer
+                  allocations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AllocationResponse'
+        '401':
+          description: Unauthorized
+  /v1/brokers:
+    get:
+      operationId: listBrokers
+      summary: List available brokers
+      description: >-
+        Retrieve a list of configured broker connections available for order
+        routing, including supported order types and algorithms.
+      tags:
+        - Brokers
+      parameters:
+        - name: assetClass
+          in: query
+          description: Filter by supported asset class
+          schema:
+            type: string
+            enum:
+              - Equity
+              - Fixed Income
+              - FX
+              - Derivatives
+        - name: status
+          in: query
+          description: Filter by connection status
+          schema:
+            type: string
+            enum:
+              - CONNECTED
+              - DISCONNECTED
+      responses:
+        '200':
+          description: List of brokers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  brokers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Broker'
+        '401':
+          description: Unauthorized
+  /v1/blotter:
+    get:
+      operationId: getBlotter
+      summary: Get trading blotter
+      description: >-
+        Retrieve a consolidated view of orders and executions for the
+        current trading day or a specified date range.
+      tags:
+        - Blotters
+      parameters:
+        - name: date
+          in: query
+          description: Blotter date (defaults to current trading day)
+          schema:
+            type: string
+            format: date
+        - name: status
+          in: query
+          description: Filter by order status
+          schema:
+            type: string
+            enum:
+              - ALL
+              - OPEN
+              - COMPLETED
+              - CANCELLED
+            default: ALL
+        - name: portfolioId
+          in: query
+          description: Filter by portfolio
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Trading blotter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlotterResponse'
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+  parameters:
+    orderId:
+      name: orderId
+      in: path
+      required: true
+      description: Unique order identifier
+      schema:
+        type: string
+  schemas:
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique order identifier
+        security:
+          type: string
+          description: Bloomberg security identifier
+        securityName:
+          type: string
+          description: Security name
+        side:
+          type: string
+          enum:
+            - BUY
+            - SELL
+            - SHORT_SELL
+            - BUY_TO_COVER
+          description: Order side
+        orderType:
+          type: string
+          enum:
+            - MARKET
+            - LIMIT
+            - STOP
+            - STOP_LIMIT
+            - PEGGED
+            - VWAP
+            - TWAP
+          description: Order type
+        quantity:
+          type: number
+          description: Order quantity
+        filledQuantity:
+          type: number
+          description: Quantity filled so far
+        remainingQuantity:
+          type: number
+          description: Remaining quantity to fill
+        limitPrice:
+          type: number
+          description: Limit price (for limit and stop-limit orders)
+        stopPrice:
+          type: number
+          description: Stop price (for stop and stop-limit orders)
+        averageFillPrice:
+          type: number
+          description: Volume-weighted average fill price
+        status:
+          type: string
+          enum:
+            - NEW
+            - PENDING
+            - PARTIALLY_FILLED
+            - FILLED
+            - CANCELLED
+            - REJECTED
+            - EXPIRED
+          description: Current order status
+        timeInForce:
+          type: string
+          enum:
+            - DAY
+            - GTC
+            - IOC
+            - FOK
+            - GTD
+          description: Time in force instruction
+        expirationDate:
+          type: string
+          format: date
+          description: Expiration date for GTD orders
+        portfolioId:
+          type: string
+          description: Associated portfolio
+        brokerId:
+          type: string
+          description: Routing broker identifier
+        algorithm:
+          type: string
+          description: Algorithm name (for algorithmic orders)
+        currency:
+          type: string
+          description: Order currency (ISO 4217)
+        trader:
+          type: string
+          description: Trader who placed the order
+        createdAt:
+          type: string
+          format: date-time
+          description: Order creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    CreateOrderRequest:
+      type: object
+      required:
+        - security
+        - side
+        - orderType
+        - quantity
+      properties:
+        security:
+          type: string
+          description: Bloomberg security identifier
+        side:
+          type: string
+          enum:
+            - BUY
+            - SELL
+            - SHORT_SELL
+            - BUY_TO_COVER
+        orderType:
+          type: string
+          enum:
+            - MARKET
+            - LIMIT
+            - STOP
+            - STOP_LIMIT
+            - PEGGED
+            - VWAP
+            - TWAP
+        quantity:
+          type: number
+          description: Order quantity
+          minimum: 0
+        limitPrice:
+          type: number
+          description: Limit price (required for LIMIT and STOP_LIMIT orders)
+        stopPrice:
+          type: number
+          description: Stop price (required for STOP and STOP_LIMIT orders)
+        timeInForce:
+          type: string
+          enum:
+            - DAY
+            - GTC
+            - IOC
+            - FOK
+            - GTD
+          default: DAY
+        expirationDate:
+          type: string
+          format: date
+          description: Expiration date (required for GTD orders)
+        portfolioId:
+          type: string
+          description: Target portfolio for allocation
+        brokerId:
+          type: string
+          description: Broker to route the order to
+        algorithm:
+          type: string
+          description: Algorithm name for algorithmic execution
+        algorithmParams:
+          type: object
+          additionalProperties: true
+          description: Algorithm-specific parameters
+        notes:
+          type: string
+          description: Order notes or instructions
+    AmendOrderRequest:
+      type: object
+      properties:
+        quantity:
+          type: number
+          description: New order quantity
+        limitPrice:
+          type: number
+          description: New limit price
+        timeInForce:
+          type: string
+          enum:
+            - DAY
+            - GTC
+            - IOC
+            - FOK
+            - GTD
+    Execution:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique execution identifier
+        orderId:
+          type: string
+          description: Associated order identifier
+        security:
+          type: string
+          description: Bloomberg security identifier
+        side:
+          type: string
+          enum:
+            - BUY
+            - SELL
+            - SHORT_SELL
+            - BUY_TO_COVER
+        quantity:
+          type: number
+          description: Executed quantity
+        price:
+          type: number
+          description: Execution price
+        commission:
+          type: number
+          description: Commission amount
+        fees:
+          type: number
+          description: Exchange and regulatory fees
+        netAmount:
+          type: number
+          description: Net settlement amount
+        currency:
+          type: string
+          description: Execution currency (ISO 4217)
+        broker:
+          type: string
+          description: Executing broker
+        venue:
+          type: string
+          description: Execution venue or exchange
+        settlementDate:
+          type: string
+          format: date
+          description: Expected settlement date
+        executedAt:
+          type: string
+          format: date-time
+          description: Execution timestamp
+    AllocationRequest:
+      type: object
+      required:
+        - executionId
+        - allocations
+      properties:
+        executionId:
+          type: string
+          description: Execution to allocate
+        method:
+          type: string
+          enum:
+            - PRO_RATA
+            - MANUAL
+            - RULE_BASED
+          default: MANUAL
+          description: Allocation method
+        allocations:
+          type: array
+          items:
+            type: object
+            required:
+              - portfolioId
+              - quantity
+            properties:
+              portfolioId:
+                type: string
+                description: Target portfolio
+              quantity:
+                type: number
+                description: Quantity to allocate
+          minItems: 1
+    AllocationResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Allocation identifier
+        executionId:
+          type: string
+        portfolioId:
+          type: string
+        security:
+          type: string
+        side:
+          type: string
+        quantity:
+          type: number
+        price:
+          type: number
+        commission:
+          type: number
+        netAmount:
+          type: number
+        status:
+          type: string
+          enum:
+            - PENDING
+            - CONFIRMED
+            - SETTLED
+            - REJECTED
+        createdAt:
+          type: string
+          format: date-time
+    Broker:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Broker identifier
+        name:
+          type: string
+          description: Broker name
+        shortCode:
+          type: string
+          description: Broker short code
+        status:
+          type: string
+          enum:
+            - CONNECTED
+            - DISCONNECTED
+          description: Connection status
+        supportedAssetClasses:
+          type: array
+          items:
+            type: string
+          description: Supported asset classes
+        supportedOrderTypes:
+          type: array
+          items:
+            type: string
+          description: Supported order types
+        algorithms:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Algorithm name
+              description:
+                type: string
+                description: Algorithm description
+              parameters:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    required:
+                      type: boolean
+                    description:
+                      type: string
+    BlotterResponse:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        summary:
+          type: object
+          properties:
+            totalOrders:
+              type: integer
+            openOrders:
+              type: integer
+            filledOrders:
+              type: integer
+            cancelledOrders:
+              type: integer
+            totalNotional:
+              type: number
+            totalCommissions:
+              type: number
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+    ComplianceRejection:
+      type: object
+      properties:
+        orderId:
+          type: string
+        violations:
+          type: array
+          items:
+            type: object
+            properties:
+              ruleId:
+                type: string
+              ruleName:
+                type: string
+              message:
+                type: string
+              severity:
+                type: string
+                enum:
+                  - WARNING
+                  - HARD_BLOCK
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string

@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.bloomberg.com/schemas/buyside/order.json",
+  "title": "Bloomberg Buyside Order",
+  "description": "A trading order representing an instruction to buy or sell a financial instrument, supporting various order types, time-in-force options, and algorithmic execution strategies for institutional buy-side trading.",
+  "type": "object",
+  "required": ["security", "side", "orderType", "quantity"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique order identifier"
+    },
+    "security": {
+      "type": "string",
+      "description": "Bloomberg security identifier (e.g., 'AAPL US Equity')"
+    },
+    "securityName": {
+      "type": "string",
+      "description": "Human-readable security name"
+    },
+    "side": {
+      "type": "string",
+      "enum": ["BUY", "SELL", "SHORT_SELL", "BUY_TO_COVER"],
+      "description": "Order side indicating the direction of the trade"
+    },
+    "orderType": {
+      "type": "string",
+      "enum": ["MARKET", "LIMIT", "STOP", "STOP_LIMIT", "PEGGED", "VWAP", "TWAP"],
+      "description": "Order type determining execution behavior"
+    },
+    "quantity": {
+      "type": "number",
+      "minimum": 0,
+      "exclusiveMinimum": true,
+      "description": "Total order quantity in shares or units"
+    },
+    "filledQuantity": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Cumulative filled quantity"
+    },
+    "remainingQuantity": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Remaining quantity to be filled"
+    },
+    "limitPrice": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Limit price for LIMIT and STOP_LIMIT orders"
+    },
+    "stopPrice": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Stop trigger price for STOP and STOP_LIMIT orders"
+    },
+    "averageFillPrice": {
+      "type": "number",
+      "description": "Volume-weighted average price of all fills"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["NEW", "PENDING", "PARTIALLY_FILLED", "FILLED", "CANCELLED", "REJECTED", "EXPIRED"],
+      "description": "Current order lifecycle status"
+    },
+    "timeInForce": {
+      "type": "string",
+      "enum": ["DAY", "GTC", "IOC", "FOK", "GTD"],
+      "description": "Time-in-force instruction governing order duration"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Expiration date for Good-Till-Date (GTD) orders"
+    },
+    "portfolioId": {
+      "type": "string",
+      "description": "Target portfolio for post-trade allocation"
+    },
+    "brokerId": {
+      "type": "string",
+      "description": "Broker identifier for order routing"
+    },
+    "algorithm": {
+      "type": "string",
+      "description": "Algorithmic execution strategy name"
+    },
+    "algorithmParams": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Algorithm-specific execution parameters"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Order currency (ISO 4217)",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "trader": {
+      "type": "string",
+      "description": "Identifier of the trader who placed the order"
+    },
+    "executions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Execution"
+      },
+      "description": "Execution reports (fills) for this order"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Order creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Most recent order update timestamp"
+    }
+  },
+  "$defs": {
+    "Execution": {
+      "type": "object",
+      "description": "An execution report representing a partial or complete fill of a trading order",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique execution identifier"
+        },
+        "quantity": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Executed quantity"
+        },
+        "price": {
+          "type": "number",
+          "description": "Execution price"
+        },
+        "commission": {
+          "type": "number",
+          "description": "Commission charged for this execution"
+        },
+        "fees": {
+          "type": "number",
+          "description": "Exchange and regulatory fees"
+        },
+        "netAmount": {
+          "type": "number",
+          "description": "Net settlement amount"
+        },
+        "venue": {
+          "type": "string",
+          "description": "Execution venue or exchange"
+        },
+        "broker": {
+          "type": "string",
+          "description": "Executing broker"
+        },
+        "settlementDate": {
+          "type": "string",
+          "format": "date",
+          "description": "Expected settlement date"
+        },
+        "executedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Execution timestamp"
+        }
+      }
+    }
+  }
+}

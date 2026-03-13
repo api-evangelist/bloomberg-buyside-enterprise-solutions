@@ -1,0 +1,1019 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Portfolio API
+  description: >-
+    API for portfolio management operations including portfolio construction,
+    holdings management, risk analysis, performance attribution, and compliance
+    monitoring for buy-side firms. Enables programmatic access to Bloomberg's
+    portfolio analytics platform.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+externalDocs:
+  description: Bloomberg Portfolio Management Documentation
+  url: https://www.bloomberg.com/professional/product/portfolio-management/
+servers:
+  - url: https://api.bloomberg.com/portfolio
+    description: Bloomberg Portfolio API Production
+tags:
+  - name: Portfolios
+    description: Create, read, update, and delete portfolio definitions
+  - name: Holdings
+    description: Manage portfolio holdings and positions
+  - name: Performance
+    description: Portfolio performance measurement and attribution
+  - name: Risk
+    description: Portfolio risk analytics and factor exposure
+  - name: Compliance
+    description: Portfolio compliance rules and monitoring
+  - name: Benchmarks
+    description: Benchmark assignment and comparison
+security:
+  - bearerAuth: []
+paths:
+  /v1/portfolios:
+    get:
+      operationId: listPortfolios
+      summary: List portfolios
+      description: >-
+        Retrieve a list of all portfolios accessible to the authenticated user,
+        with optional filtering by portfolio type, status, or manager.
+      tags:
+        - Portfolios
+      parameters:
+        - name: type
+          in: query
+          description: Filter by portfolio type
+          schema:
+            type: string
+            enum:
+              - TRADING
+              - MODEL
+              - BENCHMARK
+              - COMPOSITE
+        - name: status
+          in: query
+          description: Filter by portfolio status
+          schema:
+            type: string
+            enum:
+              - ACTIVE
+              - INACTIVE
+              - CLOSED
+        - name: manager
+          in: query
+          description: Filter by portfolio manager identifier
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of results
+          schema:
+            type: integer
+            default: 50
+            maximum: 200
+        - name: offset
+          in: query
+          description: Number of results to skip
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of portfolios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalCount:
+                    type: integer
+                  portfolios:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Portfolio'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      operationId: createPortfolio
+      summary: Create a portfolio
+      description: >-
+        Create a new portfolio with the specified configuration, including
+        portfolio type, base currency, and benchmark assignment.
+      tags:
+        - Portfolios
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePortfolioRequest'
+      responses:
+        '201':
+          description: Portfolio created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '409':
+          description: Portfolio with this name already exists
+  /v1/portfolios/{portfolioId}:
+    get:
+      operationId: getPortfolio
+      summary: Get portfolio details
+      description: >-
+        Retrieve detailed information about a specific portfolio, including
+        its configuration, metadata, and current summary statistics.
+      tags:
+        - Portfolios
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+      responses:
+        '200':
+          description: Portfolio details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+    put:
+      operationId: updatePortfolio
+      summary: Update a portfolio
+      description: >-
+        Update portfolio metadata and configuration, including name,
+        description, benchmark, and status.
+      tags:
+        - Portfolios
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePortfolioRequest'
+      responses:
+        '200':
+          description: Portfolio updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Portfolio'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+    delete:
+      operationId: deletePortfolio
+      summary: Delete a portfolio
+      description: >-
+        Delete a portfolio. This operation is irreversible and will remove all
+        associated holdings and transaction history.
+      tags:
+        - Portfolios
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+      responses:
+        '204':
+          description: Portfolio deleted successfully
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+  /v1/portfolios/{portfolioId}/holdings:
+    get:
+      operationId: getPortfolioHoldings
+      summary: Get portfolio holdings
+      description: >-
+        Retrieve the current holdings of a portfolio as of a specified date,
+        including position quantities, market values, weights, and
+        unrealized gains/losses.
+      tags:
+        - Holdings
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+        - name: asOfDate
+          in: query
+          description: Holdings as of this date (defaults to current date)
+          schema:
+            type: string
+            format: date
+        - name: includeAnalytics
+          in: query
+          description: Include analytics fields for each holding
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Portfolio holdings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  portfolioId:
+                    type: string
+                  asOfDate:
+                    type: string
+                    format: date
+                  totalMarketValue:
+                    type: number
+                  currency:
+                    type: string
+                  holdings:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Holding'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+    put:
+      operationId: updatePortfolioHoldings
+      summary: Update portfolio holdings
+      description: >-
+        Replace the full set of holdings for a portfolio as of a specified
+        date. This is a full replacement operation.
+      tags:
+        - Holdings
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateHoldingsRequest'
+      responses:
+        '200':
+          description: Holdings updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  portfolioId:
+                    type: string
+                  holdingsCount:
+                    type: integer
+                  asOfDate:
+                    type: string
+                    format: date
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+  /v1/portfolios/{portfolioId}/performance:
+    get:
+      operationId: getPortfolioPerformance
+      summary: Get portfolio performance
+      description: >-
+        Retrieve portfolio performance metrics over a specified period,
+        including time-weighted returns, money-weighted returns, and
+        comparison to benchmark.
+      tags:
+        - Performance
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+        - name: startDate
+          in: query
+          required: true
+          description: Start date for performance period
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: true
+          description: End date for performance period
+          schema:
+            type: string
+            format: date
+        - name: frequency
+          in: query
+          description: Return frequency
+          schema:
+            type: string
+            enum:
+              - DAILY
+              - WEEKLY
+              - MONTHLY
+              - QUARTERLY
+              - YEARLY
+            default: MONTHLY
+      responses:
+        '200':
+          description: Portfolio performance data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+  /v1/portfolios/{portfolioId}/performance/attribution:
+    get:
+      operationId: getPerformanceAttribution
+      summary: Get performance attribution
+      description: >-
+        Retrieve performance attribution analysis showing the contribution of
+        allocation, selection, and interaction effects relative to the
+        portfolio benchmark.
+      tags:
+        - Performance
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+        - name: groupBy
+          in: query
+          description: Dimension for attribution grouping
+          schema:
+            type: string
+            enum:
+              - SECTOR
+              - COUNTRY
+              - ASSET_CLASS
+              - CURRENCY
+              - CUSTOM
+            default: SECTOR
+      responses:
+        '200':
+          description: Performance attribution data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributionResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+  /v1/portfolios/{portfolioId}/risk:
+    get:
+      operationId: getPortfolioRisk
+      summary: Get portfolio risk analytics
+      description: >-
+        Retrieve portfolio risk metrics including tracking error, value at
+        risk, beta, factor exposures, and concentration analysis.
+      tags:
+        - Risk
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+        - name: asOfDate
+          in: query
+          description: Risk calculation date
+          schema:
+            type: string
+            format: date
+        - name: riskModel
+          in: query
+          description: Risk model to use for calculations
+          schema:
+            type: string
+            enum:
+              - BLOOMBERG_GLOBAL_EQUITY
+              - BLOOMBERG_US_EQUITY
+              - BLOOMBERG_FIXED_INCOME
+              - BLOOMBERG_MULTI_ASSET
+            default: BLOOMBERG_MULTI_ASSET
+        - name: confidenceLevel
+          in: query
+          description: Confidence level for VaR calculations
+          schema:
+            type: number
+            enum:
+              - 0.95
+              - 0.99
+            default: 0.95
+      responses:
+        '200':
+          description: Portfolio risk analytics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+  /v1/portfolios/{portfolioId}/compliance:
+    get:
+      operationId: getComplianceStatus
+      summary: Get portfolio compliance status
+      description: >-
+        Retrieve the compliance status of a portfolio against all assigned
+        compliance rules, including any current violations or warnings.
+      tags:
+        - Compliance
+      parameters:
+        - $ref: '#/components/parameters/portfolioId'
+        - name: asOfDate
+          in: query
+          description: Compliance check date
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Compliance status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplianceResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+  /v1/compliance/rules:
+    get:
+      operationId: listComplianceRules
+      summary: List compliance rules
+      description: >-
+        Retrieve all configured compliance rules, optionally filtered by
+        rule type or status.
+      tags:
+        - Compliance
+      parameters:
+        - name: ruleType
+          in: query
+          description: Filter by rule type
+          schema:
+            type: string
+            enum:
+              - CONCENTRATION
+              - EXPOSURE
+              - RATING
+              - LIQUIDITY
+              - REGULATORY
+              - CUSTOM
+        - name: status
+          in: query
+          description: Filter by rule status
+          schema:
+            type: string
+            enum:
+              - ACTIVE
+              - INACTIVE
+      responses:
+        '200':
+          description: List of compliance rules
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  rules:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ComplianceRule'
+        '401':
+          description: Unauthorized
+  /v1/benchmarks:
+    get:
+      operationId: listBenchmarks
+      summary: List available benchmarks
+      description: >-
+        Retrieve a list of available benchmarks that can be assigned to
+        portfolios for performance comparison and attribution analysis.
+      tags:
+        - Benchmarks
+      parameters:
+        - name: query
+          in: query
+          description: Search by benchmark name or identifier
+          schema:
+            type: string
+        - name: assetClass
+          in: query
+          description: Filter by asset class
+          schema:
+            type: string
+            enum:
+              - Equity
+              - Fixed Income
+              - Multi-Asset
+              - Commodity
+              - Real Estate
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+            maximum: 200
+      responses:
+        '200':
+          description: List of benchmarks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalCount:
+                    type: integer
+                  benchmarks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Benchmark'
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+  parameters:
+    portfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Unique portfolio identifier
+      schema:
+        type: string
+  schemas:
+    Portfolio:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique portfolio identifier
+        name:
+          type: string
+          description: Portfolio name
+        description:
+          type: string
+          description: Portfolio description
+        type:
+          type: string
+          enum:
+            - TRADING
+            - MODEL
+            - BENCHMARK
+            - COMPOSITE
+          description: Portfolio type
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+            - CLOSED
+          description: Portfolio status
+        currency:
+          type: string
+          description: Base currency (ISO 4217)
+        benchmarkId:
+          type: string
+          description: Assigned benchmark identifier
+        manager:
+          type: string
+          description: Portfolio manager identifier
+        inceptionDate:
+          type: string
+          format: date
+          description: Portfolio inception date
+        totalMarketValue:
+          type: number
+          description: Total market value in base currency
+        holdingsCount:
+          type: integer
+          description: Number of current holdings
+        createdAt:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    CreatePortfolioRequest:
+      type: object
+      required:
+        - name
+        - type
+        - currency
+      properties:
+        name:
+          type: string
+          description: Portfolio name
+          minLength: 1
+          maxLength: 256
+        description:
+          type: string
+          description: Portfolio description
+        type:
+          type: string
+          enum:
+            - TRADING
+            - MODEL
+            - BENCHMARK
+            - COMPOSITE
+        currency:
+          type: string
+          description: Base currency (ISO 4217)
+        benchmarkId:
+          type: string
+          description: Benchmark identifier to assign
+        manager:
+          type: string
+          description: Portfolio manager identifier
+        inceptionDate:
+          type: string
+          format: date
+          description: Portfolio inception date
+    UpdatePortfolioRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+            - CLOSED
+        benchmarkId:
+          type: string
+        manager:
+          type: string
+    Holding:
+      type: object
+      properties:
+        security:
+          type: string
+          description: Bloomberg security identifier
+        name:
+          type: string
+          description: Security name
+        assetClass:
+          type: string
+          description: Asset class
+        quantity:
+          type: number
+          description: Number of shares or units held
+        marketValue:
+          type: number
+          description: Current market value in portfolio base currency
+        costBasis:
+          type: number
+          description: Total cost basis
+        weight:
+          type: number
+          description: Portfolio weight as a percentage
+        unrealizedGainLoss:
+          type: number
+          description: Unrealized gain or loss
+        unrealizedGainLossPct:
+          type: number
+          description: Unrealized gain or loss as a percentage
+        sector:
+          type: string
+          description: GICS sector classification
+        country:
+          type: string
+          description: Country of risk (ISO 3166)
+        currency:
+          type: string
+          description: Security currency (ISO 4217)
+    UpdateHoldingsRequest:
+      type: object
+      required:
+        - asOfDate
+        - holdings
+      properties:
+        asOfDate:
+          type: string
+          format: date
+          description: Date for which holdings are effective
+        holdings:
+          type: array
+          items:
+            type: object
+            required:
+              - security
+              - quantity
+            properties:
+              security:
+                type: string
+                description: Bloomberg security identifier
+              quantity:
+                type: number
+                description: Number of shares or units
+              costBasis:
+                type: number
+                description: Cost basis per unit
+    PerformanceResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        totalReturn:
+          type: number
+          description: Total portfolio return for the period
+        annualizedReturn:
+          type: number
+          description: Annualized portfolio return
+        benchmarkReturn:
+          type: number
+          description: Benchmark return for the period
+        excessReturn:
+          type: number
+          description: Portfolio return minus benchmark return
+        sharpeRatio:
+          type: number
+          description: Sharpe ratio for the period
+        informationRatio:
+          type: number
+          description: Information ratio versus benchmark
+        maxDrawdown:
+          type: number
+          description: Maximum drawdown during the period
+        periods:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              portfolioReturn:
+                type: number
+              benchmarkReturn:
+                type: number
+              cumulativeReturn:
+                type: number
+              cumulativeBenchmarkReturn:
+                type: number
+    AttributionResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        totalAllocationEffect:
+          type: number
+          description: Total allocation effect
+        totalSelectionEffect:
+          type: number
+          description: Total selection effect
+        totalInteractionEffect:
+          type: number
+          description: Total interaction effect
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Group name (e.g., sector name)
+              portfolioWeight:
+                type: number
+              benchmarkWeight:
+                type: number
+              portfolioReturn:
+                type: number
+              benchmarkReturn:
+                type: number
+              allocationEffect:
+                type: number
+              selectionEffect:
+                type: number
+              interactionEffect:
+                type: number
+              totalEffect:
+                type: number
+    RiskResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        asOfDate:
+          type: string
+          format: date
+        riskModel:
+          type: string
+        totalRisk:
+          type: number
+          description: Annualized total portfolio risk (standard deviation)
+        trackingError:
+          type: number
+          description: Annualized tracking error versus benchmark
+        beta:
+          type: number
+          description: Portfolio beta relative to benchmark
+        valueAtRisk:
+          type: number
+          description: Value at Risk at specified confidence level
+        conditionalVaR:
+          type: number
+          description: Conditional Value at Risk (expected shortfall)
+        factorExposures:
+          type: array
+          items:
+            type: object
+            properties:
+              factor:
+                type: string
+                description: Risk factor name
+              exposure:
+                type: number
+                description: Factor exposure (beta)
+              contribution:
+                type: number
+                description: Factor contribution to total risk
+        concentrationMetrics:
+          type: object
+          properties:
+            top10Weight:
+              type: number
+              description: Combined weight of top 10 holdings
+            herfindahlIndex:
+              type: number
+              description: Herfindahl-Hirschman index for position concentration
+            effectivePositions:
+              type: number
+              description: Effective number of positions
+    ComplianceResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        asOfDate:
+          type: string
+          format: date
+        overallStatus:
+          type: string
+          enum:
+            - COMPLIANT
+            - WARNING
+            - VIOLATION
+          description: Overall compliance status
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              ruleId:
+                type: string
+              ruleName:
+                type: string
+              status:
+                type: string
+                enum:
+                  - PASS
+                  - WARNING
+                  - FAIL
+              currentValue:
+                type: number
+              threshold:
+                type: number
+              message:
+                type: string
+    ComplianceRule:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Rule identifier
+        name:
+          type: string
+          description: Rule name
+        description:
+          type: string
+          description: Rule description
+        type:
+          type: string
+          enum:
+            - CONCENTRATION
+            - EXPOSURE
+            - RATING
+            - LIQUIDITY
+            - REGULATORY
+            - CUSTOM
+        status:
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+        threshold:
+          type: number
+          description: Rule threshold value
+        operator:
+          type: string
+          enum:
+            - LESS_THAN
+            - LESS_THAN_OR_EQUAL
+            - GREATER_THAN
+            - GREATER_THAN_OR_EQUAL
+            - BETWEEN
+    Benchmark:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Benchmark identifier
+        name:
+          type: string
+          description: Benchmark name
+        ticker:
+          type: string
+          description: Bloomberg ticker
+        assetClass:
+          type: string
+          description: Asset class
+        currency:
+          type: string
+          description: Base currency
+        provider:
+          type: string
+          description: Index provider name
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://www.bloomberg.com/schemas/buyside/portfolio.json",
+  "title": "Bloomberg Buyside Portfolio",
+  "description": "A portfolio represents a collection of financial instrument holdings managed as a single entity for buy-side investment management, including trading portfolios, model portfolios, benchmarks, and composites.",
+  "type": "object",
+  "required": ["name", "type", "currency"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique portfolio identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Portfolio name",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "description": {
+      "type": "string",
+      "description": "Portfolio description"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["TRADING", "MODEL", "BENCHMARK", "COMPOSITE"],
+      "description": "Portfolio type classification"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["ACTIVE", "INACTIVE", "CLOSED"],
+      "description": "Current portfolio status"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Base currency for the portfolio (ISO 4217)",
+      "pattern": "^[A-Z]{3}$"
+    },
+    "benchmarkId": {
+      "type": "string",
+      "description": "Identifier of the assigned benchmark for performance comparison"
+    },
+    "manager": {
+      "type": "string",
+      "description": "Portfolio manager identifier"
+    },
+    "inceptionDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the portfolio was established"
+    },
+    "totalMarketValue": {
+      "type": "number",
+      "description": "Total current market value of the portfolio in base currency"
+    },
+    "holdingsCount": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of distinct holdings in the portfolio"
+    },
+    "holdings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Holding"
+      },
+      "description": "Current portfolio holdings"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the portfolio was created"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the most recent portfolio update"
+    }
+  },
+  "$defs": {
+    "Holding": {
+      "type": "object",
+      "description": "A single position within a portfolio representing ownership of a financial instrument",
+      "required": ["security", "quantity"],
+      "properties": {
+        "security": {
+          "type": "string",
+          "description": "Bloomberg security identifier"
+        },
+        "name": {
+          "type": "string",
+          "description": "Security display name"
+        },
+        "assetClass": {
+          "type": "string",
+          "description": "Asset class classification"
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Number of shares or units held"
+        },
+        "marketValue": {
+          "type": "number",
+          "description": "Current market value in portfolio base currency"
+        },
+        "costBasis": {
+          "type": "number",
+          "description": "Total acquisition cost"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Portfolio weight as a percentage"
+        },
+        "unrealizedGainLoss": {
+          "type": "number",
+          "description": "Unrealized profit or loss"
+        },
+        "sector": {
+          "type": "string",
+          "description": "GICS sector classification"
+        },
+        "country": {
+          "type": "string",
+          "description": "Country of risk (ISO 3166-1 alpha-2)",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "currency": {
+          "type": "string",
+          "description": "Security trading currency (ISO 4217)",
+          "pattern": "^[A-Z]{3}$"
+        }
+      }
+    }
+  }
+}

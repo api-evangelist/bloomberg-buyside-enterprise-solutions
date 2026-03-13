@@ -1,0 +1,652 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Data API
+  description: >-
+    Programmatic access to Bloomberg's financial data including reference data,
+    historical pricing, corporate actions, and market data for portfolio
+    management and analytics. Part of Bloomberg's buy-side enterprise solutions
+    for asset managers, hedge funds, and institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+externalDocs:
+  description: Bloomberg API Library Documentation
+  url: https://www.bloomberg.com/professional/support/api-library/
+servers:
+  - url: https://api.bloomberg.com
+    description: Bloomberg API Production
+tags:
+  - name: Reference Data
+    description: Security reference data including identifiers, classifications, and descriptive information
+  - name: Historical Data
+    description: Historical pricing, volume, and fundamental data for securities
+  - name: Market Data
+    description: Real-time and delayed market data snapshots
+  - name: Corporate Actions
+    description: Corporate action events including dividends, splits, mergers, and restructurings
+  - name: Field Search
+    description: Search and discover available data fields
+security:
+  - bearerAuth: []
+paths:
+  /data/v1/reference:
+    post:
+      operationId: getReferenceData
+      summary: Get reference data for securities
+      description: >-
+        Retrieve reference data fields for one or more securities. Returns
+        static or slowly changing descriptive data such as identifiers,
+        classifications, issue details, and corporate information.
+      tags:
+        - Reference Data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReferenceDataRequest'
+      responses:
+        '200':
+          description: Reference data returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceDataResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired token
+        '403':
+          description: Forbidden - insufficient data entitlements
+        '429':
+          description: Rate limit exceeded
+  /data/v1/historical:
+    post:
+      operationId: getHistoricalData
+      summary: Get historical data for securities
+      description: >-
+        Retrieve historical end-of-day data for one or more securities over a
+        specified date range. Supports pricing, volume, fundamental, and
+        derived fields with configurable periodicity.
+      tags:
+        - Historical Data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HistoricalDataRequest'
+      responses:
+        '200':
+          description: Historical data returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoricalDataResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden - insufficient data entitlements
+        '429':
+          description: Rate limit exceeded
+  /data/v1/market:
+    post:
+      operationId: getMarketData
+      summary: Get market data snapshot
+      description: >-
+        Retrieve a snapshot of current or delayed market data for one or more
+        securities, including last price, bid, ask, volume, and other
+        real-time fields.
+      tags:
+        - Market Data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarketDataRequest'
+      responses:
+        '200':
+          description: Market data snapshot returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketDataResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden - insufficient data entitlements
+        '429':
+          description: Rate limit exceeded
+  /data/v1/corporate-actions:
+    post:
+      operationId: getCorporateActions
+      summary: Get corporate actions for securities
+      description: >-
+        Retrieve corporate action events for one or more securities within a
+        specified date range, including dividends, stock splits, mergers,
+        spin-offs, and other corporate events.
+      tags:
+        - Corporate Actions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CorporateActionsRequest'
+      responses:
+        '200':
+          description: Corporate actions returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CorporateActionsResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden - insufficient data entitlements
+        '429':
+          description: Rate limit exceeded
+  /data/v1/fields:
+    get:
+      operationId: searchFields
+      summary: Search available data fields
+      description: >-
+        Search and discover available Bloomberg data fields by keyword or
+        category. Returns field metadata including mnemonics, descriptions,
+        data types, and applicable security types.
+      tags:
+        - Field Search
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: Search keyword or field mnemonic
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: Filter by field category
+          schema:
+            type: string
+            enum:
+              - Pricing
+              - Fundamentals
+              - Analytics
+              - Ratings
+              - Identifiers
+              - Corporate Actions
+        - name: limit
+          in: query
+          description: Maximum number of results to return
+          schema:
+            type: integer
+            default: 50
+            maximum: 200
+        - name: offset
+          in: query
+          description: Number of results to skip for pagination
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Field search results returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FieldSearchResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+  /data/v1/securities/search:
+    get:
+      operationId: searchSecurities
+      summary: Search for securities
+      description: >-
+        Search for securities by name, ticker, ISIN, CUSIP, or other
+        identifiers. Returns matching securities with key reference fields.
+      tags:
+        - Reference Data
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: Security name, ticker, or identifier to search for
+          schema:
+            type: string
+        - name: assetClass
+          in: query
+          description: Filter by asset class
+          schema:
+            type: string
+            enum:
+              - Equity
+              - Fixed Income
+              - Commodity
+              - Currency
+              - Index
+              - Fund
+              - Mortgage
+              - Municipal
+              - Preferred
+        - name: limit
+          in: query
+          description: Maximum number of results
+          schema:
+            type: integer
+            default: 25
+            maximum: 100
+        - name: offset
+          in: query
+          description: Number of results to skip
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: Security search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecuritySearchResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+  schemas:
+    ReferenceDataRequest:
+      type: object
+      required:
+        - securities
+        - fields
+      properties:
+        securities:
+          type: array
+          items:
+            type: string
+          description: List of security identifiers (e.g., "AAPL US Equity", "IBM US Equity")
+          minItems: 1
+          maxItems: 100
+        fields:
+          type: array
+          items:
+            type: string
+          description: List of Bloomberg field mnemonics (e.g., "PX_LAST", "NAME", "ID_ISIN")
+          minItems: 1
+          maxItems: 50
+        overrides:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldOverride'
+          description: Optional field overrides for parameterized fields
+    ReferenceDataResponse:
+      type: object
+      properties:
+        securities:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityData'
+    HistoricalDataRequest:
+      type: object
+      required:
+        - securities
+        - fields
+        - startDate
+        - endDate
+      properties:
+        securities:
+          type: array
+          items:
+            type: string
+          description: List of security identifiers
+          minItems: 1
+          maxItems: 50
+        fields:
+          type: array
+          items:
+            type: string
+          description: List of Bloomberg field mnemonics
+          minItems: 1
+          maxItems: 25
+        startDate:
+          type: string
+          format: date
+          description: Start date for historical range (YYYY-MM-DD)
+        endDate:
+          type: string
+          format: date
+          description: End date for historical range (YYYY-MM-DD)
+        periodicity:
+          type: string
+          enum:
+            - DAILY
+            - WEEKLY
+            - MONTHLY
+            - QUARTERLY
+            - SEMI_ANNUALLY
+            - YEARLY
+          default: DAILY
+          description: Frequency of data points
+        adjustmentNormal:
+          type: boolean
+          default: false
+          description: Adjust for normal cash dividends
+        adjustmentAbnormal:
+          type: boolean
+          default: false
+          description: Adjust for abnormal cash dividends
+        adjustmentSplit:
+          type: boolean
+          default: true
+          description: Adjust for stock splits
+        currency:
+          type: string
+          description: Override currency for price fields (ISO 4217)
+    HistoricalDataResponse:
+      type: object
+      properties:
+        securities:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+                description: Security identifier
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistoricalDataPoint'
+    MarketDataRequest:
+      type: object
+      required:
+        - securities
+        - fields
+      properties:
+        securities:
+          type: array
+          items:
+            type: string
+          description: List of security identifiers
+          minItems: 1
+          maxItems: 100
+        fields:
+          type: array
+          items:
+            type: string
+          description: List of Bloomberg field mnemonics for market data
+          minItems: 1
+          maxItems: 50
+    MarketDataResponse:
+      type: object
+      properties:
+        securities:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityData'
+        timestamp:
+          type: string
+          format: date-time
+          description: Timestamp of the market data snapshot
+    CorporateActionsRequest:
+      type: object
+      required:
+        - securities
+      properties:
+        securities:
+          type: array
+          items:
+            type: string
+          description: List of security identifiers
+          minItems: 1
+          maxItems: 50
+        startDate:
+          type: string
+          format: date
+          description: Start date for corporate actions range
+        endDate:
+          type: string
+          format: date
+          description: End date for corporate actions range
+        actionTypes:
+          type: array
+          items:
+            type: string
+            enum:
+              - DIVIDEND
+              - STOCK_SPLIT
+              - REVERSE_SPLIT
+              - MERGER
+              - ACQUISITION
+              - SPIN_OFF
+              - RIGHTS_ISSUE
+              - TENDER_OFFER
+              - BANKRUPTCY
+          description: Filter by specific corporate action types
+    CorporateActionsResponse:
+      type: object
+      properties:
+        securities:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+                description: Security identifier
+              actions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CorporateAction'
+    SecurityData:
+      type: object
+      properties:
+        security:
+          type: string
+          description: Security identifier
+        fields:
+          type: object
+          additionalProperties: true
+          description: Map of field mnemonics to their values
+        error:
+          $ref: '#/components/schemas/SecurityError'
+    HistoricalDataPoint:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Date of the data point
+        fields:
+          type: object
+          additionalProperties: true
+          description: Map of field mnemonics to their values for this date
+    CorporateAction:
+      type: object
+      properties:
+        actionType:
+          type: string
+          description: Type of corporate action
+        announcementDate:
+          type: string
+          format: date
+          description: Date the action was announced
+        effectiveDate:
+          type: string
+          format: date
+          description: Effective date of the action
+        recordDate:
+          type: string
+          format: date
+          description: Record date for the action
+        paymentDate:
+          type: string
+          format: date
+          description: Payment date (for dividends)
+        amount:
+          type: number
+          description: Amount associated with the action (e.g., dividend per share)
+        currency:
+          type: string
+          description: Currency of the amount (ISO 4217)
+        ratio:
+          type: string
+          description: Ratio for splits (e.g., "2:1")
+        description:
+          type: string
+          description: Human-readable description of the action
+    FieldOverride:
+      type: object
+      properties:
+        fieldId:
+          type: string
+          description: Bloomberg field mnemonic to override
+        value:
+          type: string
+          description: Override value
+    FieldSearchResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of matching fields
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldMetadata'
+    FieldMetadata:
+      type: object
+      properties:
+        mnemonic:
+          type: string
+          description: Bloomberg field mnemonic (e.g., "PX_LAST")
+        name:
+          type: string
+          description: Human-readable field name
+        description:
+          type: string
+          description: Detailed description of the field
+        dataType:
+          type: string
+          description: Data type of the field value
+          enum:
+            - String
+            - Double
+            - Integer
+            - Date
+            - DateTime
+            - Boolean
+        category:
+          type: string
+          description: Field category
+    SecuritySearchResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of matching securities
+        securities:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecuritySummary'
+    SecuritySummary:
+      type: object
+      properties:
+        ticker:
+          type: string
+          description: Bloomberg ticker symbol
+        name:
+          type: string
+          description: Security name
+        assetClass:
+          type: string
+          description: Asset class classification
+        exchange:
+          type: string
+          description: Primary exchange
+        country:
+          type: string
+          description: Country of domicile (ISO 3166)
+        currency:
+          type: string
+          description: Trading currency (ISO 4217)
+        isin:
+          type: string
+          description: ISIN identifier
+        cusip:
+          type: string
+          description: CUSIP identifier
+        figi:
+          type: string
+          description: FIGI identifier
+    SecurityError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error description
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string

@@ -1,0 +1,940 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Analytics API
+  description: >-
+    Access to Bloomberg's analytics engine for fixed income, derivatives, and
+    multi-asset calculations including scenario analysis, stress testing, yield
+    curve construction, and pricing models. Part of Bloomberg's buy-side
+    enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/
+servers:
+  - url: https://api.bloomberg.com/analytics
+    description: Bloomberg Analytics API Production
+tags:
+  - name: Fixed Income
+    description: Fixed income analytics including yield, duration, and spread calculations
+  - name: Derivatives
+    description: Derivatives pricing, Greeks, and valuation models
+  - name: Scenario Analysis
+    description: What-if scenario analysis for portfolios and securities
+  - name: Stress Testing
+    description: Stress testing against historical and hypothetical scenarios
+  - name: Yield Curves
+    description: Yield curve construction and management
+  - name: Pricing
+    description: Security pricing and valuation
+security:
+  - bearerAuth: []
+paths:
+  /v1/fixed-income/calculate:
+    post:
+      operationId: calculateFixedIncome
+      summary: Calculate fixed income analytics
+      description: >-
+        Compute fixed income analytics for one or more securities, including
+        yield to maturity, modified duration, convexity, spread measures,
+        and cash flow projections.
+      tags:
+        - Fixed Income
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FixedIncomeRequest'
+      responses:
+        '200':
+          description: Fixed income analytics calculated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FixedIncomeResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden - insufficient analytics entitlements
+  /v1/fixed-income/cashflows:
+    post:
+      operationId: getFixedIncomeCashflows
+      summary: Get fixed income cash flows
+      description: >-
+        Retrieve projected cash flow schedules for fixed income securities,
+        including coupon payments, principal payments, and prepayment
+        projections for mortgage-backed securities.
+      tags:
+        - Fixed Income
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - securities
+              properties:
+                securities:
+                  type: array
+                  items:
+                    type: string
+                  description: List of security identifiers
+                  minItems: 1
+                  maxItems: 25
+                settlementDate:
+                  type: string
+                  format: date
+                  description: Settlement date for cash flow calculation
+                prepaymentSpeed:
+                  type: number
+                  description: Prepayment speed assumption (CPR) for MBS
+      responses:
+        '200':
+          description: Cash flow projections
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CashflowResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+  /v1/derivatives/price:
+    post:
+      operationId: priceDerivative
+      summary: Price a derivative instrument
+      description: >-
+        Calculate the theoretical price and Greeks for derivative instruments
+        including options, futures, swaps, and structured products using
+        Bloomberg's pricing models.
+      tags:
+        - Derivatives
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DerivativePricingRequest'
+      responses:
+        '200':
+          description: Derivative pricing results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DerivativePricingResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden - insufficient analytics entitlements
+  /v1/derivatives/greeks:
+    post:
+      operationId: calculateGreeks
+      summary: Calculate option Greeks
+      description: >-
+        Compute option Greeks (delta, gamma, theta, vega, rho) for one or
+        more options or option portfolios.
+      tags:
+        - Derivatives
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - securities
+              properties:
+                securities:
+                  type: array
+                  items:
+                    type: string
+                  description: List of option security identifiers
+                  minItems: 1
+                  maxItems: 50
+                pricingDate:
+                  type: string
+                  format: date
+                  description: Pricing date for Greeks calculation
+                volatilitySurface:
+                  type: string
+                  description: Volatility surface identifier to use
+      responses:
+        '200':
+          description: Greeks calculation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GreeksResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+  /v1/scenarios/analyze:
+    post:
+      operationId: analyzeScenario
+      summary: Run scenario analysis
+      description: >-
+        Perform what-if scenario analysis on a portfolio or set of securities
+        by applying hypothetical changes to market variables such as interest
+        rates, credit spreads, equity prices, or volatility.
+      tags:
+        - Scenario Analysis
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScenarioRequest'
+      responses:
+        '200':
+          description: Scenario analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+  /v1/stress-tests/run:
+    post:
+      operationId: runStressTest
+      summary: Run stress test
+      description: >-
+        Execute stress tests on a portfolio using predefined historical
+        scenarios or custom hypothetical shocks. Returns the projected
+        portfolio impact under each stress scenario.
+      tags:
+        - Stress Testing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StressTestRequest'
+      responses:
+        '200':
+          description: Stress test results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StressTestResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+  /v1/stress-tests/scenarios:
+    get:
+      operationId: listStressScenarios
+      summary: List predefined stress scenarios
+      description: >-
+        Retrieve a list of predefined historical stress scenarios available
+        for testing, such as the 2008 financial crisis, COVID-19 market
+        shock, or rate hike scenarios.
+      tags:
+        - Stress Testing
+      parameters:
+        - name: category
+          in: query
+          description: Filter by scenario category
+          schema:
+            type: string
+            enum:
+              - HISTORICAL
+              - RATE_SHOCK
+              - CREDIT_SHOCK
+              - EQUITY_SHOCK
+              - FX_SHOCK
+              - CUSTOM
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of stress scenarios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  scenarios:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StressScenario'
+        '401':
+          description: Unauthorized
+  /v1/yield-curves:
+    get:
+      operationId: listYieldCurves
+      summary: List available yield curves
+      description: >-
+        Retrieve a list of available yield curves, including sovereign,
+        swap, and corporate curves for various currencies.
+      tags:
+        - Yield Curves
+      parameters:
+        - name: currency
+          in: query
+          description: Filter by currency (ISO 4217)
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Filter by curve type
+          schema:
+            type: string
+            enum:
+              - SOVEREIGN
+              - SWAP
+              - CORPORATE
+              - MUNICIPAL
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of yield curves
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  curves:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/YieldCurveSummary'
+        '401':
+          description: Unauthorized
+  /v1/yield-curves/{curveId}:
+    get:
+      operationId: getYieldCurve
+      summary: Get yield curve data
+      description: >-
+        Retrieve the full yield curve data including term structure points,
+        zero rates, forward rates, and discount factors for a specific
+        curve as of a given date.
+      tags:
+        - Yield Curves
+      parameters:
+        - name: curveId
+          in: path
+          required: true
+          description: Yield curve identifier
+          schema:
+            type: string
+        - name: asOfDate
+          in: query
+          description: Curve date (defaults to most recent)
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Yield curve data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YieldCurveData'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Yield curve not found
+  /v1/pricing/evaluate:
+    post:
+      operationId: evaluateSecurities
+      summary: Evaluate security prices
+      description: >-
+        Calculate theoretical prices for securities using Bloomberg's pricing
+        models, with optional overrides for valuation parameters.
+      tags:
+        - Pricing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - securities
+              properties:
+                securities:
+                  type: array
+                  items:
+                    type: string
+                  description: List of security identifiers
+                  minItems: 1
+                  maxItems: 50
+                pricingDate:
+                  type: string
+                  format: date
+                  description: Valuation date
+                yieldCurveId:
+                  type: string
+                  description: Override yield curve for valuation
+                creditSpreadOverride:
+                  type: number
+                  description: Override credit spread in basis points
+                volatilityOverride:
+                  type: number
+                  description: Override implied volatility
+      responses:
+        '200':
+          description: Pricing results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        security:
+                          type: string
+                        theoreticalPrice:
+                          type: number
+                        marketPrice:
+                          type: number
+                        priceDifference:
+                          type: number
+                        yieldToMaturity:
+                          type: number
+                        spreadTobenchmark:
+                          type: number
+                        pricingModel:
+                          type: string
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+  schemas:
+    FixedIncomeRequest:
+      type: object
+      required:
+        - securities
+      properties:
+        securities:
+          type: array
+          items:
+            type: string
+          description: List of fixed income security identifiers
+          minItems: 1
+          maxItems: 50
+        analytics:
+          type: array
+          items:
+            type: string
+            enum:
+              - YIELD_TO_MATURITY
+              - YIELD_TO_WORST
+              - MODIFIED_DURATION
+              - EFFECTIVE_DURATION
+              - MACAULAY_DURATION
+              - CONVEXITY
+              - OAS
+              - Z_SPREAD
+              - I_SPREAD
+              - DV01
+              - ACCRUED_INTEREST
+              - CURRENT_YIELD
+          description: Analytics to calculate (defaults to all)
+        settlementDate:
+          type: string
+          format: date
+          description: Settlement date for calculations
+        yieldCurveId:
+          type: string
+          description: Yield curve to use for spread calculations
+    FixedIncomeResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+                description: Security identifier
+              price:
+                type: number
+                description: Clean price
+              dirtyPrice:
+                type: number
+                description: Dirty price (clean + accrued)
+              yieldToMaturity:
+                type: number
+                description: Yield to maturity
+              yieldToWorst:
+                type: number
+                description: Yield to worst
+              modifiedDuration:
+                type: number
+                description: Modified duration
+              effectiveDuration:
+                type: number
+                description: Effective duration (OAS-based)
+              macaulayDuration:
+                type: number
+                description: Macaulay duration
+              convexity:
+                type: number
+                description: Convexity
+              oas:
+                type: number
+                description: Option-adjusted spread (basis points)
+              zSpread:
+                type: number
+                description: Z-spread (basis points)
+              iSpread:
+                type: number
+                description: Interpolated spread (basis points)
+              dv01:
+                type: number
+                description: Dollar value of a basis point
+              accruedInterest:
+                type: number
+                description: Accrued interest per 100 face value
+              currentYield:
+                type: number
+                description: Current yield
+    CashflowResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+              cashflows:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    date:
+                      type: string
+                      format: date
+                    coupon:
+                      type: number
+                      description: Coupon payment amount
+                    principal:
+                      type: number
+                      description: Principal payment amount
+                    totalPayment:
+                      type: number
+                      description: Total cash flow
+                    remainingBalance:
+                      type: number
+                      description: Outstanding principal balance
+    DerivativePricingRequest:
+      type: object
+      required:
+        - securities
+      properties:
+        securities:
+          type: array
+          items:
+            type: string
+          description: List of derivative security identifiers
+          minItems: 1
+          maxItems: 25
+        pricingDate:
+          type: string
+          format: date
+          description: Pricing date
+        pricingModel:
+          type: string
+          enum:
+            - BLACK_SCHOLES
+            - BINOMIAL
+            - MONTE_CARLO
+            - BLACK76
+            - BACHELIER
+            - HJM
+          description: Pricing model to use
+        volatilitySurface:
+          type: string
+          description: Volatility surface identifier
+        underlyingPriceOverride:
+          type: number
+          description: Override underlying asset price
+        volatilityOverride:
+          type: number
+          description: Override implied volatility
+        riskFreeRateOverride:
+          type: number
+          description: Override risk-free rate
+    DerivativePricingResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+              theoreticalPrice:
+                type: number
+                description: Theoretical price from the model
+              marketPrice:
+                type: number
+                description: Current market price
+              impliedVolatility:
+                type: number
+                description: Implied volatility
+              delta:
+                type: number
+                description: Delta
+              gamma:
+                type: number
+                description: Gamma
+              theta:
+                type: number
+                description: Theta (daily)
+              vega:
+                type: number
+                description: Vega
+              rho:
+                type: number
+                description: Rho
+              pricingModel:
+                type: string
+                description: Model used for pricing
+    GreeksResponse:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+              delta:
+                type: number
+              gamma:
+                type: number
+              theta:
+                type: number
+              vega:
+                type: number
+              rho:
+                type: number
+              charm:
+                type: number
+                description: Rate of change of delta over time
+              vanna:
+                type: number
+                description: Sensitivity of delta to volatility
+              volga:
+                type: number
+                description: Sensitivity of vega to volatility
+    ScenarioRequest:
+      type: object
+      required:
+        - portfolioId
+        - shocks
+      properties:
+        portfolioId:
+          type: string
+          description: Portfolio to analyze
+        securities:
+          type: array
+          items:
+            type: string
+          description: Specific securities to analyze (if not using portfolioId)
+        shocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketShock'
+          description: Market variable shocks to apply
+          minItems: 1
+    ScenarioResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        baseValue:
+          type: number
+          description: Current portfolio market value
+        scenarioValue:
+          type: number
+          description: Portfolio value under scenario
+        pnlImpact:
+          type: number
+          description: Profit/loss impact
+        pnlImpactPct:
+          type: number
+          description: Profit/loss impact as a percentage
+        securityImpacts:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+              baseValue:
+                type: number
+              scenarioValue:
+                type: number
+              pnlImpact:
+                type: number
+              pnlImpactPct:
+                type: number
+    MarketShock:
+      type: object
+      required:
+        - variable
+        - shockType
+        - value
+      properties:
+        variable:
+          type: string
+          enum:
+            - INTEREST_RATE
+            - CREDIT_SPREAD
+            - EQUITY_PRICE
+            - FX_RATE
+            - VOLATILITY
+            - COMMODITY_PRICE
+            - INFLATION
+          description: Market variable to shock
+        shockType:
+          type: string
+          enum:
+            - ABSOLUTE
+            - RELATIVE
+            - OVERRIDE
+          description: Type of shock to apply
+        value:
+          type: number
+          description: Shock magnitude
+        tenor:
+          type: string
+          description: Specific tenor for rate shocks (e.g., "5Y", "10Y")
+        currency:
+          type: string
+          description: Currency for the shock (ISO 4217)
+    StressTestRequest:
+      type: object
+      required:
+        - portfolioId
+      properties:
+        portfolioId:
+          type: string
+          description: Portfolio to stress test
+        scenarioIds:
+          type: array
+          items:
+            type: string
+          description: Predefined stress scenario identifiers
+        customScenarios:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Custom scenario name
+              shocks:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MarketShock'
+          description: Custom stress scenarios
+    StressTestResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        baseValue:
+          type: number
+          description: Current portfolio market value
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              scenarioId:
+                type: string
+              scenarioName:
+                type: string
+              scenarioValue:
+                type: number
+                description: Portfolio value under stress
+              pnlImpact:
+                type: number
+                description: Profit/loss impact
+              pnlImpactPct:
+                type: number
+                description: Profit/loss impact percentage
+              worstContributors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    security:
+                      type: string
+                    pnlImpact:
+                      type: number
+                    pnlImpactPct:
+                      type: number
+                description: Securities with largest negative impact
+    StressScenario:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Scenario identifier
+        name:
+          type: string
+          description: Scenario name
+        description:
+          type: string
+          description: Scenario description
+        category:
+          type: string
+          enum:
+            - HISTORICAL
+            - RATE_SHOCK
+            - CREDIT_SHOCK
+            - EQUITY_SHOCK
+            - FX_SHOCK
+            - CUSTOM
+        historicalDate:
+          type: string
+          format: date
+          description: Reference date for historical scenarios
+        shocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketShock'
+    YieldCurveSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Curve identifier
+        name:
+          type: string
+          description: Curve name
+        currency:
+          type: string
+          description: Currency (ISO 4217)
+        type:
+          type: string
+          enum:
+            - SOVEREIGN
+            - SWAP
+            - CORPORATE
+            - MUNICIPAL
+        country:
+          type: string
+          description: Country (ISO 3166)
+    YieldCurveData:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        currency:
+          type: string
+        type:
+          type: string
+        asOfDate:
+          type: string
+          format: date
+        points:
+          type: array
+          items:
+            type: object
+            properties:
+              tenor:
+                type: string
+                description: Tenor label (e.g., "3M", "1Y", "10Y", "30Y")
+              maturityDate:
+                type: string
+                format: date
+              yieldRate:
+                type: number
+                description: Par yield rate
+              zeroRate:
+                type: number
+                description: Zero coupon rate
+              forwardRate:
+                type: number
+                description: Instantaneous forward rate
+              discountFactor:
+                type: number
+                description: Discount factor
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
