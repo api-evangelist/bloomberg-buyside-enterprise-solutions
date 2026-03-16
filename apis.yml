@@ -1,104 +1,68 @@
+aid: bloomberg-buyside-enterprise-solutions
 name: Bloomberg Buyside Enterprise Solutions
-description: Bloomberg's enterprise solutions for buy-side firms including asset managers, hedge funds, and institutional investors, providing integrated workflows, data management, portfolio analytics, and trading capabilities.
-image: https://assets.bbhub.io/company/sites/51/2019/08/bloomberg-logo-1.png
-url: https://www.bloomberg.com/professional/solution/buyside/
-created: '2024'
-modified: '2026-03-04'
-apis:
-- name: Bloomberg Data API
-  description: Programmatic access to Bloomberg's financial data including reference data, historical pricing, corporate actions, and market data for portfolio management and analytics.
-  image: https://assets.bbhub.io/company/sites/51/2019/08/bloomberg-logo-1.png
-  humanURL: https://www.bloomberg.com/professional/support/api-library/
-  baseURL: https://api.bloomberg.com
-  tags:
-  - Financial Data
-  - Market Data
-  - Reference Data
-  - Historical Data
-  - Corporate Actions
-  properties:
-  - type: Documentation
-    url: https://www.bloomberg.com/professional/support/api-library/
-  - type: Authentication
-    url: https://www.bloomberg.com/professional/support/api-library/#authentication
-  - type: OpenAPI
-    url: openapi/bloomberg-buyside-data-openapi.yml
-- name: Bloomberg Portfolio API
-  description: API for portfolio management operations including portfolio construction, risk analysis, performance attribution, and compliance monitoring for buy-side firms.
-  image: https://assets.bbhub.io/company/sites/51/2019/08/bloomberg-logo-1.png
-  humanURL: https://www.bloomberg.com/professional/product/portfolio-management/
-  baseURL: https://api.bloomberg.com/portfolio
-  tags:
-  - Portfolio Management
-  - Risk Analysis
-  - Performance Attribution
-  - Compliance
-  properties:
-  - type: Documentation
-    url: https://www.bloomberg.com/professional/support/api-library/
-  - type: OpenAPI
-    url: openapi/bloomberg-buyside-portfolio-openapi.yml
-- name: Bloomberg Order Management API
-  description: API for order and execution management, enabling algorithmic trading, smart order routing, and integration with trading platforms for buy-side workflows.
-  image: https://assets.bbhub.io/company/sites/51/2019/08/bloomberg-logo-1.png
-  humanURL: https://www.bloomberg.com/professional/product/buy-side-trading/
-  baseURL: https://api.bloomberg.com/oms
-  tags:
-  - Order Management
-  - Trading
-  - Execution
-  - Algorithmic Trading
-  properties:
-  - type: Documentation
-    url: https://www.bloomberg.com/professional/support/api-library/
-  - type: OpenAPI
-    url: openapi/bloomberg-buyside-order-management-openapi.yml
-- name: Bloomberg Analytics API
-  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis and stress testing.
-  image: https://assets.bbhub.io/company/sites/51/2019/08/bloomberg-logo-1.png
-  humanURL: https://www.bloomberg.com/professional/product/analytics/
-  baseURL: https://api.bloomberg.com/analytics
-  tags:
-  - Analytics
-  - Fixed Income
-  - Derivatives
-  - Scenario Analysis
-  - Stress Testing
-  properties:
-  - type: Documentation
-    url: https://www.bloomberg.com/professional/support/api-library/
-  - type: OpenAPI
-    url: openapi/bloomberg-buyside-analytics-openapi.yml
-common:
-- type: Getting Started
-  url: https://www.bloomberg.com/professional/support/api-library/
-- type: Authentication
-  url: https://www.bloomberg.com/professional/support/api-library/#authentication
-- type: Support
-  url: https://www.bloomberg.com/professional/support/
-- type: Contact
-  url: https://www.bloomberg.com/professional/request-demo/
-- type: Terms of Service
-  url: https://www.bloomberg.com/professional/terms-of-use/
-- type: Privacy Policy
-  url: https://www.bloomberg.com/privacy/
-- type: JSON-LD
-  url: json-ld/bloomberg-buyside-context.jsonld
-- type: JSONSchema
-  url: json-schema/bloomberg-buyside-portfolio-schema.json
-- type: JSONSchema
-  url: json-schema/bloomberg-buyside-order-schema.json
-- type: JSONSchema
-  url: json-schema/bloomberg-buyside-security-schema.json
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+description: >-
+  Bloomberg's enterprise solutions for buy-side firms including asset managers,
+  hedge funds, and institutional investors, providing integrated workflows, data
+  management, portfolio analytics, and trading capabilities.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Financial Services
-- Buy-Side
-- Asset Management
-- Portfolio Management
-- Trading
-- Market Data
-- Analytics
-- Enterprise Solutions
+  - Financial Services
+  - Buy-Side
+  - Asset Management
+  - Portfolio Management
+  - Trading
+  - Market Data
+  - Analytics
+  - Enterprise Solutions
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/bloomberg-buyside-enterprise-solutions/refs/heads/main/apis.yml
+created: '2024-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis:
+  - aid: bloomberg-buyside-enterprise-solutions:bloomberg-data-api
+    name: Bloomberg Data API
+    description: >-
+      Programmatic access to Bloomberg's financial data including reference
+      data, historical pricing, corporate actions, and market data for portfolio
+      management and analytics.
+    humanURL: https://www.bloomberg.com/professional/support/api-library/
+    tags:
+      - Financial Data
+      - Market Data
+      - Reference Data
+      - Historical Data
+      - Corporate Actions
+    properties:
+      - type: Documentation
+        url: https://www.bloomberg.com/professional/support/api-library/
+      - type: Authentication
+        url: https://www.bloomberg.com/professional/support/api-library/#authentication
+  - aid: bloomberg-buyside-enterprise-solutions:bloomberg-order-management-api
+    name: Bloomberg Order Management API
+    description: >-
+      API for order and execution management, enabling algorithmic trading,
+      smart order routing, and integration with trading platforms for buy-side
+      workflows.
+    humanURL: https://www.bloomberg.com/professional/product/buy-side-trading/
+    tags:
+      - Order Management
+      - Trading
+      - Execution
+      - Algorithmic Trading
+    properties:
+      - type: Documentation
+        url: https://www.bloomberg.com/professional/support/api-library/
+common:
+  - type: Getting Started
+    url: https://www.bloomberg.com/professional/support/api-library/
+  - type: Support
+    url: https://www.bloomberg.com/professional/support/
+  - type: Terms of Service
+    url: https://www.bloomberg.com/notices/tos/
+  - type: Privacy Policy
+    url: https://www.bloomberg.com/privacy/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
