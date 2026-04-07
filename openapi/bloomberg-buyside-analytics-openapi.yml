@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Bloomberg Analytics API
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API
   description: >-
     Access to Bloomberg's analytics engine for fixed income, derivatives, and
     multi-asset calculations including scenario analysis, stress testing, yield
@@ -36,7 +36,7 @@ paths:
   /v1/fixed-income/calculate:
     post:
       operationId: calculateFixedIncome
-      summary: Calculate fixed income analytics
+      summary: Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics
       description: >-
         Compute fixed income analytics for one or more securities, including
         yield to maturity, modified duration, convexity, spread measures,
@@ -69,7 +69,7 @@ paths:
   /v1/fixed-income/cashflows:
     post:
       operationId: getFixedIncomeCashflows
-      summary: Get fixed income cash flows
+      summary: Bloomberg Buyside Enterprise Solutions Get fixed income cash flows
       description: >-
         Retrieve projected cash flow schedules for fixed income securities,
         including coupon payments, principal payments, and prepayment
@@ -117,7 +117,7 @@ paths:
   /v1/derivatives/price:
     post:
       operationId: priceDerivative
-      summary: Price a derivative instrument
+      summary: Bloomberg Buyside Enterprise Solutions Price a derivative instrument
       description: >-
         Calculate the theoretical price and Greeks for derivative instruments
         including options, futures, swaps, and structured products using
@@ -150,7 +150,7 @@ paths:
   /v1/derivatives/greeks:
     post:
       operationId: calculateGreeks
-      summary: Calculate option Greeks
+      summary: Bloomberg Buyside Enterprise Solutions Calculate option Greeks
       description: >-
         Compute option Greeks (delta, gamma, theta, vega, rho) for one or
         more options or option portfolios.
@@ -197,7 +197,7 @@ paths:
   /v1/scenarios/analyze:
     post:
       operationId: analyzeScenario
-      summary: Run scenario analysis
+      summary: Bloomberg Buyside Enterprise Solutions Run scenario analysis
       description: >-
         Perform what-if scenario analysis on a portfolio or set of securities
         by applying hypothetical changes to market variables such as interest
@@ -228,7 +228,7 @@ paths:
   /v1/stress-tests/run:
     post:
       operationId: runStressTest
-      summary: Run stress test
+      summary: Bloomberg Buyside Enterprise Solutions Run stress test
       description: >-
         Execute stress tests on a portfolio using predefined historical
         scenarios or custom hypothetical shocks. Returns the projected
@@ -259,7 +259,7 @@ paths:
   /v1/stress-tests/scenarios:
     get:
       operationId: listStressScenarios
-      summary: List predefined stress scenarios
+      summary: Bloomberg Buyside Enterprise Solutions List predefined stress scenarios
       description: >-
         Retrieve a list of predefined historical stress scenarios available
         for testing, such as the 2008 financial crisis, COVID-19 market
@@ -301,7 +301,7 @@ paths:
   /v1/yield-curves:
     get:
       operationId: listYieldCurves
-      summary: List available yield curves
+      summary: Bloomberg Buyside Enterprise Solutions List available yield curves
       description: >-
         Retrieve a list of available yield curves, including sovereign,
         swap, and corporate curves for various currencies.
@@ -345,7 +345,7 @@ paths:
   /v1/yield-curves/{curveId}:
     get:
       operationId: getYieldCurve
-      summary: Get yield curve data
+      summary: Bloomberg Buyside Enterprise Solutions Get yield curve data
       description: >-
         Retrieve the full yield curve data including term structure points,
         zero rates, forward rates, and discount factors for a specific
@@ -379,7 +379,7 @@ paths:
   /v1/pricing/evaluate:
     post:
       operationId: evaluateSecurities
-      summary: Evaluate security prices
+      summary: Bloomberg Buyside Enterprise Solutions Evaluate security prices
       description: >-
         Calculate theoretical prices for securities using Bloomberg's pricing
         models, with optional overrides for valuation parameters.

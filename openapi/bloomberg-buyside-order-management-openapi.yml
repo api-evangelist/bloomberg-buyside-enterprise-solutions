@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Bloomberg Order Management API
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API
   description: >-
     API for order and execution management, enabling algorithmic trading, smart
     order routing, and integration with trading platforms for buy-side workflows.
@@ -34,7 +34,7 @@ paths:
   /v1/orders:
     get:
       operationId: listOrders
-      summary: List orders
+      summary: Bloomberg Buyside Enterprise Solutions List orders
       description: >-
         Retrieve a list of orders with optional filtering by status, side,
         security, date range, or portfolio.
@@ -117,7 +117,7 @@ paths:
           description: Forbidden
     post:
       operationId: createOrder
-      summary: Create an order
+      summary: Bloomberg Buyside Enterprise Solutions Create an order
       description: >-
         Create a new trading order with the specified parameters including
         security, side, quantity, order type, and routing instructions.
@@ -155,7 +155,7 @@ paths:
   /v1/orders/{orderId}:
     get:
       operationId: getOrder
-      summary: Get order details
+      summary: Bloomberg Buyside Enterprise Solutions Get order details
       description: >-
         Retrieve detailed information about a specific order, including
         current status, fill information, and audit trail.
@@ -176,7 +176,7 @@ paths:
           description: Order not found
     patch:
       operationId: amendOrder
-      summary: Amend an order
+      summary: Bloomberg Buyside Enterprise Solutions Amend an order
       description: >-
         Amend an existing order's quantity, limit price, or time in force.
         Only open orders can be amended.
@@ -212,7 +212,7 @@ paths:
   /v1/orders/{orderId}/cancel:
     post:
       operationId: cancelOrder
-      summary: Cancel an order
+      summary: Bloomberg Buyside Enterprise Solutions Cancel an order
       description: >-
         Request cancellation of an open order. The order must be in a
         cancellable state (NEW, PENDING, or PARTIALLY_FILLED).
@@ -245,7 +245,7 @@ paths:
   /v1/orders/{orderId}/executions:
     get:
       operationId: getOrderExecutions
-      summary: Get order executions
+      summary: Bloomberg Buyside Enterprise Solutions Get order executions
       description: >-
         Retrieve all execution reports (fills) for a specific order.
       tags:
@@ -273,7 +273,7 @@ paths:
   /v1/executions:
     get:
       operationId: listExecutions
-      summary: List executions
+      summary: Bloomberg Buyside Enterprise Solutions List executions
       description: >-
         Retrieve execution reports across all orders, with optional filtering
         by date range, security, or portfolio.
@@ -332,7 +332,7 @@ paths:
   /v1/allocations:
     post:
       operationId: createAllocation
-      summary: Create post-trade allocation
+      summary: Bloomberg Buyside Enterprise Solutions Create post-trade allocation
       description: >-
         Allocate executed trades to one or more portfolios. Supports
         pro-rata, manual, and rule-based allocation methods.
@@ -361,7 +361,7 @@ paths:
           description: Unauthorized
     get:
       operationId: listAllocations
-      summary: List allocations
+      summary: Bloomberg Buyside Enterprise Solutions List allocations
       description: >-
         Retrieve post-trade allocations with optional filtering by date,
         execution, or portfolio.
@@ -415,7 +415,7 @@ paths:
   /v1/brokers:
     get:
       operationId: listBrokers
-      summary: List available brokers
+      summary: Bloomberg Buyside Enterprise Solutions List available brokers
       description: >-
         Retrieve a list of configured broker connections available for order
         routing, including supported order types and algorithms.
@@ -457,7 +457,7 @@ paths:
   /v1/blotter:
     get:
       operationId: getBlotter
-      summary: Get trading blotter
+      summary: Bloomberg Buyside Enterprise Solutions Get trading blotter
       description: >-
         Retrieve a consolidated view of orders and executions for the
         current trading day or a specified date range.

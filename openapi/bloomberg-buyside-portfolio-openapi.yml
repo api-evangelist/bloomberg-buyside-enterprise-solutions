@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Bloomberg Portfolio API
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API
   description: >-
     API for portfolio management operations including portfolio construction,
     holdings management, risk analysis, performance attribution, and compliance
@@ -36,7 +36,7 @@ paths:
   /v1/portfolios:
     get:
       operationId: listPortfolios
-      summary: List portfolios
+      summary: Bloomberg Buyside Enterprise Solutions List portfolios
       description: >-
         Retrieve a list of all portfolios accessible to the authenticated user,
         with optional filtering by portfolio type, status, or manager.
@@ -100,7 +100,7 @@ paths:
           description: Forbidden
     post:
       operationId: createPortfolio
-      summary: Create a portfolio
+      summary: Bloomberg Buyside Enterprise Solutions Create a portfolio
       description: >-
         Create a new portfolio with the specified configuration, including
         portfolio type, base currency, and benchmark assignment.
@@ -132,7 +132,7 @@ paths:
   /v1/portfolios/{portfolioId}:
     get:
       operationId: getPortfolio
-      summary: Get portfolio details
+      summary: Bloomberg Buyside Enterprise Solutions Get portfolio details
       description: >-
         Retrieve detailed information about a specific portfolio, including
         its configuration, metadata, and current summary statistics.
@@ -153,7 +153,7 @@ paths:
           description: Portfolio not found
     put:
       operationId: updatePortfolio
-      summary: Update a portfolio
+      summary: Bloomberg Buyside Enterprise Solutions Update a portfolio
       description: >-
         Update portfolio metadata and configuration, including name,
         description, benchmark, and status.
@@ -186,7 +186,7 @@ paths:
           description: Portfolio not found
     delete:
       operationId: deletePortfolio
-      summary: Delete a portfolio
+      summary: Bloomberg Buyside Enterprise Solutions Delete a portfolio
       description: >-
         Delete a portfolio. This operation is irreversible and will remove all
         associated holdings and transaction history.
@@ -204,7 +204,7 @@ paths:
   /v1/portfolios/{portfolioId}/holdings:
     get:
       operationId: getPortfolioHoldings
-      summary: Get portfolio holdings
+      summary: Bloomberg Buyside Enterprise Solutions Get portfolio holdings
       description: >-
         Retrieve the current holdings of a portfolio as of a specified date,
         including position quantities, market values, weights, and
@@ -252,7 +252,7 @@ paths:
           description: Portfolio not found
     put:
       operationId: updatePortfolioHoldings
-      summary: Update portfolio holdings
+      summary: Bloomberg Buyside Enterprise Solutions Update portfolio holdings
       description: >-
         Replace the full set of holdings for a portfolio as of a specified
         date. This is a full replacement operation.
@@ -294,7 +294,7 @@ paths:
   /v1/portfolios/{portfolioId}/performance:
     get:
       operationId: getPortfolioPerformance
-      summary: Get portfolio performance
+      summary: Bloomberg Buyside Enterprise Solutions Get portfolio performance
       description: >-
         Retrieve portfolio performance metrics over a specified period,
         including time-weighted returns, money-weighted returns, and
@@ -349,7 +349,7 @@ paths:
   /v1/portfolios/{portfolioId}/performance/attribution:
     get:
       operationId: getPerformanceAttribution
-      summary: Get performance attribution
+      summary: Bloomberg Buyside Enterprise Solutions Get performance attribution
       description: >-
         Retrieve performance attribution analysis showing the contribution of
         allocation, selection, and interaction effects relative to the
@@ -402,7 +402,7 @@ paths:
   /v1/portfolios/{portfolioId}/risk:
     get:
       operationId: getPortfolioRisk
-      summary: Get portfolio risk analytics
+      summary: Bloomberg Buyside Enterprise Solutions Get portfolio risk analytics
       description: >-
         Retrieve portfolio risk metrics including tracking error, value at
         risk, beta, factor exposures, and concentration analysis.
@@ -456,7 +456,7 @@ paths:
   /v1/portfolios/{portfolioId}/compliance:
     get:
       operationId: getComplianceStatus
-      summary: Get portfolio compliance status
+      summary: Bloomberg Buyside Enterprise Solutions Get portfolio compliance status
       description: >-
         Retrieve the compliance status of a portfolio against all assigned
         compliance rules, including any current violations or warnings.
@@ -484,7 +484,7 @@ paths:
   /v1/compliance/rules:
     get:
       operationId: listComplianceRules
-      summary: List compliance rules
+      summary: Bloomberg Buyside Enterprise Solutions List compliance rules
       description: >-
         Retrieve all configured compliance rules, optionally filtered by
         rule type or status.
@@ -528,7 +528,7 @@ paths:
   /v1/benchmarks:
     get:
       operationId: listBenchmarks
-      summary: List available benchmarks
+      summary: Bloomberg Buyside Enterprise Solutions List available benchmarks
       description: >-
         Retrieve a list of available benchmarks that can be assigned to
         portfolios for performance comparison and attribution analysis.

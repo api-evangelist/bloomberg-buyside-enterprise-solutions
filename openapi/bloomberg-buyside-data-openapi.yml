@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Bloomberg Data API
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Data API
   description: >-
     Programmatic access to Bloomberg's financial data including reference data,
     historical pricing, corporate actions, and market data for portfolio
@@ -34,7 +34,7 @@ paths:
   /data/v1/reference:
     post:
       operationId: getReferenceData
-      summary: Get reference data for securities
+      summary: Bloomberg Buyside Enterprise Solutions Get reference data for securities
       description: >-
         Retrieve reference data fields for one or more securities. Returns
         static or slowly changing descriptive data such as identifiers,
@@ -69,7 +69,7 @@ paths:
   /data/v1/historical:
     post:
       operationId: getHistoricalData
-      summary: Get historical data for securities
+      summary: Bloomberg Buyside Enterprise Solutions Get historical data for securities
       description: >-
         Retrieve historical end-of-day data for one or more securities over a
         specified date range. Supports pricing, volume, fundamental, and
@@ -104,7 +104,7 @@ paths:
   /data/v1/market:
     post:
       operationId: getMarketData
-      summary: Get market data snapshot
+      summary: Bloomberg Buyside Enterprise Solutions Get market data snapshot
       description: >-
         Retrieve a snapshot of current or delayed market data for one or more
         securities, including last price, bid, ask, volume, and other
@@ -139,7 +139,7 @@ paths:
   /data/v1/corporate-actions:
     post:
       operationId: getCorporateActions
-      summary: Get corporate actions for securities
+      summary: Bloomberg Buyside Enterprise Solutions Get corporate actions for securities
       description: >-
         Retrieve corporate action events for one or more securities within a
         specified date range, including dividends, stock splits, mergers,
@@ -174,7 +174,7 @@ paths:
   /data/v1/fields:
     get:
       operationId: searchFields
-      summary: Search available data fields
+      summary: Bloomberg Buyside Enterprise Solutions Search available data fields
       description: >-
         Search and discover available Bloomberg data fields by keyword or
         category. Returns field metadata including mnemonics, descriptions,
@@ -231,7 +231,7 @@ paths:
   /data/v1/securities/search:
     get:
       operationId: searchSecurities
-      summary: Search for securities
+      summary: Bloomberg Buyside Enterprise Solutions Search for securities
       description: >-
         Search for securities by name, ticker, ISIN, CUSIP, or other
         identifiers. Returns matching securities with key reference fields.
