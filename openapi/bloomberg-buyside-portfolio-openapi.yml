@@ -18,18 +18,18 @@ servers:
   - url: https://api.bloomberg.com/portfolio
     description: Bloomberg Portfolio API Production
 tags:
-  - name: Portfolios
-    description: Create, read, update, and delete portfolio definitions
+  - name: Benchmarks
+    description: Benchmark assignment and comparison
+  - name: Compliance
+    description: Portfolio compliance rules and monitoring
   - name: Holdings
     description: Manage portfolio holdings and positions
   - name: Performance
     description: Portfolio performance measurement and attribution
+  - name: Portfolios
+    description: Create, read, update, and delete portfolio definitions
   - name: Risk
     description: Portfolio risk analytics and factor exposure
-  - name: Compliance
-    description: Portfolio compliance rules and monitoring
-  - name: Benchmarks
-    description: Benchmark assignment and comparison
 security:
   - bearerAuth: []
 paths:

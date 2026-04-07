@@ -18,16 +18,16 @@ servers:
   - url: https://api.bloomberg.com
     description: Bloomberg API Production
 tags:
-  - name: Reference Data
-    description: Security reference data including identifiers, classifications, and descriptive information
-  - name: Historical Data
-    description: Historical pricing, volume, and fundamental data for securities
-  - name: Market Data
-    description: Real-time and delayed market data snapshots
   - name: Corporate Actions
     description: Corporate action events including dividends, splits, mergers, and restructurings
   - name: Field Search
     description: Search and discover available data fields
+  - name: Historical Data
+    description: Historical pricing, volume, and fundamental data for securities
+  - name: Market Data
+    description: Real-time and delayed market data snapshots
+  - name: Reference Data
+    description: Security reference data including identifiers, classifications, and descriptive information
 security:
   - bearerAuth: []
 paths:

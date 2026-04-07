@@ -7,14 +7,14 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Financial Services
-  - Buy-Side
+  - Analytics
   - Asset Management
+  - Buy-Side
+  - Enterprise Solutions
+  - Financial Services
+  - Market Data
   - Portfolio Management
   - Trading
-  - Market Data
-  - Analytics
-  - Enterprise Solutions
 url: >-
   https://raw.githubusercontent.com/api-evangelist/bloomberg-buyside-enterprise-solutions/refs/heads/main/apis.yml
 created: '2024-01-01'
@@ -29,11 +29,11 @@ apis:
       management and analytics.
     humanURL: https://www.bloomberg.com/professional/support/api-library/
     tags:
+      - Corporate Actions
       - Financial Data
+      - Historical Data
       - Market Data
       - Reference Data
-      - Historical Data
-      - Corporate Actions
     properties:
       - type: Documentation
         url: https://www.bloomberg.com/professional/support/api-library/
@@ -47,10 +47,10 @@ apis:
       workflows.
     humanURL: https://www.bloomberg.com/professional/product/buy-side-trading/
     tags:
+      - Algorithmic Trading
+      - Execution
       - Order Management
       - Trading
-      - Execution
-      - Algorithmic Trading
     properties:
       - type: Documentation
         url: https://www.bloomberg.com/professional/support/api-library/

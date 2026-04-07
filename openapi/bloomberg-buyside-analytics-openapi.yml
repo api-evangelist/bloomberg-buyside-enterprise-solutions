@@ -18,18 +18,18 @@ servers:
   - url: https://api.bloomberg.com/analytics
     description: Bloomberg Analytics API Production
 tags:
-  - name: Fixed Income
-    description: Fixed income analytics including yield, duration, and spread calculations
   - name: Derivatives
     description: Derivatives pricing, Greeks, and valuation models
+  - name: Fixed Income
+    description: Fixed income analytics including yield, duration, and spread calculations
+  - name: Pricing
+    description: Security pricing and valuation
   - name: Scenario Analysis
     description: What-if scenario analysis for portfolios and securities
   - name: Stress Testing
     description: Stress testing against historical and hypothetical scenarios
   - name: Yield Curves
     description: Yield curve construction and management
-  - name: Pricing
-    description: Security pricing and valuation
 security:
   - bearerAuth: []
 paths:

@@ -18,16 +18,16 @@ servers:
   - url: https://api.bloomberg.com/oms
     description: Bloomberg Order Management API Production
 tags:
-  - name: Orders
-    description: Create, manage, and monitor trading orders
-  - name: Executions
-    description: View execution reports and trade fills
   - name: Allocations
     description: Post-trade allocation of executions to portfolios
-  - name: Brokers
-    description: Broker routing and counterparty management
   - name: Blotters
     description: Trading blotter views and filtering
+  - name: Brokers
+    description: Broker routing and counterparty management
+  - name: Executions
+    description: View execution reports and trade fills
+  - name: Orders
+    description: Create, manage, and monitor trading orders
 security:
   - bearerAuth: []
 paths:
