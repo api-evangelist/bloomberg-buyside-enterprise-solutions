@@ -1,0 +1,417 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including
+    scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise
+    solutions for institutional investors.
+  tags:
+  - Bloomberg
+  - Buyside
+  - Enterprise
+  - Solutions
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: bloomberg-buyside-enterprise-solutions
+    baseUri: https://api.bloomberg.com/analytics
+    description: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_TOKEN}}'
+    resources:
+    - name: v1-fixed-income-calculate
+      path: /v1/fixed-income/calculate
+      operations:
+      - name: calculatefixedincome
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-fixed-income-cashflows
+      path: /v1/fixed-income/cashflows
+      operations:
+      - name: getfixedincomecashflows
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Get fixed income cash flows
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-derivatives-price
+      path: /v1/derivatives/price
+      operations:
+      - name: pricederivative
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Price a derivative instrument
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-derivatives-greeks
+      path: /v1/derivatives/greeks
+      operations:
+      - name: calculategreeks
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Calculate option Greeks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-scenarios-analyze
+      path: /v1/scenarios/analyze
+      operations:
+      - name: analyzescenario
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Run scenario analysis
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-stress-tests-run
+      path: /v1/stress-tests/run
+      operations:
+      - name: runstresstest
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Run stress test
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-stress-tests-scenarios
+      path: /v1/stress-tests/scenarios
+      operations:
+      - name: liststressscenarios
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions List predefined stress scenarios
+        inputParameters:
+        - name: category
+          in: query
+          type: string
+          description: Filter by scenario category
+        - name: limit
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-yield-curves
+      path: /v1/yield-curves
+      operations:
+      - name: listyieldcurves
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions List available yield curves
+        inputParameters:
+        - name: currency
+          in: query
+          type: string
+          description: Filter by currency (ISO 4217)
+        - name: type
+          in: query
+          type: string
+          description: Filter by curve type
+        - name: limit
+          in: query
+          type: integer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-yield-curves-curveid
+      path: /v1/yield-curves/{curveId}
+      operations:
+      - name: getyieldcurve
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions Get yield curve data
+        inputParameters:
+        - name: curveId
+          in: path
+          type: string
+          required: true
+          description: Yield curve identifier
+        - name: asOfDate
+          in: query
+          type: string
+          description: Curve date (defaults to most recent)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-pricing-evaluate
+      path: /v1/pricing/evaluate
+      operations:
+      - name: evaluatesecurities
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Evaluate security prices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: bloomberg-buyside-enterprise-solutions-rest
+    description: REST adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API.
+    resources:
+    - path: /v1/fixed-income/calculate
+      name: calculatefixedincome
+      operations:
+      - method: POST
+        name: calculatefixedincome
+        description: Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics
+        call: bloomberg-buyside-enterprise-solutions.calculatefixedincome
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/fixed-income/cashflows
+      name: getfixedincomecashflows
+      operations:
+      - method: POST
+        name: getfixedincomecashflows
+        description: Bloomberg Buyside Enterprise Solutions Get fixed income cash flows
+        call: bloomberg-buyside-enterprise-solutions.getfixedincomecashflows
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/derivatives/price
+      name: pricederivative
+      operations:
+      - method: POST
+        name: pricederivative
+        description: Bloomberg Buyside Enterprise Solutions Price a derivative instrument
+        call: bloomberg-buyside-enterprise-solutions.pricederivative
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/derivatives/greeks
+      name: calculategreeks
+      operations:
+      - method: POST
+        name: calculategreeks
+        description: Bloomberg Buyside Enterprise Solutions Calculate option Greeks
+        call: bloomberg-buyside-enterprise-solutions.calculategreeks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/scenarios/analyze
+      name: analyzescenario
+      operations:
+      - method: POST
+        name: analyzescenario
+        description: Bloomberg Buyside Enterprise Solutions Run scenario analysis
+        call: bloomberg-buyside-enterprise-solutions.analyzescenario
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stress-tests/run
+      name: runstresstest
+      operations:
+      - method: POST
+        name: runstresstest
+        description: Bloomberg Buyside Enterprise Solutions Run stress test
+        call: bloomberg-buyside-enterprise-solutions.runstresstest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/stress-tests/scenarios
+      name: liststressscenarios
+      operations:
+      - method: GET
+        name: liststressscenarios
+        description: Bloomberg Buyside Enterprise Solutions List predefined stress scenarios
+        call: bloomberg-buyside-enterprise-solutions.liststressscenarios
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/yield-curves
+      name: listyieldcurves
+      operations:
+      - method: GET
+        name: listyieldcurves
+        description: Bloomberg Buyside Enterprise Solutions List available yield curves
+        call: bloomberg-buyside-enterprise-solutions.listyieldcurves
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/yield-curves/{curveId}
+      name: getyieldcurve
+      operations:
+      - method: GET
+        name: getyieldcurve
+        description: Bloomberg Buyside Enterprise Solutions Get yield curve data
+        call: bloomberg-buyside-enterprise-solutions.getyieldcurve
+        with:
+          curveId: rest.curveId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/pricing/evaluate
+      name: evaluatesecurities
+      operations:
+      - method: POST
+        name: evaluatesecurities
+        description: Bloomberg Buyside Enterprise Solutions Evaluate security prices
+        call: bloomberg-buyside-enterprise-solutions.evaluatesecurities
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: bloomberg-buyside-enterprise-solutions-mcp
+    transport: http
+    description: MCP adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API for AI agent use.
+    tools:
+    - name: calculatefixedincome
+      description: Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-enterprise-solutions.calculatefixedincome
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getfixedincomecashflows
+      description: Bloomberg Buyside Enterprise Solutions Get fixed income cash flows
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-enterprise-solutions.getfixedincomecashflows
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: pricederivative
+      description: Bloomberg Buyside Enterprise Solutions Price a derivative instrument
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-enterprise-solutions.pricederivative
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: calculategreeks
+      description: Bloomberg Buyside Enterprise Solutions Calculate option Greeks
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-enterprise-solutions.calculategreeks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: analyzescenario
+      description: Bloomberg Buyside Enterprise Solutions Run scenario analysis
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-enterprise-solutions.analyzescenario
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: runstresstest
+      description: Bloomberg Buyside Enterprise Solutions Run stress test
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-enterprise-solutions.runstresstest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: liststressscenarios
+      description: Bloomberg Buyside Enterprise Solutions List predefined stress scenarios
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-enterprise-solutions.liststressscenarios
+      with:
+        category: tools.category
+        limit: tools.limit
+      inputParameters:
+      - name: category
+        type: string
+        description: Filter by scenario category
+      - name: limit
+        type: integer
+        description: limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listyieldcurves
+      description: Bloomberg Buyside Enterprise Solutions List available yield curves
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-enterprise-solutions.listyieldcurves
+      with:
+        currency: tools.currency
+        type: tools.type
+        limit: tools.limit
+      inputParameters:
+      - name: currency
+        type: string
+        description: Filter by currency (ISO 4217)
+      - name: type
+        type: string
+        description: Filter by curve type
+      - name: limit
+        type: integer
+        description: limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getyieldcurve
+      description: Bloomberg Buyside Enterprise Solutions Get yield curve data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-enterprise-solutions.getyieldcurve
+      with:
+        curveId: tools.curveId
+        asOfDate: tools.asOfDate
+      inputParameters:
+      - name: curveId
+        type: string
+        description: Yield curve identifier
+        required: true
+      - name: asOfDate
+        type: string
+        description: Curve date (defaults to most recent)
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: evaluatesecurities
+      description: Bloomberg Buyside Enterprise Solutions Evaluate security prices
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-enterprise-solutions.evaluatesecurities
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_TOKEN: BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_TOKEN
