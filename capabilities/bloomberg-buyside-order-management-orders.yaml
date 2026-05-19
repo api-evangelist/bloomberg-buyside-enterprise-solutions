@@ -1,0 +1,265 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Orders
+  description: 'Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Orders. 5 operations. Lead operation:
+    Bloomberg Buyside Enterprise Solutions List orders. Self-contained Naftiko capability covering one Bloomberg Buyside Enterprise
+    Solutions business surface.'
+  tags:
+  - Bloomberg Buyside Enterprise Solutions
+  - Orders
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY: BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bloomberg-buyside-order-management-orders
+    baseUri: https://api.bloomberg.com/oms
+    description: Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Orders business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: v1-orders
+      path: /v1/orders
+      operations:
+      - name: listorders
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions List orders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by order status
+        - name: side
+          in: query
+          type: string
+          description: Filter by order side
+        - name: security
+          in: query
+          type: string
+          description: Filter by security identifier
+        - name: portfolioId
+          in: query
+          type: string
+          description: Filter by portfolio
+        - name: startDate
+          in: query
+          type: string
+          description: Filter orders created on or after this date
+        - name: endDate
+          in: query
+          type: string
+          description: Filter orders created on or before this date
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+      - name: createorder
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Create an order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-orders-orderId
+      path: /v1/orders/{orderId}
+      operations:
+      - name: getorder
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions Get order details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: amendorder
+        method: PATCH
+        description: Bloomberg Buyside Enterprise Solutions Amend an order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-orders-orderId-cancel
+      path: /v1/orders/{orderId}/cancel
+      operations:
+      - name: cancelorder
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Cancel an order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bloomberg-buyside-order-management-orders-rest
+    port: 8080
+    description: REST adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Orders. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/orders
+      name: v1-orders
+      description: REST surface for v1-orders.
+      operations:
+      - method: GET
+        name: listorders
+        description: Bloomberg Buyside Enterprise Solutions List orders
+        call: bloomberg-buyside-order-management-orders.listorders
+        with:
+          status: rest.status
+          side: rest.side
+          security: rest.security
+          portfolioId: rest.portfolioId
+          startDate: rest.startDate
+          endDate: rest.endDate
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createorder
+        description: Bloomberg Buyside Enterprise Solutions Create an order
+        call: bloomberg-buyside-order-management-orders.createorder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/orders/{orderid}
+      name: v1-orders-orderid
+      description: REST surface for v1-orders-orderId.
+      operations:
+      - method: GET
+        name: getorder
+        description: Bloomberg Buyside Enterprise Solutions Get order details
+        call: bloomberg-buyside-order-management-orders.getorder
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: amendorder
+        description: Bloomberg Buyside Enterprise Solutions Amend an order
+        call: bloomberg-buyside-order-management-orders.amendorder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/orders/{orderid}/cancel
+      name: v1-orders-orderid-cancel
+      description: REST surface for v1-orders-orderId-cancel.
+      operations:
+      - method: POST
+        name: cancelorder
+        description: Bloomberg Buyside Enterprise Solutions Cancel an order
+        call: bloomberg-buyside-order-management-orders.cancelorder
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bloomberg-buyside-order-management-orders-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Orders. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: bloomberg-buyside-enterprise-solutions-list
+      description: Bloomberg Buyside Enterprise Solutions List orders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-order-management-orders.listorders
+      with:
+        status: tools.status
+        side: tools.side
+        security: tools.security
+        portfolioId: tools.portfolioId
+        startDate: tools.startDate
+        endDate: tools.endDate
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-create
+      description: Bloomberg Buyside Enterprise Solutions Create an order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-order-management-orders.createorder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-get
+      description: Bloomberg Buyside Enterprise Solutions Get order details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-order-management-orders.getorder
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-amend
+      description: Bloomberg Buyside Enterprise Solutions Amend an order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-order-management-orders.amendorder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-cancel
+      description: Bloomberg Buyside Enterprise Solutions Cancel an order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-order-management-orders.cancelorder
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

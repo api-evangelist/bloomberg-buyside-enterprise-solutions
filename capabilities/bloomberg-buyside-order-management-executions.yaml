@@ -1,0 +1,141 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Executions
+  description: 'Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Executions. 2 operations. Lead operation:
+    Bloomberg Buyside Enterprise Solutions List executions. Self-contained Naftiko capability covering one Bloomberg Buyside
+    Enterprise Solutions business surface.'
+  tags:
+  - Bloomberg Buyside Enterprise Solutions
+  - Executions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY: BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bloomberg-buyside-order-management-executions
+    baseUri: https://api.bloomberg.com/oms
+    description: Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Executions business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: v1-executions
+      path: /v1/executions
+      operations:
+      - name: listexecutions
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions List executions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+          description: Filter executions on or after this date
+        - name: endDate
+          in: query
+          type: string
+          description: Filter executions on or before this date
+        - name: security
+          in: query
+          type: string
+          description: Filter by security identifier
+        - name: portfolioId
+          in: query
+          type: string
+          description: Filter by portfolio
+        - name: limit
+          in: query
+          type: integer
+        - name: offset
+          in: query
+          type: integer
+    - name: v1-orders-orderId-executions
+      path: /v1/orders/{orderId}/executions
+      operations:
+      - name: getorderexecutions
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions Get order executions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bloomberg-buyside-order-management-executions-rest
+    port: 8080
+    description: REST adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Executions. One
+      Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/executions
+      name: v1-executions
+      description: REST surface for v1-executions.
+      operations:
+      - method: GET
+        name: listexecutions
+        description: Bloomberg Buyside Enterprise Solutions List executions
+        call: bloomberg-buyside-order-management-executions.listexecutions
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          security: rest.security
+          portfolioId: rest.portfolioId
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/orders/{orderid}/executions
+      name: v1-orders-orderid-executions
+      description: REST surface for v1-orders-orderId-executions.
+      operations:
+      - method: GET
+        name: getorderexecutions
+        description: Bloomberg Buyside Enterprise Solutions Get order executions
+        call: bloomberg-buyside-order-management-executions.getorderexecutions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bloomberg-buyside-order-management-executions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Executions. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: bloomberg-buyside-enterprise-solutions-list
+      description: Bloomberg Buyside Enterprise Solutions List executions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-order-management-executions.listexecutions
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        security: tools.security
+        portfolioId: tools.portfolioId
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-get
+      description: Bloomberg Buyside Enterprise Solutions Get order executions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-order-management-executions.getorderexecutions
+      outputParameters:
+      - type: object
+        mapping: $.

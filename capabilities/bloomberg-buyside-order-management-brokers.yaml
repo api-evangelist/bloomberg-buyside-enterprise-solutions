@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Brokers
+  description: 'Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Brokers. 1 operations. Lead operation:
+    Bloomberg Buyside Enterprise Solutions List available brokers. Self-contained Naftiko capability covering one Bloomberg
+    Buyside Enterprise Solutions business surface.'
+  tags:
+  - Bloomberg Buyside Enterprise Solutions
+  - Brokers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY: BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bloomberg-buyside-order-management-brokers
+    baseUri: https://api.bloomberg.com/oms
+    description: Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Brokers business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: v1-brokers
+      path: /v1/brokers
+      operations:
+      - name: listbrokers
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions List available brokers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: assetClass
+          in: query
+          type: string
+          description: Filter by supported asset class
+        - name: status
+          in: query
+          type: string
+          description: Filter by connection status
+    authentication:
+      type: bearer
+      token: '{{env.BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bloomberg-buyside-order-management-brokers-rest
+    port: 8080
+    description: REST adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Brokers. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/brokers
+      name: v1-brokers
+      description: REST surface for v1-brokers.
+      operations:
+      - method: GET
+        name: listbrokers
+        description: Bloomberg Buyside Enterprise Solutions List available brokers
+        call: bloomberg-buyside-order-management-brokers.listbrokers
+        with:
+          assetClass: rest.assetClass
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bloomberg-buyside-order-management-brokers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API — Brokers. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: bloomberg-buyside-enterprise-solutions-list
+      description: Bloomberg Buyside Enterprise Solutions List available brokers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-order-management-brokers.listbrokers
+      with:
+        assetClass: tools.assetClass
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.

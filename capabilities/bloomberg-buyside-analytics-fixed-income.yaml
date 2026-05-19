@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Fixed Income
+  description: 'Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Fixed Income. 2 operations. Lead operation:
+    Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics. Self-contained Naftiko capability covering one
+    Bloomberg Buyside Enterprise Solutions business surface.'
+  tags:
+  - Bloomberg Buyside Enterprise Solutions
+  - Fixed Income
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY: BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bloomberg-buyside-analytics-fixed-income
+    baseUri: https://api.bloomberg.com/analytics
+    description: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Fixed Income business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: v1-fixed-income-calculate
+      path: /v1/fixed-income/calculate
+      operations:
+      - name: calculatefixedincome
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-fixed-income-cashflows
+      path: /v1/fixed-income/cashflows
+      operations:
+      - name: getfixedincomecashflows
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Get fixed income cash flows
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bloomberg-buyside-analytics-fixed-income-rest
+    port: 8080
+    description: REST adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Fixed Income. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/fixed-income/calculate
+      name: v1-fixed-income-calculate
+      description: REST surface for v1-fixed-income-calculate.
+      operations:
+      - method: POST
+        name: calculatefixedincome
+        description: Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics
+        call: bloomberg-buyside-analytics-fixed-income.calculatefixedincome
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/fixed-income/cashflows
+      name: v1-fixed-income-cashflows
+      description: REST surface for v1-fixed-income-cashflows.
+      operations:
+      - method: POST
+        name: getfixedincomecashflows
+        description: Bloomberg Buyside Enterprise Solutions Get fixed income cash flows
+        call: bloomberg-buyside-analytics-fixed-income.getfixedincomecashflows
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bloomberg-buyside-analytics-fixed-income-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Fixed Income. One tool per
+      consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: bloomberg-buyside-enterprise-solutions-calculate
+      description: Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-analytics-fixed-income.calculatefixedincome
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-get
+      description: Bloomberg Buyside Enterprise Solutions Get fixed income cash flows
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-analytics-fixed-income.getfixedincomecashflows
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

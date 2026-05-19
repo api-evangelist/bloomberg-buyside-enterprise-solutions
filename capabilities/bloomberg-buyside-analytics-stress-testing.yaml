@@ -1,0 +1,128 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Stress Testing
+  description: 'Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Stress Testing. 2 operations. Lead operation:
+    Bloomberg Buyside Enterprise Solutions Run stress test. Self-contained Naftiko capability covering one Bloomberg Buyside
+    Enterprise Solutions business surface.'
+  tags:
+  - Bloomberg Buyside Enterprise Solutions
+  - Stress Testing
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY: BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bloomberg-buyside-analytics-stress-testing
+    baseUri: https://api.bloomberg.com/analytics
+    description: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Stress Testing business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: v1-stress-tests-run
+      path: /v1/stress-tests/run
+      operations:
+      - name: runstresstest
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Run stress test
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-stress-tests-scenarios
+      path: /v1/stress-tests/scenarios
+      operations:
+      - name: liststressscenarios
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions List predefined stress scenarios
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: category
+          in: query
+          type: string
+          description: Filter by scenario category
+        - name: limit
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bloomberg-buyside-analytics-stress-testing-rest
+    port: 8080
+    description: REST adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Stress Testing. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/stress-tests/run
+      name: v1-stress-tests-run
+      description: REST surface for v1-stress-tests-run.
+      operations:
+      - method: POST
+        name: runstresstest
+        description: Bloomberg Buyside Enterprise Solutions Run stress test
+        call: bloomberg-buyside-analytics-stress-testing.runstresstest
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/stress-tests/scenarios
+      name: v1-stress-tests-scenarios
+      description: REST surface for v1-stress-tests-scenarios.
+      operations:
+      - method: GET
+        name: liststressscenarios
+        description: Bloomberg Buyside Enterprise Solutions List predefined stress scenarios
+        call: bloomberg-buyside-analytics-stress-testing.liststressscenarios
+        with:
+          category: rest.category
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bloomberg-buyside-analytics-stress-testing-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Stress Testing. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: bloomberg-buyside-enterprise-solutions-run
+      description: Bloomberg Buyside Enterprise Solutions Run stress test
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-analytics-stress-testing.runstresstest
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-list
+      description: Bloomberg Buyside Enterprise Solutions List predefined stress scenarios
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-analytics-stress-testing.liststressscenarios
+      with:
+        category: tools.category
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

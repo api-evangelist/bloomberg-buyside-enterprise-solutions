@@ -1,0 +1,124 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Derivatives
+  description: 'Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Derivatives. 2 operations. Lead operation:
+    Bloomberg Buyside Enterprise Solutions Calculate option Greeks. Self-contained Naftiko capability covering one Bloomberg
+    Buyside Enterprise Solutions business surface.'
+  tags:
+  - Bloomberg Buyside Enterprise Solutions
+  - Derivatives
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY: BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bloomberg-buyside-analytics-derivatives
+    baseUri: https://api.bloomberg.com/analytics
+    description: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Derivatives business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: v1-derivatives-greeks
+      path: /v1/derivatives/greeks
+      operations:
+      - name: calculategreeks
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Calculate option Greeks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-derivatives-price
+      path: /v1/derivatives/price
+      operations:
+      - name: pricederivative
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Price a derivative instrument
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bloomberg-buyside-analytics-derivatives-rest
+    port: 8080
+    description: REST adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Derivatives. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/derivatives/greeks
+      name: v1-derivatives-greeks
+      description: REST surface for v1-derivatives-greeks.
+      operations:
+      - method: POST
+        name: calculategreeks
+        description: Bloomberg Buyside Enterprise Solutions Calculate option Greeks
+        call: bloomberg-buyside-analytics-derivatives.calculategreeks
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/derivatives/price
+      name: v1-derivatives-price
+      description: REST surface for v1-derivatives-price.
+      operations:
+      - method: POST
+        name: pricederivative
+        description: Bloomberg Buyside Enterprise Solutions Price a derivative instrument
+        call: bloomberg-buyside-analytics-derivatives.pricederivative
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bloomberg-buyside-analytics-derivatives-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API — Derivatives. One tool per
+      consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: bloomberg-buyside-enterprise-solutions-calculate
+      description: Bloomberg Buyside Enterprise Solutions Calculate option Greeks
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-analytics-derivatives.calculategreeks
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-price
+      description: Bloomberg Buyside Enterprise Solutions Price a derivative instrument
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-analytics-derivatives.pricederivative
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

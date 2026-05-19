@@ -1,0 +1,232 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Portfolios
+  description: 'Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Portfolios. 5 operations. Lead operation:
+    Bloomberg Buyside Enterprise Solutions List portfolios. Self-contained Naftiko capability covering one Bloomberg Buyside
+    Enterprise Solutions business surface.'
+  tags:
+  - Bloomberg Buyside Enterprise Solutions
+  - Portfolios
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY: BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bloomberg-buyside-portfolio-portfolios
+    baseUri: https://api.bloomberg.com/portfolio
+    description: Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Portfolios business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: v1-portfolios
+      path: /v1/portfolios
+      operations:
+      - name: listportfolios
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions List portfolios
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+          description: Filter by portfolio type
+        - name: status
+          in: query
+          type: string
+          description: Filter by portfolio status
+        - name: manager
+          in: query
+          type: string
+          description: Filter by portfolio manager identifier
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results
+        - name: offset
+          in: query
+          type: integer
+          description: Number of results to skip
+      - name: createportfolio
+        method: POST
+        description: Bloomberg Buyside Enterprise Solutions Create a portfolio
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-portfolios-portfolioId
+      path: /v1/portfolios/{portfolioId}
+      operations:
+      - name: getportfolio
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions Get portfolio details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateportfolio
+        method: PUT
+        description: Bloomberg Buyside Enterprise Solutions Update a portfolio
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteportfolio
+        method: DELETE
+        description: Bloomberg Buyside Enterprise Solutions Delete a portfolio
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bloomberg-buyside-portfolio-portfolios-rest
+    port: 8080
+    description: REST adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Portfolios. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/portfolios
+      name: v1-portfolios
+      description: REST surface for v1-portfolios.
+      operations:
+      - method: GET
+        name: listportfolios
+        description: Bloomberg Buyside Enterprise Solutions List portfolios
+        call: bloomberg-buyside-portfolio-portfolios.listportfolios
+        with:
+          type: rest.type
+          status: rest.status
+          manager: rest.manager
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createportfolio
+        description: Bloomberg Buyside Enterprise Solutions Create a portfolio
+        call: bloomberg-buyside-portfolio-portfolios.createportfolio
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/portfolios/{portfolioid}
+      name: v1-portfolios-portfolioid
+      description: REST surface for v1-portfolios-portfolioId.
+      operations:
+      - method: GET
+        name: getportfolio
+        description: Bloomberg Buyside Enterprise Solutions Get portfolio details
+        call: bloomberg-buyside-portfolio-portfolios.getportfolio
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateportfolio
+        description: Bloomberg Buyside Enterprise Solutions Update a portfolio
+        call: bloomberg-buyside-portfolio-portfolios.updateportfolio
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteportfolio
+        description: Bloomberg Buyside Enterprise Solutions Delete a portfolio
+        call: bloomberg-buyside-portfolio-portfolios.deleteportfolio
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bloomberg-buyside-portfolio-portfolios-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Portfolios. One tool per
+      consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: bloomberg-buyside-enterprise-solutions-list
+      description: Bloomberg Buyside Enterprise Solutions List portfolios
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-portfolio-portfolios.listportfolios
+      with:
+        type: tools.type
+        status: tools.status
+        manager: tools.manager
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-create
+      description: Bloomberg Buyside Enterprise Solutions Create a portfolio
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: bloomberg-buyside-portfolio-portfolios.createportfolio
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-get
+      description: Bloomberg Buyside Enterprise Solutions Get portfolio details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-portfolio-portfolios.getportfolio
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-update
+      description: Bloomberg Buyside Enterprise Solutions Update a portfolio
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-portfolio-portfolios.updateportfolio
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-delete
+      description: Bloomberg Buyside Enterprise Solutions Delete a portfolio
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: bloomberg-buyside-portfolio-portfolios.deleteportfolio
+      outputParameters:
+      - type: object
+        mapping: $.

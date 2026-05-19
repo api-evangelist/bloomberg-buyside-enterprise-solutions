@@ -1,0 +1,128 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Compliance
+  description: 'Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Compliance. 2 operations. Lead operation:
+    Bloomberg Buyside Enterprise Solutions List compliance rules. Self-contained Naftiko capability covering one Bloomberg
+    Buyside Enterprise Solutions business surface.'
+  tags:
+  - Bloomberg Buyside Enterprise Solutions
+  - Compliance
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY: BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bloomberg-buyside-portfolio-compliance
+    baseUri: https://api.bloomberg.com/portfolio
+    description: Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Compliance business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: v1-compliance-rules
+      path: /v1/compliance/rules
+      operations:
+      - name: listcompliancerules
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions List compliance rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ruleType
+          in: query
+          type: string
+          description: Filter by rule type
+        - name: status
+          in: query
+          type: string
+          description: Filter by rule status
+    - name: v1-portfolios-portfolioId-compliance
+      path: /v1/portfolios/{portfolioId}/compliance
+      operations:
+      - name: getcompliancestatus
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions Get portfolio compliance status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: asOfDate
+          in: query
+          type: string
+          description: Compliance check date
+    authentication:
+      type: bearer
+      token: '{{env.BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bloomberg-buyside-portfolio-compliance-rest
+    port: 8080
+    description: REST adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Compliance. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/compliance/rules
+      name: v1-compliance-rules
+      description: REST surface for v1-compliance-rules.
+      operations:
+      - method: GET
+        name: listcompliancerules
+        description: Bloomberg Buyside Enterprise Solutions List compliance rules
+        call: bloomberg-buyside-portfolio-compliance.listcompliancerules
+        with:
+          ruleType: rest.ruleType
+          status: rest.status
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/portfolios/{portfolioid}/compliance
+      name: v1-portfolios-portfolioid-compliance
+      description: REST surface for v1-portfolios-portfolioId-compliance.
+      operations:
+      - method: GET
+        name: getcompliancestatus
+        description: Bloomberg Buyside Enterprise Solutions Get portfolio compliance status
+        call: bloomberg-buyside-portfolio-compliance.getcompliancestatus
+        with:
+          asOfDate: rest.asOfDate
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bloomberg-buyside-portfolio-compliance-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Compliance. One tool per
+      consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: bloomberg-buyside-enterprise-solutions-list
+      description: Bloomberg Buyside Enterprise Solutions List compliance rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-portfolio-compliance.listcompliancerules
+      with:
+        ruleType: tools.ruleType
+        status: tools.status
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: bloomberg-buyside-enterprise-solutions-get
+      description: Bloomberg Buyside Enterprise Solutions Get portfolio compliance status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-portfolio-compliance.getcompliancestatus
+      with:
+        asOfDate: tools.asOfDate
+      outputParameters:
+      - type: object
+        mapping: $.

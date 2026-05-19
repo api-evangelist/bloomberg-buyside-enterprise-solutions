@@ -1,0 +1,93 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Risk
+  description: 'Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Risk. 1 operations. Lead operation: Bloomberg
+    Buyside Enterprise Solutions Get portfolio risk analytics. Self-contained Naftiko capability covering one Bloomberg Buyside
+    Enterprise Solutions business surface.'
+  tags:
+  - Bloomberg Buyside Enterprise Solutions
+  - Risk
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY: BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bloomberg-buyside-portfolio-risk
+    baseUri: https://api.bloomberg.com/portfolio
+    description: Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Risk business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: v1-portfolios-portfolioId-risk
+      path: /v1/portfolios/{portfolioId}/risk
+      operations:
+      - name: getportfoliorisk
+        method: GET
+        description: Bloomberg Buyside Enterprise Solutions Get portfolio risk analytics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: asOfDate
+          in: query
+          type: string
+          description: Risk calculation date
+        - name: riskModel
+          in: query
+          type: string
+          description: Risk model to use for calculations
+        - name: confidenceLevel
+          in: query
+          type: number
+          description: Confidence level for VaR calculations
+    authentication:
+      type: bearer
+      token: '{{env.BLOOMBERG_BUYSIDE_ENTERPRISE_SOLUTIONS_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bloomberg-buyside-portfolio-risk-rest
+    port: 8080
+    description: REST adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Risk. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/portfolios/{portfolioid}/risk
+      name: v1-portfolios-portfolioid-risk
+      description: REST surface for v1-portfolios-portfolioId-risk.
+      operations:
+      - method: GET
+        name: getportfoliorisk
+        description: Bloomberg Buyside Enterprise Solutions Get portfolio risk analytics
+        call: bloomberg-buyside-portfolio-risk.getportfoliorisk
+        with:
+          asOfDate: rest.asOfDate
+          riskModel: rest.riskModel
+          confidenceLevel: rest.confidenceLevel
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bloomberg-buyside-portfolio-risk-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Bloomberg Buyside Enterprise Solutions Bloomberg Portfolio API — Risk. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: bloomberg-buyside-enterprise-solutions-get
+      description: Bloomberg Buyside Enterprise Solutions Get portfolio risk analytics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bloomberg-buyside-portfolio-risk.getportfoliorisk
+      with:
+        asOfDate: tools.asOfDate
+        riskModel: tools.riskModel
+        confidenceLevel: tools.confidenceLevel
+      outputParameters:
+      - type: object
+        mapping: $.
