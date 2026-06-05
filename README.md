@@ -1,87 +1,91 @@
 # Bloomberg Buyside Enterprise Solutions (bloomberg-buyside-enterprise-solutions)
+
 Bloomberg's enterprise solutions for buy-side firms including asset managers, hedge funds, and institutional investors, providing integrated workflows, data management, portfolio analytics, and trading capabilities.
 
-**URL:** [Visit APIs.json URL](https://www.bloomberg.com/professional/solution/buyside/)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bloomberg-buyside-enterprise-solutions/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bloomberg-buyside-enterprise-solutions/refs/heads/main/apis.yml)
 
-## Tags:
+## Scope
 
- - Financial Services, Buy-Side, Asset Management, Portfolio Management, Trading, Market Data, Analytics, Enterprise Solutions
+- **Type:** Index
+
+## Tags
+
+- Analytics
+- Asset Management
+- Buy-Side
+- Enterprise Solutions
+- Financial Services
+- Market Data
+- Portfolio Management
+- Trading
 
 ## Timestamps
 
-- **Created:** 2024 
-- **Modified:** 2024 
+- **Created:** 2024-01-01
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Bloomberg Data API
+
 Programmatic access to Bloomberg's financial data including reference data, historical pricing, corporate actions, and market data for portfolio management and analytics.
 
-**Human URL:** [https://www.bloomberg.com/professional/support/api-library/](https://www.bloomberg.com/professional/support/api-library/)
+- **Human URL:** [https://www.bloomberg.com/professional/support/api-library/](https://www.bloomberg.com/professional/support/api-library/)
 
+#### Tags
 
-#### Tags:
-
- - Financial Data, Market Data, Reference Data, Historical Data, Corporate Actions
+- Corporate Actions
+- Financial Data
+- Historical Data
+- Market Data
+- Reference Data
 
 #### Properties
 
 - [Documentation](https://www.bloomberg.com/professional/support/api-library/)
 - [Authentication](https://www.bloomberg.com/professional/support/api-library/#authentication)
-
-### Bloomberg Portfolio API
-API for portfolio management operations including portfolio construction, risk analysis, performance attribution, and compliance monitoring for buy-side firms.
-
-**Human URL:** [https://www.bloomberg.com/professional/product/portfolio-management/](https://www.bloomberg.com/professional/product/portfolio-management/)
-
-
-#### Tags:
-
- - Portfolio Management, Risk Analysis, Performance Attribution, Compliance
-
-#### Properties
-
-- [Documentation](https://www.bloomberg.com/professional/support/api-library/)
+- [Postman Collection](collections/bloomberg-buyside-analytics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/bloomberg-buyside-analytics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/bloomberg-buyside-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/bloomberg-buyside-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/bloomberg-buyside-order-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/bloomberg-buyside-order-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/bloomberg-buyside-portfolio.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/bloomberg-buyside-portfolio.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Bloomberg Order Management API
+
 API for order and execution management, enabling algorithmic trading, smart order routing, and integration with trading platforms for buy-side workflows.
 
-**Human URL:** [https://www.bloomberg.com/professional/product/buy-side-trading/](https://www.bloomberg.com/professional/product/buy-side-trading/)
+- **Human URL:** [https://www.bloomberg.com/professional/product/buy-side-trading/](https://www.bloomberg.com/professional/product/buy-side-trading/)
 
+#### Tags
 
-#### Tags:
-
- - Order Management, Trading, Execution, Algorithmic Trading
-
-#### Properties
-
-- [Documentation](https://www.bloomberg.com/professional/support/api-library/)
-
-### Bloomberg Analytics API
-Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis and stress testing.
-
-**Human URL:** [https://www.bloomberg.com/professional/product/analytics/](https://www.bloomberg.com/professional/product/analytics/)
-
-
-#### Tags:
-
- - Analytics, Fixed Income, Derivatives, Scenario Analysis, Stress Testing
+- Algorithmic Trading
+- Execution
+- Order Management
+- Trading
 
 #### Properties
 
 - [Documentation](https://www.bloomberg.com/professional/support/api-library/)
+- [Postman Collection](collections/bloomberg-buyside-analytics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/bloomberg-buyside-analytics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/bloomberg-buyside-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/bloomberg-buyside-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/bloomberg-buyside-order-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/bloomberg-buyside-order-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/bloomberg-buyside-portfolio.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/bloomberg-buyside-portfolio.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
 - [Getting Started](https://www.bloomberg.com/professional/support/api-library/)
-- [Authentication](https://www.bloomberg.com/professional/support/api-library/#authentication)
 - [Support](https://www.bloomberg.com/professional/support/)
-- [Contact](https://www.bloomberg.com/professional/request-demo/)
-- [Terms of Service](https://www.bloomberg.com/professional/terms-of-use/)
+- [Terms of Service](https://www.bloomberg.com/notices/tos/)
 - [Privacy Policy](https://www.bloomberg.com/privacy/)
 
 ## Maintainers
 
-**FN:** Bloomberg L.P.
-
-**Email:** support@bloomberg.com
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
