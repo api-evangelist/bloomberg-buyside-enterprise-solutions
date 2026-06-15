@@ -1,0 +1,2164 @@
+{
+  "item": [
+    {
+      "id": "5c03a84c-4074-49bc-8ede-ceb71912d02d",
+      "name": "Derivatives",
+      "description": {
+        "content": "Derivatives pricing, Greeks, and valuation models",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "64423814-3ce8-4249-b6da-6a3260c3e285",
+          "name": "Bloomberg Buyside Enterprise Solutions Price a derivative instrument",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Price a derivative instrument",
+            "description": {
+              "content": "Calculate the theoretical price and Greeks for derivative instruments including options, futures, swaps, and structured products using Bloomberg's pricing models.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "derivatives",
+                "price"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"pricingModel\": \"<string>\",\n  \"volatilitySurface\": \"<string>\",\n  \"underlyingPriceOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\",\n  \"riskFreeRateOverride\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a1abd03-60df-4caa-8792-78d68ab5cef0",
+              "name": "Derivative pricing results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"pricingModel\": \"<string>\",\n  \"volatilitySurface\": \"<string>\",\n  \"underlyingPriceOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\",\n  \"riskFreeRateOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"security\": \"string\",\n      \"theoreticalPrice\": 6294.456957900845,\n      \"marketPrice\": 2310.954941161223,\n      \"impliedVolatility\": 4265.199418979445,\n      \"delta\": 3039.3503514566987,\n      \"gamma\": 9464.949724646387,\n      \"theta\": 4078.566544030452,\n      \"vega\": 9331.040905722257,\n      \"rho\": 9706.623386314492,\n      \"pricingModel\": \"string\"\n    },\n    {\n      \"security\": \"string\",\n      \"theoreticalPrice\": 6042.710837232027,\n      \"marketPrice\": 2637.866078996074,\n      \"impliedVolatility\": 4894.286915107246,\n      \"delta\": 5249.994398512034,\n      \"gamma\": 6094.3543044114,\n      \"theta\": 5877.228811173471,\n      \"vega\": 9906.226417294945,\n      \"rho\": 8090.561124850745,\n      \"pricingModel\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09a95986-a22b-4ba2-a60f-996bb8e4f4a1",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"pricingModel\": \"<string>\",\n  \"volatilitySurface\": \"<string>\",\n  \"underlyingPriceOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\",\n  \"riskFreeRateOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d41a8dac-8f91-483b-a840-15f9b0dd1161",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"pricingModel\": \"<string>\",\n  \"volatilitySurface\": \"<string>\",\n  \"underlyingPriceOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\",\n  \"riskFreeRateOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8f22e0f5-2df6-4084-9f67-9192e7917a46",
+              "name": "Forbidden - insufficient analytics entitlements",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"pricingModel\": \"<string>\",\n  \"volatilitySurface\": \"<string>\",\n  \"underlyingPriceOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\",\n  \"riskFreeRateOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23e31d43-33bc-45b0-ae04-be6a30cf16f2",
+          "name": "Bloomberg Buyside Enterprise Solutions Calculate option Greeks",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Calculate option Greeks",
+            "description": {
+              "content": "Compute option Greeks (delta, gamma, theta, vega, rho) for one or more options or option portfolios.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "derivatives",
+                "greeks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"volatilitySurface\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4c8cdd26-115c-47cf-9a95-1727aa7fc7aa",
+              "name": "Greeks calculation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "greeks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"volatilitySurface\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"security\": \"string\",\n      \"delta\": 6479.430274287815,\n      \"gamma\": 249.63027756682354,\n      \"theta\": 9477.244346285755,\n      \"vega\": 2163.398252215578,\n      \"rho\": 3482.5978364579278,\n      \"charm\": 9051.919058398917,\n      \"vanna\": 9603.815222796118,\n      \"volga\": 7553.597869207381\n    },\n    {\n      \"security\": \"string\",\n      \"delta\": 9962.059810404626,\n      \"gamma\": 7858.193939505099,\n      \"theta\": 2649.370559071009,\n      \"vega\": 7299.139847360042,\n      \"rho\": 2679.553261682036,\n      \"charm\": 174.79899428769485,\n      \"vanna\": 5620.902152972699,\n      \"volga\": 975.1843232827284\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04112447-0ec4-4260-812f-de4ba6b96123",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "greeks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"volatilitySurface\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fc983f3-5a07-49aa-9f2e-fde1e6a50255",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "greeks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"volatilitySurface\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "dfb2505b-5ab8-4ad5-b23f-e2e77c0d3866",
+      "name": "Fixed Income",
+      "description": {
+        "content": "Fixed income analytics including yield, duration, and spread calculations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "603f05fc-bc6c-4fc1-bc08-1d9ecac5c70e",
+          "name": "Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics",
+            "description": {
+              "content": "Compute fixed income analytics for one or more securities, including yield to maturity, modified duration, convexity, spread measures, and cash flow projections.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fixed-income",
+                "calculate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"analytics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "37e9731b-35fb-43f1-b372-06ce77770734",
+              "name": "Fixed income analytics calculated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"analytics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"security\": \"string\",\n      \"price\": 2641.420488838846,\n      \"dirtyPrice\": 9210.376914744764,\n      \"yieldToMaturity\": 6583.240464280076,\n      \"yieldToWorst\": 7323.602978991222,\n      \"modifiedDuration\": 7955.641952106474,\n      \"effectiveDuration\": 944.7957160852716,\n      \"macaulayDuration\": 4387.875310485238,\n      \"convexity\": 191.03169754052908,\n      \"oas\": 7972.043296244604,\n      \"zSpread\": 7314.338173300455,\n      \"iSpread\": 8924.708125656272,\n      \"dv01\": 7491.732817137086,\n      \"accruedInterest\": 8881.070390613031,\n      \"currentYield\": 9993.189567014708\n    },\n    {\n      \"security\": \"string\",\n      \"price\": 5398.1259377982415,\n      \"dirtyPrice\": 7943.033963719479,\n      \"yieldToMaturity\": 307.45724363536175,\n      \"yieldToWorst\": 8932.269178817633,\n      \"modifiedDuration\": 5514.202056758179,\n      \"effectiveDuration\": 4928.261630015968,\n      \"macaulayDuration\": 7891.048566544137,\n      \"convexity\": 3111.3482997284227,\n      \"oas\": 4969.278102814568,\n      \"zSpread\": 7173.353188779103,\n      \"iSpread\": 3646.467194530917,\n      \"dv01\": 2205.659653377867,\n      \"accruedInterest\": 3551.3927087205398,\n      \"currentYield\": 3346.7707082309726\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c0be9a3-84a3-4121-9f62-52f9c26cd87d",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"analytics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec53609b-ba91-495a-84ca-ecabd989937e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"analytics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a63a5f1c-334e-4efb-b1fa-683cda9f8f67",
+              "name": "Forbidden - insufficient analytics entitlements",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"analytics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19002f63-bf34-4c75-90a5-04441f4dbbd8",
+          "name": "Bloomberg Buyside Enterprise Solutions Get fixed income cash flows",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get fixed income cash flows",
+            "description": {
+              "content": "Retrieve projected cash flow schedules for fixed income securities, including coupon payments, principal payments, and prepayment projections for mortgage-backed securities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fixed-income",
+                "cashflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"prepaymentSpeed\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6379f5b7-0397-4e28-8c76-eadd42264965",
+              "name": "Cash flow projections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "cashflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"prepaymentSpeed\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"security\": \"string\",\n      \"cashflows\": [\n        {\n          \"date\": \"2024-07-31\",\n          \"coupon\": 8592.306672681761,\n          \"principal\": 7715.707516033418,\n          \"totalPayment\": 4674.840648935084,\n          \"remainingBalance\": 2119.2864732353532\n        },\n        {\n          \"date\": \"2023-10-29\",\n          \"coupon\": 9403.268710550365,\n          \"principal\": 3914.443612578068,\n          \"totalPayment\": 8129.93864389102,\n          \"remainingBalance\": 7060.332852403458\n        }\n      ]\n    },\n    {\n      \"security\": \"string\",\n      \"cashflows\": [\n        {\n          \"date\": \"1949-11-25\",\n          \"coupon\": 9571.502718301428,\n          \"principal\": 1262.697118582201,\n          \"totalPayment\": 1811.0426980344118,\n          \"remainingBalance\": 9090.059262273451\n        },\n        {\n          \"date\": \"1982-08-13\",\n          \"coupon\": 6997.023704470958,\n          \"principal\": 858.1906595980215,\n          \"totalPayment\": 7343.707871856484,\n          \"remainingBalance\": 2895.5735299368757\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c56c1b50-e5a6-4bb9-9dcb-d07cdbc03fb8",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "cashflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"prepaymentSpeed\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd255305-c744-474c-bf80-8b4c530b09e8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "cashflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"prepaymentSpeed\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4c01b89c-2b7a-4734-b6be-4b40a3914fc6",
+      "name": "Pricing",
+      "description": {
+        "content": "Security pricing and valuation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5de351fc-721d-4007-8436-eb26355ed9f5",
+          "name": "Bloomberg Buyside Enterprise Solutions Evaluate security prices",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Evaluate security prices",
+            "description": {
+              "content": "Calculate theoretical prices for securities using Bloomberg's pricing models, with optional overrides for valuation parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "pricing",
+                "evaluate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\",\n  \"creditSpreadOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d3dd340-be72-4b39-a61a-78c94e99f1d7",
+              "name": "Pricing results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pricing",
+                    "evaluate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\",\n  \"creditSpreadOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"security\": \"string\",\n      \"theoreticalPrice\": 495.6017134199597,\n      \"marketPrice\": 829.507998524489,\n      \"priceDifference\": 2463.383374485688,\n      \"yieldToMaturity\": 8015.180795489973,\n      \"spreadTobenchmark\": 2165.563897599215,\n      \"pricingModel\": \"string\"\n    },\n    {\n      \"security\": \"string\",\n      \"theoreticalPrice\": 8964.850563722724,\n      \"marketPrice\": 9322.787313939809,\n      \"priceDifference\": 7154.356096329103,\n      \"yieldToMaturity\": 7816.622557692154,\n      \"spreadTobenchmark\": 5378.4194276500975,\n      \"pricingModel\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "037eb128-aebf-4e7a-b94f-d3c766baf725",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pricing",
+                    "evaluate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\",\n  \"creditSpreadOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65fb3c6f-9cd8-4992-9ed1-997eaca58a3d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pricing",
+                    "evaluate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\",\n  \"creditSpreadOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b1246286-f458-4a56-ac52-e9a20511632a",
+      "name": "Scenario Analysis",
+      "description": {
+        "content": "What-if scenario analysis for portfolios and securities",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d14ec259-a880-4630-a6d9-abc285ff477b",
+          "name": "Bloomberg Buyside Enterprise Solutions Run scenario analysis",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Run scenario analysis",
+            "description": {
+              "content": "Perform what-if scenario analysis on a portfolio or set of securities by applying hypothetical changes to market variables such as interest rates, credit spreads, equity prices, or volatility.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "scenarios",
+                "analyze"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"<string>\",\n      \"shockType\": \"<string>\",\n      \"value\": \"<number>\",\n      \"tenor\": \"<string>\",\n      \"currency\": \"<string>\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e7e82910-05d9-4679-a33f-33463c973129",
+              "name": "Scenario analysis results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "scenarios",
+                    "analyze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"VOLATILITY\",\n      \"shockType\": \"RELATIVE\",\n      \"value\": 9817.237930441259,\n      \"tenor\": \"string\",\n      \"currency\": \"string\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"portfolioId\": \"string\",\n  \"baseValue\": 4050.7867154088494,\n  \"scenarioValue\": 7497.244105452761,\n  \"pnlImpact\": 5317.070288189596,\n  \"pnlImpactPct\": 3796.6020661629964,\n  \"securityImpacts\": [\n    {\n      \"security\": \"string\",\n      \"baseValue\": 3232.086231305158,\n      \"scenarioValue\": 9379.668482063636,\n      \"pnlImpact\": 7251.858869575186,\n      \"pnlImpactPct\": 1376.509539171238\n    },\n    {\n      \"security\": \"string\",\n      \"baseValue\": 5431.2780678479085,\n      \"scenarioValue\": 7157.387646666017,\n      \"pnlImpact\": 3898.505173538704,\n      \"pnlImpactPct\": 7542.1481355460455\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecf2db58-bf25-49d8-a17a-c10ae61b8ac0",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "scenarios",
+                    "analyze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"VOLATILITY\",\n      \"shockType\": \"RELATIVE\",\n      \"value\": 9817.237930441259,\n      \"tenor\": \"string\",\n      \"currency\": \"string\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2cc72a0-b85a-4c16-8f8f-d0b324bce450",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "scenarios",
+                    "analyze"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"VOLATILITY\",\n      \"shockType\": \"RELATIVE\",\n      \"value\": 9817.237930441259,\n      \"tenor\": \"string\",\n      \"currency\": \"string\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c02b4cd6-0697-49dc-9156-f8d197422744",
+      "name": "Stress Testing",
+      "description": {
+        "content": "Stress testing against historical and hypothetical scenarios",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6da85328-1e39-49e7-9d4f-d1e2577cfeb3",
+          "name": "Bloomberg Buyside Enterprise Solutions Run stress test",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Run stress test",
+            "description": {
+              "content": "Execute stress tests on a portfolio using predefined historical scenarios or custom hypothetical shocks. Returns the projected portfolio impact under each stress scenario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "stress-tests",
+                "run"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"scenarioIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customScenarios\": [\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"<string>\",\n          \"shockType\": \"<string>\",\n          \"value\": \"<number>\",\n          \"tenor\": \"<string>\",\n          \"currency\": \"<string>\"\n        },\n        {\n          \"variable\": \"<string>\",\n          \"shockType\": \"<string>\",\n          \"value\": \"<number>\",\n          \"tenor\": \"<string>\",\n          \"currency\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"<string>\",\n          \"shockType\": \"<string>\",\n          \"value\": \"<number>\",\n          \"tenor\": \"<string>\",\n          \"currency\": \"<string>\"\n        },\n        {\n          \"variable\": \"<string>\",\n          \"shockType\": \"<string>\",\n          \"value\": \"<number>\",\n          \"tenor\": \"<string>\",\n          \"currency\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2dd5f3d1-2e2b-495e-8b6b-9dfd63109b06",
+              "name": "Stress test results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stress-tests",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"scenarioIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customScenarios\": [\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"INFLATION\",\n          \"shockType\": \"OVERRIDE\",\n          \"value\": 6945.446621466796,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"COMMODITY_PRICE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 4663.653212881442,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"FX_RATE\",\n          \"shockType\": \"OVERRIDE\",\n          \"value\": 5042.764406280317,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"FX_RATE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 6009.51054165754,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"portfolioId\": \"string\",\n  \"baseValue\": 4451.471583491916,\n  \"results\": [\n    {\n      \"scenarioId\": \"string\",\n      \"scenarioName\": \"string\",\n      \"scenarioValue\": 8488.444164053832,\n      \"pnlImpact\": 3402.4452320974488,\n      \"pnlImpactPct\": 2522.512986092289,\n      \"worstContributors\": [\n        {\n          \"security\": \"string\",\n          \"pnlImpact\": 6566.9797189275205,\n          \"pnlImpactPct\": 2537.141634770631\n        },\n        {\n          \"security\": \"string\",\n          \"pnlImpact\": 8047.724161342436,\n          \"pnlImpactPct\": 9800.712211633807\n        }\n      ]\n    },\n    {\n      \"scenarioId\": \"string\",\n      \"scenarioName\": \"string\",\n      \"scenarioValue\": 280.3785390596136,\n      \"pnlImpact\": 2949.454339746326,\n      \"pnlImpactPct\": 9345.718572016212,\n      \"worstContributors\": [\n        {\n          \"security\": \"string\",\n          \"pnlImpact\": 882.9655932344072,\n          \"pnlImpactPct\": 8339.863058941975\n        },\n        {\n          \"security\": \"string\",\n          \"pnlImpact\": 5237.284864562524,\n          \"pnlImpactPct\": 5214.7673207152975\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f338d74-14e9-42b0-961e-49f0021e8608",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stress-tests",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"scenarioIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customScenarios\": [\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"INFLATION\",\n          \"shockType\": \"OVERRIDE\",\n          \"value\": 6945.446621466796,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"COMMODITY_PRICE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 4663.653212881442,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"FX_RATE\",\n          \"shockType\": \"OVERRIDE\",\n          \"value\": 5042.764406280317,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"FX_RATE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 6009.51054165754,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "743d6852-8b02-4619-9dc0-f9c943d0c45f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stress-tests",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"scenarioIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customScenarios\": [\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"INFLATION\",\n          \"shockType\": \"OVERRIDE\",\n          \"value\": 6945.446621466796,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"COMMODITY_PRICE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 4663.653212881442,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"FX_RATE\",\n          \"shockType\": \"OVERRIDE\",\n          \"value\": 5042.764406280317,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"FX_RATE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 6009.51054165754,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "588df699-cb8c-4007-b507-29b345776d6d",
+          "name": "Bloomberg Buyside Enterprise Solutions List predefined stress scenarios",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions List predefined stress scenarios",
+            "description": {
+              "content": "Retrieve a list of predefined historical stress scenarios available for testing, such as the 2008 financial crisis, COVID-19 market shock, or rate hike scenarios.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "stress-tests",
+                "scenarios"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter by scenario category"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e24df83-f172-4772-adc8-8868a25ec65b",
+              "name": "List of stress scenarios",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stress-tests",
+                    "scenarios"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scenarios\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"EQUITY_SHOCK\",\n      \"historicalDate\": \"1987-07-05\",\n      \"shocks\": [\n        {\n          \"variable\": \"INTEREST_RATE\",\n          \"shockType\": \"OVERRIDE\",\n          \"value\": 7725.872293706743,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"VOLATILITY\",\n          \"shockType\": \"OVERRIDE\",\n          \"value\": 6206.982001043272,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"FX_SHOCK\",\n      \"historicalDate\": \"1999-03-20\",\n      \"shocks\": [\n        {\n          \"variable\": \"VOLATILITY\",\n          \"shockType\": \"ABSOLUTE\",\n          \"value\": 2137.369693225896,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"VOLATILITY\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 267.7901702489005,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c8af734-ad3a-48c3-87a6-9aa4463b6b07",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stress-tests",
+                    "scenarios"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "aaa14890-8448-4d67-a141-6a95bc507b1b",
+      "name": "Yield Curves",
+      "description": {
+        "content": "Yield curve construction and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "21294e70-37d5-4c70-b240-fa9baac50a3f",
+          "name": "Bloomberg Buyside Enterprise Solutions List available yield curves",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions List available yield curves",
+            "description": {
+              "content": "Retrieve a list of available yield curves, including sovereign, swap, and corporate curves for various currencies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "yield-curves"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "Filter by currency (ISO 4217)"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by curve type"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89eed4be-e3df-4271-b2d0-05d97a95fbf1",
+              "name": "List of yield curves",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "yield-curves"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"curves\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"type\": \"SOVEREIGN\",\n      \"country\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"type\": \"SOVEREIGN\",\n      \"country\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "547d9866-8c4c-4301-94b1-11d34839b1e4",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "yield-curves"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28e518b4-5f62-448d-a2e2-a2de58fc4052",
+          "name": "Bloomberg Buyside Enterprise Solutions Get yield curve data",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get yield curve data",
+            "description": {
+              "content": "Retrieve the full yield curve data including term structure points, zero rates, forward rates, and discount factors for a specific curve as of a given date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "yield-curves",
+                ":curveId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "asOfDate",
+                  "value": "<date>",
+                  "description": "Curve date (defaults to most recent)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "curveId",
+                  "description": "(Required) Yield curve identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b113cf98-8b88-41a4-822f-dc8dcc3ad295",
+              "name": "Yield curve data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "yield-curves",
+                    ":curveId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOfDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "curveId",
+                      "description": "(Required) Yield curve identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"currency\": \"string\",\n  \"type\": \"string\",\n  \"asOfDate\": \"2021-03-06\",\n  \"points\": [\n    {\n      \"tenor\": \"string\",\n      \"maturityDate\": \"1977-05-04\",\n      \"yieldRate\": 2425.8458960041653,\n      \"zeroRate\": 6502.4549386855015,\n      \"forwardRate\": 6419.423302585083,\n      \"discountFactor\": 569.340219374076\n    },\n    {\n      \"tenor\": \"string\",\n      \"maturityDate\": \"1950-03-25\",\n      \"yieldRate\": 276.8350474452952,\n      \"zeroRate\": 4556.697421114779,\n      \"forwardRate\": 8173.141939888674,\n      \"discountFactor\": 5432.397110104354\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83a3c43d-0dca-481e-8f2f-cf6157198f2a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "yield-curves",
+                    ":curveId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOfDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "curveId",
+                      "description": "(Required) Yield curve identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "678f10d2-a5ee-44f8-a4f8-d9d8b497472f",
+              "name": "Yield curve not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "yield-curves",
+                    ":curveId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOfDate",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "curveId",
+                      "description": "(Required) Yield curve identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5842bfa4-f163-462d-b8af-acce660e8892",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

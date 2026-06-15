@@ -1,0 +1,248 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fixed Income",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/fixed-income/calculate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Compute fixed income analytics for one or more securities, including yield to maturity, modified duration, convexity, spread measures, and cash flow projections."
+        },
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get fixed income cash flows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/fixed-income/cashflows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve projected cash flow schedules for fixed income securities, including coupon payments, principal payments, and prepayment projections for mortgage-backed securities."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Derivatives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Price a derivative instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/derivatives/price",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculate the theoretical price and Greeks for derivative instruments including options, futures, swaps, and structured products using Bloomberg's pricing models."
+        },
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Calculate option Greeks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/derivatives/greeks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Compute option Greeks (delta, gamma, theta, vega, rho) for one or more options or option portfolios."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scenario Analysis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Run scenario analysis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/scenarios/analyze",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Perform what-if scenario analysis on a portfolio or set of securities by applying hypothetical changes to market variables such as interest rates, credit spreads, equity prices, or volatility."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stress Testing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Run stress test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/stress-tests/run",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute stress tests on a portfolio using predefined historical scenarios or custom hypothetical shocks. Returns the projected portfolio impact under each stress scenario."
+        },
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions List predefined stress scenarios",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/stress-tests/scenarios",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scenario category"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of predefined historical stress scenarios available for testing, such as the 2008 financial crisis, COVID-19 market shock, or rate hike scenarios."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Yield Curves",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions List available yield curves",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/yield-curves",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Filter by currency (ISO 4217)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by curve type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of available yield curves, including sovereign, swap, and corporate curves for various currencies."
+        },
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get yield curve data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/yield-curves/:curveId",
+            "params": [
+              {
+                "name": "curveId",
+                "value": "",
+                "type": "path",
+                "description": "Yield curve identifier"
+              },
+              {
+                "name": "asOfDate",
+                "value": "",
+                "type": "query",
+                "description": "Curve date (defaults to most recent)"
+              }
+            ]
+          },
+          "docs": "Retrieve the full yield curve data including term structure points, zero rates, forward rates, and discount factors for a specific curve as of a given date."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Evaluate security prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/pricing/evaluate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculate theoretical prices for securities using Bloomberg's pricing models, with optional overrides for valuation parameters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
