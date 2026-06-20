@@ -4,7 +4,7 @@ description: >-
   Bloomberg's enterprise solutions for buy-side firms including asset managers, hedge funds, and institutional
   investors, providing integrated workflows, data management, portfolio analytics, and trading capabilities.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Analytics
   - Asset Management
