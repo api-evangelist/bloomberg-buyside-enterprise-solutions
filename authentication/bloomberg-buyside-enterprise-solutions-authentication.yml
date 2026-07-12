@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bloomberg-buyside-analytics-openapi.yml, openapi/bloomberg-buyside-data-openapi.yml,
+  openapi/bloomberg-buyside-order-management-openapi.yml, openapi/bloomberg-buyside-portfolio-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+  sources:
+  - openapi/bloomberg-buyside-analytics-openapi.yml
+  - openapi/bloomberg-buyside-data-openapi.yml
+  - openapi/bloomberg-buyside-order-management-openapi.yml
+  - openapi/bloomberg-buyside-portfolio-openapi.yml
