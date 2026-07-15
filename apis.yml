@@ -51,6 +51,8 @@ apis:
       - type: Documentation
         url: https://www.bloomberg.com/professional/support/api-library/
 common:
+  - type: AgenticAccess
+    url: agentic-access/bloomberg-buyside-enterprise-solutions-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/bloomberg-buyside-enterprise-solutions-vulnerability-disclosure.yml
   - type: DomainSecurity
