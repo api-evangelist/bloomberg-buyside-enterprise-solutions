@@ -1,0 +1,191 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Allocations
+  description: Post-trade allocation of executions to portfolios
+paths:
+  /v1/allocations:
+    post:
+      operationId: createAllocation
+      summary: Bloomberg Buyside Enterprise Solutions Create post-trade allocation
+      description: Allocate executed trades to one or more portfolios. Supports pro-rata, manual, and rule-based allocation methods.
+      tags:
+      - Allocations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AllocationRequest'
+      responses:
+        '201':
+          description: Allocation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllocationResponse'
+        '400':
+          description: Invalid allocation request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+    get:
+      operationId: listAllocations
+      summary: Bloomberg Buyside Enterprise Solutions List allocations
+      description: Retrieve post-trade allocations with optional filtering by date, execution, or portfolio.
+      tags:
+      - Allocations
+      parameters:
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: executionId
+        in: query
+        schema:
+          type: string
+      - name: portfolioId
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of allocations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalCount:
+                    type: integer
+                  allocations:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AllocationResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    AllocationRequest:
+      type: object
+      required:
+      - executionId
+      - allocations
+      properties:
+        executionId:
+          type: string
+          description: Execution to allocate
+        method:
+          type: string
+          enum:
+          - PRO_RATA
+          - MANUAL
+          - RULE_BASED
+          default: MANUAL
+          description: Allocation method
+        allocations:
+          type: array
+          items:
+            type: object
+            required:
+            - portfolioId
+            - quantity
+            properties:
+              portfolioId:
+                type: string
+                description: Target portfolio
+              quantity:
+                type: number
+                description: Quantity to allocate
+          minItems: 1
+    AllocationResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Allocation identifier
+        executionId:
+          type: string
+        portfolioId:
+          type: string
+        security:
+          type: string
+        side:
+          type: string
+        quantity:
+          type: number
+        price:
+          type: number
+        commission:
+          type: number
+        netAmount:
+          type: number
+        status:
+          type: string
+          enum:
+          - PENDING
+          - CONFIRMED
+          - SETTLED
+          - REJECTED
+        createdAt:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/

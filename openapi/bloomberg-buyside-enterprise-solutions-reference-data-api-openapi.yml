@@ -1,0 +1,241 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Reference Data API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Reference Data
+  description: Security reference data including identifiers, classifications, and descriptive information
+paths:
+  /data/v1/reference:
+    post:
+      operationId: getReferenceData
+      summary: Bloomberg Buyside Enterprise Solutions Get reference data for securities
+      description: Retrieve reference data fields for one or more securities. Returns static or slowly changing descriptive data such as identifiers, classifications, issue details, and corporate information.
+      tags:
+      - Reference Data
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReferenceDataRequest'
+      responses:
+        '200':
+          description: Reference data returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceDataResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized - invalid or expired token
+        '403':
+          description: Forbidden - insufficient data entitlements
+        '429':
+          description: Rate limit exceeded
+  /data/v1/securities/search:
+    get:
+      operationId: searchSecurities
+      summary: Bloomberg Buyside Enterprise Solutions Search for securities
+      description: Search for securities by name, ticker, ISIN, CUSIP, or other identifiers. Returns matching securities with key reference fields.
+      tags:
+      - Reference Data
+      parameters:
+      - name: query
+        in: query
+        required: true
+        description: Security name, ticker, or identifier to search for
+        schema:
+          type: string
+      - name: assetClass
+        in: query
+        description: Filter by asset class
+        schema:
+          type: string
+          enum:
+          - Equity
+          - Fixed Income
+          - Commodity
+          - Currency
+          - Index
+          - Fund
+          - Mortgage
+          - Municipal
+          - Preferred
+      - name: limit
+        in: query
+        description: Maximum number of results
+        schema:
+          type: integer
+          default: 25
+          maximum: 100
+      - name: offset
+        in: query
+        description: Number of results to skip
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: Security search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecuritySearchResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    SecurityError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error description
+    SecuritySummary:
+      type: object
+      properties:
+        ticker:
+          type: string
+          description: Bloomberg ticker symbol
+        name:
+          type: string
+          description: Security name
+        assetClass:
+          type: string
+          description: Asset class classification
+        exchange:
+          type: string
+          description: Primary exchange
+        country:
+          type: string
+          description: Country of domicile (ISO 3166)
+        currency:
+          type: string
+          description: Trading currency (ISO 4217)
+        isin:
+          type: string
+          description: ISIN identifier
+        cusip:
+          type: string
+          description: CUSIP identifier
+        figi:
+          type: string
+          description: FIGI identifier
+    ReferenceDataRequest:
+      type: object
+      required:
+      - securities
+      - fields
+      properties:
+        securities:
+          type: array
+          items:
+            type: string
+          description: List of security identifiers (e.g., "AAPL US Equity", "IBM US Equity")
+          minItems: 1
+          maxItems: 100
+        fields:
+          type: array
+          items:
+            type: string
+          description: List of Bloomberg field mnemonics (e.g., "PX_LAST", "NAME", "ID_ISIN")
+          minItems: 1
+          maxItems: 50
+        overrides:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldOverride'
+          description: Optional field overrides for parameterized fields
+    FieldOverride:
+      type: object
+      properties:
+        fieldId:
+          type: string
+          description: Bloomberg field mnemonic to override
+        value:
+          type: string
+          description: Override value
+    ReferenceDataResponse:
+      type: object
+      properties:
+        securities:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityData'
+    SecurityData:
+      type: object
+      properties:
+        security:
+          type: string
+          description: Security identifier
+        fields:
+          type: object
+          additionalProperties: true
+          description: Map of field mnemonics to their values
+        error:
+          $ref: '#/components/schemas/SecurityError'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+    SecuritySearchResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of matching securities
+        securities:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecuritySummary'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/

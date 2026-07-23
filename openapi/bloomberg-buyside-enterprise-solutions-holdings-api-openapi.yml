@@ -1,0 +1,207 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Holdings API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Holdings
+  description: Manage portfolio holdings and positions
+paths:
+  /v1/portfolios/{portfolioId}/holdings:
+    get:
+      operationId: getPortfolioHoldings
+      summary: Bloomberg Buyside Enterprise Solutions Get portfolio holdings
+      description: Retrieve the current holdings of a portfolio as of a specified date, including position quantities, market values, weights, and unrealized gains/losses.
+      tags:
+      - Holdings
+      parameters:
+      - $ref: '#/components/parameters/portfolioId'
+      - name: asOfDate
+        in: query
+        description: Holdings as of this date (defaults to current date)
+        schema:
+          type: string
+          format: date
+      - name: includeAnalytics
+        in: query
+        description: Include analytics fields for each holding
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Portfolio holdings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  portfolioId:
+                    type: string
+                  asOfDate:
+                    type: string
+                    format: date
+                  totalMarketValue:
+                    type: number
+                  currency:
+                    type: string
+                  holdings:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Holding'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+    put:
+      operationId: updatePortfolioHoldings
+      summary: Bloomberg Buyside Enterprise Solutions Update portfolio holdings
+      description: Replace the full set of holdings for a portfolio as of a specified date. This is a full replacement operation.
+      tags:
+      - Holdings
+      parameters:
+      - $ref: '#/components/parameters/portfolioId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateHoldingsRequest'
+      responses:
+        '200':
+          description: Holdings updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  portfolioId:
+                    type: string
+                  holdingsCount:
+                    type: integer
+                  asOfDate:
+                    type: string
+                    format: date
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+components:
+  schemas:
+    Holding:
+      type: object
+      properties:
+        security:
+          type: string
+          description: Bloomberg security identifier
+        name:
+          type: string
+          description: Security name
+        assetClass:
+          type: string
+          description: Asset class
+        quantity:
+          type: number
+          description: Number of shares or units held
+        marketValue:
+          type: number
+          description: Current market value in portfolio base currency
+        costBasis:
+          type: number
+          description: Total cost basis
+        weight:
+          type: number
+          description: Portfolio weight as a percentage
+        unrealizedGainLoss:
+          type: number
+          description: Unrealized gain or loss
+        unrealizedGainLossPct:
+          type: number
+          description: Unrealized gain or loss as a percentage
+        sector:
+          type: string
+          description: GICS sector classification
+        country:
+          type: string
+          description: Country of risk (ISO 3166)
+        currency:
+          type: string
+          description: Security currency (ISO 4217)
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+    UpdateHoldingsRequest:
+      type: object
+      required:
+      - asOfDate
+      - holdings
+      properties:
+        asOfDate:
+          type: string
+          format: date
+          description: Date for which holdings are effective
+        holdings:
+          type: array
+          items:
+            type: object
+            required:
+            - security
+            - quantity
+            properties:
+              security:
+                type: string
+                description: Bloomberg security identifier
+              quantity:
+                type: number
+                description: Number of shares or units
+              costBasis:
+                type: number
+                description: Cost basis per unit
+  parameters:
+    portfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Unique portfolio identifier
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/

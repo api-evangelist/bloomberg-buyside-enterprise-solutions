@@ -1,0 +1,159 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Risk API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Risk
+  description: Portfolio risk analytics and factor exposure
+paths:
+  /v1/portfolios/{portfolioId}/risk:
+    get:
+      operationId: getPortfolioRisk
+      summary: Bloomberg Buyside Enterprise Solutions Get portfolio risk analytics
+      description: Retrieve portfolio risk metrics including tracking error, value at risk, beta, factor exposures, and concentration analysis.
+      tags:
+      - Risk
+      parameters:
+      - $ref: '#/components/parameters/portfolioId'
+      - name: asOfDate
+        in: query
+        description: Risk calculation date
+        schema:
+          type: string
+          format: date
+      - name: riskModel
+        in: query
+        description: Risk model to use for calculations
+        schema:
+          type: string
+          enum:
+          - BLOOMBERG_GLOBAL_EQUITY
+          - BLOOMBERG_US_EQUITY
+          - BLOOMBERG_FIXED_INCOME
+          - BLOOMBERG_MULTI_ASSET
+          default: BLOOMBERG_MULTI_ASSET
+      - name: confidenceLevel
+        in: query
+        description: Confidence level for VaR calculations
+        schema:
+          type: number
+          enum:
+          - 0.95
+          - 0.99
+          default: 0.95
+      responses:
+        '200':
+          description: Portfolio risk analytics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RiskResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+components:
+  parameters:
+    portfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Unique portfolio identifier
+      schema:
+        type: string
+  schemas:
+    RiskResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        asOfDate:
+          type: string
+          format: date
+        riskModel:
+          type: string
+        totalRisk:
+          type: number
+          description: Annualized total portfolio risk (standard deviation)
+        trackingError:
+          type: number
+          description: Annualized tracking error versus benchmark
+        beta:
+          type: number
+          description: Portfolio beta relative to benchmark
+        valueAtRisk:
+          type: number
+          description: Value at Risk at specified confidence level
+        conditionalVaR:
+          type: number
+          description: Conditional Value at Risk (expected shortfall)
+        factorExposures:
+          type: array
+          items:
+            type: object
+            properties:
+              factor:
+                type: string
+                description: Risk factor name
+              exposure:
+                type: number
+                description: Factor exposure (beta)
+              contribution:
+                type: number
+                description: Factor contribution to total risk
+        concentrationMetrics:
+          type: object
+          properties:
+            top10Weight:
+              type: number
+              description: Combined weight of top 10 holdings
+            herfindahlIndex:
+              type: number
+              description: Herfindahl-Hirschman index for position concentration
+            effectivePositions:
+              type: number
+              description: Effective number of positions
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/

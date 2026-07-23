@@ -1,0 +1,189 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Blotters API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Blotters
+  description: Trading blotter views and filtering
+paths:
+  /v1/blotter:
+    get:
+      operationId: getBlotter
+      summary: Bloomberg Buyside Enterprise Solutions Get trading blotter
+      description: Retrieve a consolidated view of orders and executions for the current trading day or a specified date range.
+      tags:
+      - Blotters
+      parameters:
+      - name: date
+        in: query
+        description: Blotter date (defaults to current trading day)
+        schema:
+          type: string
+          format: date
+      - name: status
+        in: query
+        description: Filter by order status
+        schema:
+          type: string
+          enum:
+          - ALL
+          - OPEN
+          - COMPLETED
+          - CANCELLED
+          default: ALL
+      - name: portfolioId
+        in: query
+        description: Filter by portfolio
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Trading blotter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlotterResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique order identifier
+        security:
+          type: string
+          description: Bloomberg security identifier
+        securityName:
+          type: string
+          description: Security name
+        side:
+          type: string
+          enum:
+          - BUY
+          - SELL
+          - SHORT_SELL
+          - BUY_TO_COVER
+          description: Order side
+        orderType:
+          type: string
+          enum:
+          - MARKET
+          - LIMIT
+          - STOP
+          - STOP_LIMIT
+          - PEGGED
+          - VWAP
+          - TWAP
+          description: Order type
+        quantity:
+          type: number
+          description: Order quantity
+        filledQuantity:
+          type: number
+          description: Quantity filled so far
+        remainingQuantity:
+          type: number
+          description: Remaining quantity to fill
+        limitPrice:
+          type: number
+          description: Limit price (for limit and stop-limit orders)
+        stopPrice:
+          type: number
+          description: Stop price (for stop and stop-limit orders)
+        averageFillPrice:
+          type: number
+          description: Volume-weighted average fill price
+        status:
+          type: string
+          enum:
+          - NEW
+          - PENDING
+          - PARTIALLY_FILLED
+          - FILLED
+          - CANCELLED
+          - REJECTED
+          - EXPIRED
+          description: Current order status
+        timeInForce:
+          type: string
+          enum:
+          - DAY
+          - GTC
+          - IOC
+          - FOK
+          - GTD
+          description: Time in force instruction
+        expirationDate:
+          type: string
+          format: date
+          description: Expiration date for GTD orders
+        portfolioId:
+          type: string
+          description: Associated portfolio
+        brokerId:
+          type: string
+          description: Routing broker identifier
+        algorithm:
+          type: string
+          description: Algorithm name (for algorithmic orders)
+        currency:
+          type: string
+          description: Order currency (ISO 4217)
+        trader:
+          type: string
+          description: Trader who placed the order
+        createdAt:
+          type: string
+          format: date-time
+          description: Order creation timestamp
+        updatedAt:
+          type: string
+          format: date-time
+          description: Last update timestamp
+    BlotterResponse:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        summary:
+          type: object
+          properties:
+            totalOrders:
+              type: integer
+            openOrders:
+              type: integer
+            filledOrders:
+              type: integer
+            cancelledOrders:
+              type: integer
+            totalNotional:
+              type: number
+            totalCommissions:
+              type: number
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/

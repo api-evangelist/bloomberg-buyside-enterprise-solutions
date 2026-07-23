@@ -1,0 +1,121 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Brokers API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Brokers
+  description: Broker routing and counterparty management
+paths:
+  /v1/brokers:
+    get:
+      operationId: listBrokers
+      summary: Bloomberg Buyside Enterprise Solutions List available brokers
+      description: Retrieve a list of configured broker connections available for order routing, including supported order types and algorithms.
+      tags:
+      - Brokers
+      parameters:
+      - name: assetClass
+        in: query
+        description: Filter by supported asset class
+        schema:
+          type: string
+          enum:
+          - Equity
+          - Fixed Income
+          - FX
+          - Derivatives
+      - name: status
+        in: query
+        description: Filter by connection status
+        schema:
+          type: string
+          enum:
+          - CONNECTED
+          - DISCONNECTED
+      responses:
+        '200':
+          description: List of brokers
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  brokers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Broker'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Broker:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Broker identifier
+        name:
+          type: string
+          description: Broker name
+        shortCode:
+          type: string
+          description: Broker short code
+        status:
+          type: string
+          enum:
+          - CONNECTED
+          - DISCONNECTED
+          description: Connection status
+        supportedAssetClasses:
+          type: array
+          items:
+            type: string
+          description: Supported asset classes
+        supportedOrderTypes:
+          type: array
+          items:
+            type: string
+          description: Supported order types
+        algorithms:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Algorithm name
+              description:
+                type: string
+                description: Algorithm description
+              parameters:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    type:
+                      type: string
+                    required:
+                      type: boolean
+                    description:
+                      type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/

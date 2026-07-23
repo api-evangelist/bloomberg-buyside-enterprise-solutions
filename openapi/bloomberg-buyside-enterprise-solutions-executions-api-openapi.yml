@@ -1,0 +1,172 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Executions API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Executions
+  description: View execution reports and trade fills
+paths:
+  /v1/orders/{orderId}/executions:
+    get:
+      operationId: getOrderExecutions
+      summary: Bloomberg Buyside Enterprise Solutions Get order executions
+      description: Retrieve all execution reports (fills) for a specific order.
+      tags:
+      - Executions
+      parameters:
+      - $ref: '#/components/parameters/orderId'
+      responses:
+        '200':
+          description: List of executions for the order
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orderId:
+                    type: string
+                  executions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Execution'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Order not found
+  /v1/executions:
+    get:
+      operationId: listExecutions
+      summary: Bloomberg Buyside Enterprise Solutions List executions
+      description: Retrieve execution reports across all orders, with optional filtering by date range, security, or portfolio.
+      tags:
+      - Executions
+      parameters:
+      - name: startDate
+        in: query
+        description: Filter executions on or after this date
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        description: Filter executions on or before this date
+        schema:
+          type: string
+          format: date
+      - name: security
+        in: query
+        description: Filter by security identifier
+        schema:
+          type: string
+      - name: portfolioId
+        in: query
+        description: Filter by portfolio
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+          maximum: 500
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of executions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalCount:
+                    type: integer
+                  executions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Execution'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Execution:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique execution identifier
+        orderId:
+          type: string
+          description: Associated order identifier
+        security:
+          type: string
+          description: Bloomberg security identifier
+        side:
+          type: string
+          enum:
+          - BUY
+          - SELL
+          - SHORT_SELL
+          - BUY_TO_COVER
+        quantity:
+          type: number
+          description: Executed quantity
+        price:
+          type: number
+          description: Execution price
+        commission:
+          type: number
+          description: Commission amount
+        fees:
+          type: number
+          description: Exchange and regulatory fees
+        netAmount:
+          type: number
+          description: Net settlement amount
+        currency:
+          type: string
+          description: Execution currency (ISO 4217)
+        broker:
+          type: string
+          description: Executing broker
+        venue:
+          type: string
+          description: Execution venue or exchange
+        settlementDate:
+          type: string
+          format: date
+          description: Expected settlement date
+        executedAt:
+          type: string
+          format: date-time
+          description: Execution timestamp
+  parameters:
+    orderId:
+      name: orderId
+      in: path
+      required: true
+      description: Unique order identifier
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/

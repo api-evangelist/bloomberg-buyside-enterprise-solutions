@@ -1,0 +1,162 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Scenario Analysis API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Scenario Analysis
+  description: What-if scenario analysis for portfolios and securities
+paths:
+  /v1/scenarios/analyze:
+    post:
+      operationId: analyzeScenario
+      summary: Bloomberg Buyside Enterprise Solutions Run scenario analysis
+      description: Perform what-if scenario analysis on a portfolio or set of securities by applying hypothetical changes to market variables such as interest rates, credit spreads, equity prices, or volatility.
+      tags:
+      - Scenario Analysis
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScenarioRequest'
+      responses:
+        '200':
+          description: Scenario analysis results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScenarioResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    ScenarioRequest:
+      type: object
+      required:
+      - portfolioId
+      - shocks
+      properties:
+        portfolioId:
+          type: string
+          description: Portfolio to analyze
+        securities:
+          type: array
+          items:
+            type: string
+          description: Specific securities to analyze (if not using portfolioId)
+        shocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketShock'
+          description: Market variable shocks to apply
+          minItems: 1
+    ScenarioResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        baseValue:
+          type: number
+          description: Current portfolio market value
+        scenarioValue:
+          type: number
+          description: Portfolio value under scenario
+        pnlImpact:
+          type: number
+          description: Profit/loss impact
+        pnlImpactPct:
+          type: number
+          description: Profit/loss impact as a percentage
+        securityImpacts:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+              baseValue:
+                type: number
+              scenarioValue:
+                type: number
+              pnlImpact:
+                type: number
+              pnlImpactPct:
+                type: number
+    MarketShock:
+      type: object
+      required:
+      - variable
+      - shockType
+      - value
+      properties:
+        variable:
+          type: string
+          enum:
+          - INTEREST_RATE
+          - CREDIT_SPREAD
+          - EQUITY_PRICE
+          - FX_RATE
+          - VOLATILITY
+          - COMMODITY_PRICE
+          - INFLATION
+          description: Market variable to shock
+        shockType:
+          type: string
+          enum:
+          - ABSOLUTE
+          - RELATIVE
+          - OVERRIDE
+          description: Type of shock to apply
+        value:
+          type: number
+          description: Shock magnitude
+        tenor:
+          type: string
+          description: Specific tenor for rate shocks (e.g., "5Y", "10Y")
+        currency:
+          type: string
+          description: Currency for the shock (ISO 4217)
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/

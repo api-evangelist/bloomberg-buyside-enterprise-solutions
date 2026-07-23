@@ -1,0 +1,161 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Yield Curves API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Yield Curves
+  description: Yield curve construction and management
+paths:
+  /v1/yield-curves:
+    get:
+      operationId: listYieldCurves
+      summary: Bloomberg Buyside Enterprise Solutions List available yield curves
+      description: Retrieve a list of available yield curves, including sovereign, swap, and corporate curves for various currencies.
+      tags:
+      - Yield Curves
+      parameters:
+      - name: currency
+        in: query
+        description: Filter by currency (ISO 4217)
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Filter by curve type
+        schema:
+          type: string
+          enum:
+          - SOVEREIGN
+          - SWAP
+          - CORPORATE
+          - MUNICIPAL
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of yield curves
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  curves:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/YieldCurveSummary'
+        '401':
+          description: Unauthorized
+  /v1/yield-curves/{curveId}:
+    get:
+      operationId: getYieldCurve
+      summary: Bloomberg Buyside Enterprise Solutions Get yield curve data
+      description: Retrieve the full yield curve data including term structure points, zero rates, forward rates, and discount factors for a specific curve as of a given date.
+      tags:
+      - Yield Curves
+      parameters:
+      - name: curveId
+        in: path
+        required: true
+        description: Yield curve identifier
+        schema:
+          type: string
+      - name: asOfDate
+        in: query
+        description: Curve date (defaults to most recent)
+        schema:
+          type: string
+          format: date
+      responses:
+        '200':
+          description: Yield curve data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/YieldCurveData'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Yield curve not found
+components:
+  schemas:
+    YieldCurveData:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        currency:
+          type: string
+        type:
+          type: string
+        asOfDate:
+          type: string
+          format: date
+        points:
+          type: array
+          items:
+            type: object
+            properties:
+              tenor:
+                type: string
+                description: Tenor label (e.g., "3M", "1Y", "10Y", "30Y")
+              maturityDate:
+                type: string
+                format: date
+              yieldRate:
+                type: number
+                description: Par yield rate
+              zeroRate:
+                type: number
+                description: Zero coupon rate
+              forwardRate:
+                type: number
+                description: Instantaneous forward rate
+              discountFactor:
+                type: number
+                description: Discount factor
+    YieldCurveSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Curve identifier
+        name:
+          type: string
+          description: Curve name
+        currency:
+          type: string
+          description: Currency (ISO 4217)
+        type:
+          type: string
+          enum:
+          - SOVEREIGN
+          - SWAP
+          - CORPORATE
+          - MUNICIPAL
+        country:
+          type: string
+          description: Country (ISO 3166)
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/

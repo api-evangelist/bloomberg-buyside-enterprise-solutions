@@ -1,0 +1,250 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Performance API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Performance
+  description: Portfolio performance measurement and attribution
+paths:
+  /v1/portfolios/{portfolioId}/performance:
+    get:
+      operationId: getPortfolioPerformance
+      summary: Bloomberg Buyside Enterprise Solutions Get portfolio performance
+      description: Retrieve portfolio performance metrics over a specified period, including time-weighted returns, money-weighted returns, and comparison to benchmark.
+      tags:
+      - Performance
+      parameters:
+      - $ref: '#/components/parameters/portfolioId'
+      - name: startDate
+        in: query
+        required: true
+        description: Start date for performance period
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        required: true
+        description: End date for performance period
+        schema:
+          type: string
+          format: date
+      - name: frequency
+        in: query
+        description: Return frequency
+        schema:
+          type: string
+          enum:
+          - DAILY
+          - WEEKLY
+          - MONTHLY
+          - QUARTERLY
+          - YEARLY
+          default: MONTHLY
+      responses:
+        '200':
+          description: Portfolio performance data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PerformanceResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+  /v1/portfolios/{portfolioId}/performance/attribution:
+    get:
+      operationId: getPerformanceAttribution
+      summary: Bloomberg Buyside Enterprise Solutions Get performance attribution
+      description: Retrieve performance attribution analysis showing the contribution of allocation, selection, and interaction effects relative to the portfolio benchmark.
+      tags:
+      - Performance
+      parameters:
+      - $ref: '#/components/parameters/portfolioId'
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+      - name: groupBy
+        in: query
+        description: Dimension for attribution grouping
+        schema:
+          type: string
+          enum:
+          - SECTOR
+          - COUNTRY
+          - ASSET_CLASS
+          - CURRENCY
+          - CUSTOM
+          default: SECTOR
+      responses:
+        '200':
+          description: Performance attribution data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributionResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Portfolio not found
+components:
+  schemas:
+    PerformanceResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        totalReturn:
+          type: number
+          description: Total portfolio return for the period
+        annualizedReturn:
+          type: number
+          description: Annualized portfolio return
+        benchmarkReturn:
+          type: number
+          description: Benchmark return for the period
+        excessReturn:
+          type: number
+          description: Portfolio return minus benchmark return
+        sharpeRatio:
+          type: number
+          description: Sharpe ratio for the period
+        informationRatio:
+          type: number
+          description: Information ratio versus benchmark
+        maxDrawdown:
+          type: number
+          description: Maximum drawdown during the period
+        periods:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              portfolioReturn:
+                type: number
+              benchmarkReturn:
+                type: number
+              cumulativeReturn:
+                type: number
+              cumulativeBenchmarkReturn:
+                type: number
+    AttributionResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        totalAllocationEffect:
+          type: number
+          description: Total allocation effect
+        totalSelectionEffect:
+          type: number
+          description: Total selection effect
+        totalInteractionEffect:
+          type: number
+          description: Total interaction effect
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Group name (e.g., sector name)
+              portfolioWeight:
+                type: number
+              benchmarkWeight:
+                type: number
+              portfolioReturn:
+                type: number
+              benchmarkReturn:
+                type: number
+              allocationEffect:
+                type: number
+              selectionEffect:
+                type: number
+              interactionEffect:
+                type: number
+              totalEffect:
+                type: number
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+  parameters:
+    portfolioId:
+      name: portfolioId
+      in: path
+      required: true
+      description: Unique portfolio identifier
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/

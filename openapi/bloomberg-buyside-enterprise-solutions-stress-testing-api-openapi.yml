@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Stress Testing API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Stress Testing
+  description: Stress testing against historical and hypothetical scenarios
+paths:
+  /v1/stress-tests/run:
+    post:
+      operationId: runStressTest
+      summary: Bloomberg Buyside Enterprise Solutions Run stress test
+      description: Execute stress tests on a portfolio using predefined historical scenarios or custom hypothetical shocks. Returns the projected portfolio impact under each stress scenario.
+      tags:
+      - Stress Testing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StressTestRequest'
+      responses:
+        '200':
+          description: Stress test results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StressTestResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+  /v1/stress-tests/scenarios:
+    get:
+      operationId: listStressScenarios
+      summary: Bloomberg Buyside Enterprise Solutions List predefined stress scenarios
+      description: Retrieve a list of predefined historical stress scenarios available for testing, such as the 2008 financial crisis, COVID-19 market shock, or rate hike scenarios.
+      tags:
+      - Stress Testing
+      parameters:
+      - name: category
+        in: query
+        description: Filter by scenario category
+        schema:
+          type: string
+          enum:
+          - HISTORICAL
+          - RATE_SHOCK
+          - CREDIT_SHOCK
+          - EQUITY_SHOCK
+          - FX_SHOCK
+          - CUSTOM
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of stress scenarios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  scenarios:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/StressScenario'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    StressTestResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        baseValue:
+          type: number
+          description: Current portfolio market value
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              scenarioId:
+                type: string
+              scenarioName:
+                type: string
+              scenarioValue:
+                type: number
+                description: Portfolio value under stress
+              pnlImpact:
+                type: number
+                description: Profit/loss impact
+              pnlImpactPct:
+                type: number
+                description: Profit/loss impact percentage
+              worstContributors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    security:
+                      type: string
+                    pnlImpact:
+                      type: number
+                    pnlImpactPct:
+                      type: number
+                description: Securities with largest negative impact
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+    StressTestRequest:
+      type: object
+      required:
+      - portfolioId
+      properties:
+        portfolioId:
+          type: string
+          description: Portfolio to stress test
+        scenarioIds:
+          type: array
+          items:
+            type: string
+          description: Predefined stress scenario identifiers
+        customScenarios:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Custom scenario name
+              shocks:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MarketShock'
+          description: Custom stress scenarios
+    MarketShock:
+      type: object
+      required:
+      - variable
+      - shockType
+      - value
+      properties:
+        variable:
+          type: string
+          enum:
+          - INTEREST_RATE
+          - CREDIT_SPREAD
+          - EQUITY_PRICE
+          - FX_RATE
+          - VOLATILITY
+          - COMMODITY_PRICE
+          - INFLATION
+          description: Market variable to shock
+        shockType:
+          type: string
+          enum:
+          - ABSOLUTE
+          - RELATIVE
+          - OVERRIDE
+          description: Type of shock to apply
+        value:
+          type: number
+          description: Shock magnitude
+        tenor:
+          type: string
+          description: Specific tenor for rate shocks (e.g., "5Y", "10Y")
+        currency:
+          type: string
+          description: Currency for the shock (ISO 4217)
+    StressScenario:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Scenario identifier
+        name:
+          type: string
+          description: Scenario name
+        description:
+          type: string
+          description: Scenario description
+        category:
+          type: string
+          enum:
+          - HISTORICAL
+          - RATE_SHOCK
+          - CREDIT_SHOCK
+          - EQUITY_SHOCK
+          - FX_SHOCK
+          - CUSTOM
+        historicalDate:
+          type: string
+          format: date
+          description: Reference date for historical scenarios
+        shocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketShock'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/

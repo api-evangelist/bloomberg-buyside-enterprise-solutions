@@ -1,0 +1,96 @@
+openapi: 3.1.0
+info:
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Benchmarks API
+  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  version: '1.0'
+  contact:
+    name: Bloomberg Support
+    url: https://www.bloomberg.com/professional/support/
+  termsOfService: https://www.bloomberg.com/professional/terms-of-use/
+servers:
+- url: https://api.bloomberg.com/analytics
+  description: Bloomberg Analytics API Production
+security:
+- bearerAuth: []
+tags:
+- name: Benchmarks
+  description: Benchmark assignment and comparison
+paths:
+  /v1/benchmarks:
+    get:
+      operationId: listBenchmarks
+      summary: Bloomberg Buyside Enterprise Solutions List available benchmarks
+      description: Retrieve a list of available benchmarks that can be assigned to portfolios for performance comparison and attribution analysis.
+      tags:
+      - Benchmarks
+      parameters:
+      - name: query
+        in: query
+        description: Search by benchmark name or identifier
+        schema:
+          type: string
+      - name: assetClass
+        in: query
+        description: Filter by asset class
+        schema:
+          type: string
+          enum:
+          - Equity
+          - Fixed Income
+          - Multi-Asset
+          - Commodity
+          - Real Estate
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+          maximum: 200
+      responses:
+        '200':
+          description: List of benchmarks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalCount:
+                    type: integer
+                  benchmarks:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Benchmark'
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    Benchmark:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Benchmark identifier
+        name:
+          type: string
+          description: Benchmark name
+        ticker:
+          type: string
+          description: Bloomberg ticker
+        assetClass:
+          type: string
+          description: Asset class
+        currency:
+          type: string
+          description: Base currency
+        provider:
+          type: string
+          description: Index provider name
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
+externalDocs:
+  description: Bloomberg Analytics Documentation
+  url: https://www.bloomberg.com/professional/product/analytics/
