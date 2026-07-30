@@ -4,7 +4,20 @@ description: >-
   Bloomberg's enterprise solutions for buy-side firms including asset managers, hedge funds, and institutional
   investors, providing integrated workflows, data management, portfolio analytics, and trading capabilities.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/bloomberg-buyside-enterprise-solutions.png
 tags:
   - Analytics
   - Asset Management
@@ -19,37 +32,256 @@ created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: bloomberg-buyside-enterprise-solutions:bloomberg-data-api
-    name: Bloomberg Data API
-    description: >-
-      Programmatic access to Bloomberg's financial data including reference data, historical pricing, corporate actions,
-      and market data for portfolio management and analytics.
-    humanURL: https://www.bloomberg.com/professional/support/api-library/
-    tags:
-      - Corporate Actions
-      - Financial Data
-      - Historical Data
-      - Market Data
-      - Reference Data
-    properties:
-      - type: Documentation
-        url: https://www.bloomberg.com/professional/support/api-library/
-      - type: Authentication
-        url: https://www.bloomberg.com/professional/support/api-library/#authentication
-  - aid: bloomberg-buyside-enterprise-solutions:bloomberg-order-management-api
-    name: Bloomberg Order Management API
-    description: >-
-      API for order and execution management, enabling algorithmic trading, smart order routing, and integration with
-      trading platforms for buy-side workflows.
-    humanURL: https://www.bloomberg.com/professional/product/buy-side-trading/
-    tags:
-      - Algorithmic Trading
-      - Execution
-      - Order Management
-      - Trading
-    properties:
-      - type: Documentation
-        url: https://www.bloomberg.com/professional/support/api-library/
+- aid: bloomberg-buyside-enterprise-solutions:bloomberg-data-api
+  name: Bloomberg Data API
+  description: >-
+    Programmatic access to Bloomberg's financial data including reference data, historical pricing, corporate
+    actions, and market data for portfolio management and analytics.
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Corporate Actions
+  - Financial Data
+  - Historical Data
+  - Market Data
+  - Reference Data
+  properties:
+  - type: Documentation
+    url: https://www.bloomberg.com/professional/support/api-library/
+  - type: Authentication
+    url: https://www.bloomberg.com/professional/support/api-library/#authentication
+- aid: bloomberg-buyside-enterprise-solutions:bloomberg-order-management-api
+  name: Bloomberg Order Management API
+  description: >-
+    API for order and execution management, enabling algorithmic trading, smart order routing, and integration
+    with trading platforms for buy-side workflows.
+  humanURL: https://www.bloomberg.com/professional/product/buy-side-trading/
+  tags:
+  - Algorithmic Trading
+  - Execution
+  - Order Management
+  - Trading
+  properties:
+  - type: Documentation
+    url: https://www.bloomberg.com/professional/support/api-library/
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-allocations-api
+  name: Bloomberg Buyside Enterprise Solutions Allocations API
+  description: Post-trade allocation of executions to portfolios
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Allocations
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-allocations-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-benchmarks-api
+  name: Bloomberg Buyside Enterprise Solutions Benchmarks API
+  description: Benchmark assignment and comparison
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Benchmarks
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-benchmarks-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-blotters-api
+  name: Bloomberg Buyside Enterprise Solutions Blotters API
+  description: Trading blotter views and filtering
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Blotters
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-blotters-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-brokers-api
+  name: Bloomberg Buyside Enterprise Solutions Brokers API
+  description: Broker routing and counterparty management
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Brokers
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-brokers-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-compliance-api
+  name: Bloomberg Buyside Enterprise Solutions Compliance API
+  description: Portfolio compliance rules and monitoring
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Compliance
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-compliance-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-corporate-actions-api
+  name: Bloomberg Buyside Enterprise Solutions Corporate Actions API
+  description: Corporate action events including dividends, splits, mergers, and restructurings
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Corporate Actions
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-corporate-actions-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-derivatives-api
+  name: Bloomberg Buyside Enterprise Solutions Derivatives API
+  description: Derivatives pricing, Greeks, and valuation models
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Derivatives
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-derivatives-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-executions-api
+  name: Bloomberg Buyside Enterprise Solutions Executions API
+  description: View execution reports and trade fills
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Executions
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-executions-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-field-search-api
+  name: Bloomberg Buyside Enterprise Solutions Field Search API
+  description: Search and discover available data fields
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Field Search
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-field-search-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-fixed-income-api
+  name: Bloomberg Buyside Enterprise Solutions Fixed Income API
+  description: Fixed income analytics including yield, duration, and spread calculations
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Fixed Income
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-fixed-income-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-historical-data-api
+  name: Bloomberg Buyside Enterprise Solutions Historical Data API
+  description: Historical pricing, volume, and fundamental data for securities
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Historical Data
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-historical-data-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-holdings-api
+  name: Bloomberg Buyside Enterprise Solutions Holdings API
+  description: Manage portfolio holdings and positions
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Holdings
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-holdings-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-market-data-api
+  name: Bloomberg Buyside Enterprise Solutions Market Data API
+  description: Real-time and delayed market data snapshots
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Market Data
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-market-data-api-openapi.yml
+- aid: bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-orders-api
+  name: Bloomberg Buyside Enterprise Solutions Orders API
+  description: Create, manage, and monitor trading orders
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-orders-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-performance-api
+  name: Bloomberg Buyside Enterprise Solutions Performance API
+  description: Portfolio performance measurement and attribution
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Performance
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-performance-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-portfolios-api
+  name: Bloomberg Buyside Enterprise Solutions Portfolios API
+  description: Create, read, update, and delete portfolio definitions
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Portfolios
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-portfolios-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-pricing-api
+  name: Bloomberg Buyside Enterprise Solutions Pricing API
+  description: Security pricing and valuation
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Pricing
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-pricing-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-reference-data-api
+  name: Bloomberg Buyside Enterprise Solutions Reference Data API
+  description: >-
+    Security reference data including identifiers, classifications, and descriptive information
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Reference Data
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-reference-data-api-openapi.yml
+- aid: bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-risk-api
+  name: Bloomberg Buyside Enterprise Solutions Risk API
+  description: Portfolio risk analytics and factor exposure
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Risk
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-risk-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-scenario-analysis-api
+  name: Bloomberg Buyside Enterprise Solutions Scenario Analysis API
+  description: What-if scenario analysis for portfolios and securities
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Scenario Analysis
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-scenario-analysis-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-stress-testing-api
+  name: Bloomberg Buyside Enterprise Solutions Stress Testing API
+  description: Stress testing against historical and hypothetical scenarios
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Stress Testing
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-stress-testing-api-openapi.yml
+- aid: >-
+    bloomberg-buyside-enterprise-solutions:bloomberg-buyside-enterprise-solutions-yield-curves-api
+  name: Bloomberg Buyside Enterprise Solutions Yield Curves API
+  description: Yield curve construction and management
+  humanURL: https://www.bloomberg.com/professional/support/api-library/
+  tags:
+  - Yield Curves
+  properties:
+  - type: OpenAPI
+    url: openapi/bloomberg-buyside-enterprise-solutions-yield-curves-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/bloomberg-buyside-enterprise-solutions-agentic-access.yml
