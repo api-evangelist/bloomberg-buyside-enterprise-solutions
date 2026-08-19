@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Corporate Actions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Corporate Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get corporate actions for securities",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/data/v1/corporate-actions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve corporate action events for one or more securities within a specified date range, including dividends, stock splits, mergers, spin-offs, and other corporate events."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

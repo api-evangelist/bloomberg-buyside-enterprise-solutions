@@ -1,0 +1,580 @@
+{
+  "item": [
+    {
+      "id": "00f0f3eb-2d07-4d0b-810e-4fb21db6a288",
+      "name": "Holdings",
+      "description": {
+        "content": "Manage portfolio holdings and positions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0cd473c1-ccc4-4a48-af7a-df5f5afd1d87",
+          "name": "Bloomberg Buyside Enterprise Solutions Get portfolio holdings",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get portfolio holdings",
+            "description": {
+              "content": "Retrieve the current holdings of a portfolio as of a specified date, including position quantities, market values, weights, and unrealized gains/losses.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "portfolios",
+                ":portfolioId",
+                "holdings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "asOfDate",
+                  "value": "<date>",
+                  "description": "Holdings as of this date (defaults to current date)"
+                },
+                {
+                  "disabled": false,
+                  "key": "includeAnalytics",
+                  "value": "false",
+                  "description": "Include analytics fields for each holding"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portfolioId",
+                  "description": "(Required) Unique portfolio identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50e1e897-b881-4877-9dca-413e42c9bab9",
+              "name": "Portfolio holdings",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolioId",
+                    "holdings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOfDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "includeAnalytics",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Unique portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"portfolioId\": \"string\",\n  \"asOfDate\": \"2002-11-23\",\n  \"totalMarketValue\": 3745.3616108518695,\n  \"currency\": \"string\",\n  \"holdings\": [\n    {\n      \"security\": \"string\",\n      \"name\": \"string\",\n      \"assetClass\": \"string\",\n      \"quantity\": 113.51992712441361,\n      \"marketValue\": 2626.4497249249916,\n      \"costBasis\": 474.1717260117162,\n      \"weight\": 6964.515254858431,\n      \"unrealizedGainLoss\": 67.52019747257476,\n      \"unrealizedGainLossPct\": 9626.5485025773,\n      \"sector\": \"string\",\n      \"country\": \"string\",\n      \"currency\": \"string\"\n    },\n    {\n      \"security\": \"string\",\n      \"name\": \"string\",\n      \"assetClass\": \"string\",\n      \"quantity\": 2273.1108222418693,\n      \"marketValue\": 8504.348240585054,\n      \"costBasis\": 3712.2574887914416,\n      \"weight\": 6324.7838638949825,\n      \"unrealizedGainLoss\": 4355.601911159604,\n      \"unrealizedGainLossPct\": 510.5296025294359,\n      \"sector\": \"string\",\n      \"country\": \"string\",\n      \"currency\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cc67bf2-a352-4019-ac0d-87cdb4e3d953",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolioId",
+                    "holdings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOfDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "includeAnalytics",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Unique portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "02e8d46c-b0e5-4458-a897-77b5a13f8078",
+              "name": "Portfolio not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolioId",
+                    "holdings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOfDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "includeAnalytics",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Unique portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4bfa4e0a-edff-49a5-bd6f-f2e745d118ce",
+          "name": "Bloomberg Buyside Enterprise Solutions Update portfolio holdings",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Update portfolio holdings",
+            "description": {
+              "content": "Replace the full set of holdings for a portfolio as of a specified date. This is a full replacement operation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "portfolios",
+                ":portfolioId",
+                "holdings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portfolioId",
+                  "description": "(Required) Unique portfolio identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"asOfDate\": \"<date>\",\n  \"holdings\": [\n    {\n      \"security\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"costBasis\": \"<number>\"\n    },\n    {\n      \"security\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"costBasis\": \"<number>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5aae3f49-0cc1-48e5-aea7-52c7995094b6",
+              "name": "Holdings updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolioId",
+                    "holdings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Unique portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asOfDate\": \"<date>\",\n  \"holdings\": [\n    {\n      \"security\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"costBasis\": \"<number>\"\n    },\n    {\n      \"security\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"costBasis\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"portfolioId\": \"string\",\n  \"holdingsCount\": 3809,\n  \"asOfDate\": \"2000-01-17\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b17d90f3-8784-4764-a0bb-d095fa6e59c8",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolioId",
+                    "holdings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Unique portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asOfDate\": \"<date>\",\n  \"holdings\": [\n    {\n      \"security\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"costBasis\": \"<number>\"\n    },\n    {\n      \"security\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"costBasis\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ea65c80-fe19-4736-94eb-9acf433aaa31",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolioId",
+                    "holdings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Unique portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asOfDate\": \"<date>\",\n  \"holdings\": [\n    {\n      \"security\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"costBasis\": \"<number>\"\n    },\n    {\n      \"security\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"costBasis\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "65426fe4-656c-417e-8c2f-828eadfcf604",
+              "name": "Portfolio not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolioId",
+                    "holdings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Unique portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asOfDate\": \"<date>\",\n  \"holdings\": [\n    {\n      \"security\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"costBasis\": \"<number>\"\n    },\n    {\n      \"security\": \"<string>\",\n      \"quantity\": \"<number>\",\n      \"costBasis\": \"<number>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "782209d4-a803-4165-b7c5-08f34edaac6c",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Holdings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

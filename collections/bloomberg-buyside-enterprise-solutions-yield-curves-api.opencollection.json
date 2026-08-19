@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Yield Curves API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Yield Curves",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions List available yield curves",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/yield-curves",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Filter by currency (ISO 4217)"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by curve type"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of available yield curves, including sovereign, swap, and corporate curves for various currencies."
+        },
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get yield curve data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/yield-curves/:curveId",
+            "params": [
+              {
+                "name": "curveId",
+                "value": "",
+                "type": "path",
+                "description": "Yield curve identifier"
+              },
+              {
+                "name": "asOfDate",
+                "value": "",
+                "type": "query",
+                "description": "Curve date (defaults to most recent)"
+              }
+            ]
+          },
+          "docs": "Retrieve the full yield curve data including term structure points, zero rates, forward rates, and discount factors for a specific curve as of a given date."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

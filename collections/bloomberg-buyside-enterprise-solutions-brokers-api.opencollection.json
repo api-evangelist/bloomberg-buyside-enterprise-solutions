@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Brokers API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Brokers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions List available brokers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/brokers",
+            "params": [
+              {
+                "name": "assetClass",
+                "value": "",
+                "type": "query",
+                "description": "Filter by supported asset class"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by connection status"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of configured broker connections available for order routing, including supported order types and algorithms."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

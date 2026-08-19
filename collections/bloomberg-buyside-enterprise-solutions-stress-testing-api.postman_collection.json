@@ -1,0 +1,399 @@
+{
+  "item": [
+    {
+      "id": "70f806ce-7612-4388-978f-daeba289d803",
+      "name": "Stress Testing",
+      "description": {
+        "content": "Stress testing against historical and hypothetical scenarios",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1ee34c7-e94c-4cff-9cc0-97fd3d5ddf0b",
+          "name": "Bloomberg Buyside Enterprise Solutions Run stress test",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Run stress test",
+            "description": {
+              "content": "Execute stress tests on a portfolio using predefined historical scenarios or custom hypothetical shocks. Returns the projected portfolio impact under each stress scenario.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "stress-tests",
+                "run"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"scenarioIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customScenarios\": [\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"<string>\",\n          \"shockType\": \"<string>\",\n          \"value\": \"<number>\",\n          \"tenor\": \"<string>\",\n          \"currency\": \"<string>\"\n        },\n        {\n          \"variable\": \"<string>\",\n          \"shockType\": \"<string>\",\n          \"value\": \"<number>\",\n          \"tenor\": \"<string>\",\n          \"currency\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"<string>\",\n          \"shockType\": \"<string>\",\n          \"value\": \"<number>\",\n          \"tenor\": \"<string>\",\n          \"currency\": \"<string>\"\n        },\n        {\n          \"variable\": \"<string>\",\n          \"shockType\": \"<string>\",\n          \"value\": \"<number>\",\n          \"tenor\": \"<string>\",\n          \"currency\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9846cc34-d707-4ce6-ba1b-128cebb77eae",
+              "name": "Stress test results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stress-tests",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"scenarioIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customScenarios\": [\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"VOLATILITY\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 2986.125673378579,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"INTEREST_RATE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 9617.430545108173,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"FX_RATE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 6503.151149504881,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"EQUITY_PRICE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 3030.9219671626665,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"portfolioId\": \"string\",\n  \"baseValue\": 4890.0235514415735,\n  \"results\": [\n    {\n      \"scenarioId\": \"string\",\n      \"scenarioName\": \"string\",\n      \"scenarioValue\": 3826.6662302237596,\n      \"pnlImpact\": 5089.785617234888,\n      \"pnlImpactPct\": 5380.619063092286,\n      \"worstContributors\": [\n        {\n          \"security\": \"string\",\n          \"pnlImpact\": 6495.965691403628,\n          \"pnlImpactPct\": 5468.282608246402\n        },\n        {\n          \"security\": \"string\",\n          \"pnlImpact\": 8274.34353993039,\n          \"pnlImpactPct\": 1849.2482498492025\n        }\n      ]\n    },\n    {\n      \"scenarioId\": \"string\",\n      \"scenarioName\": \"string\",\n      \"scenarioValue\": 8440.859863923568,\n      \"pnlImpact\": 9479.970055404116,\n      \"pnlImpactPct\": 1241.2521295102185,\n      \"worstContributors\": [\n        {\n          \"security\": \"string\",\n          \"pnlImpact\": 3742.312602513398,\n          \"pnlImpactPct\": 1650.1708463618036\n        },\n        {\n          \"security\": \"string\",\n          \"pnlImpact\": 5443.670677235031,\n          \"pnlImpactPct\": 616.603877608326\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4583b5ba-8330-40ca-af34-b46d05d4cf10",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stress-tests",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"scenarioIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customScenarios\": [\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"VOLATILITY\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 2986.125673378579,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"INTEREST_RATE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 9617.430545108173,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"FX_RATE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 6503.151149504881,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"EQUITY_PRICE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 3030.9219671626665,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46d58686-9b56-4608-b076-a8685413c3ac",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stress-tests",
+                    "run"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"scenarioIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"customScenarios\": [\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"VOLATILITY\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 2986.125673378579,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"INTEREST_RATE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 9617.430545108173,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"shocks\": [\n        {\n          \"variable\": \"FX_RATE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 6503.151149504881,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"EQUITY_PRICE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 3030.9219671626665,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7d70175d-cc37-4181-a2e8-0fa6241cb91f",
+          "name": "Bloomberg Buyside Enterprise Solutions List predefined stress scenarios",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions List predefined stress scenarios",
+            "description": {
+              "content": "Retrieve a list of predefined historical stress scenarios available for testing, such as the 2008 financial crisis, COVID-19 market shock, or rate hike scenarios.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "stress-tests",
+                "scenarios"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter by scenario category"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a812071b-add1-497a-ad95-600226f9d132",
+              "name": "List of stress scenarios",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stress-tests",
+                    "scenarios"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"scenarios\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"CREDIT_SHOCK\",\n      \"historicalDate\": \"2025-10-28\",\n      \"shocks\": [\n        {\n          \"variable\": \"INFLATION\",\n          \"shockType\": \"OVERRIDE\",\n          \"value\": 4279.381045321357,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"INTEREST_RATE\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 6265.858185157484,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"category\": \"CREDIT_SHOCK\",\n      \"historicalDate\": \"1965-12-15\",\n      \"shocks\": [\n        {\n          \"variable\": \"EQUITY_PRICE\",\n          \"shockType\": \"OVERRIDE\",\n          \"value\": 4801.867432839171,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        },\n        {\n          \"variable\": \"CREDIT_SPREAD\",\n          \"shockType\": \"RELATIVE\",\n          \"value\": 8687.733001907827,\n          \"tenor\": \"string\",\n          \"currency\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8e2aa65-c476-4d64-857c-3a60423ad39d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "stress-tests",
+                    "scenarios"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f4d96100-d9be-4921-8f10-a15c1cc431eb",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Stress Testing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

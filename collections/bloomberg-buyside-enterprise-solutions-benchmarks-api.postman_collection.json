@@ -1,0 +1,205 @@
+{
+  "item": [
+    {
+      "id": "b03848c9-6f79-47ec-a45c-fed79d9218ec",
+      "name": "Benchmarks",
+      "description": {
+        "content": "Benchmark assignment and comparison",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8dfef610-64bf-4d86-a95c-a9ec36599974",
+          "name": "Bloomberg Buyside Enterprise Solutions List available benchmarks",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions List available benchmarks",
+            "description": {
+              "content": "Retrieve a list of available benchmarks that can be assigned to portfolios for performance comparison and attribution analysis.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "benchmarks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Search by benchmark name or identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "assetClass",
+                  "value": "<string>",
+                  "description": "Filter by asset class"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f8181f1b-7591-451b-a9b9-7a9aa09d18ff",
+              "name": "List of benchmarks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "benchmarks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetClass",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 7708,\n  \"benchmarks\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"ticker\": \"string\",\n      \"assetClass\": \"string\",\n      \"currency\": \"string\",\n      \"provider\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"ticker\": \"string\",\n      \"assetClass\": \"string\",\n      \"currency\": \"string\",\n      \"provider\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1873921-f50f-482a-87f3-a717cd616a05",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "benchmarks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "assetClass",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "01d1a4fd-6ab4-4fbc-b3f1-806d3ffad330",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Benchmarks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

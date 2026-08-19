@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Compliance API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Compliance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get portfolio compliance status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/portfolios/:portfolioId/compliance",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique portfolio identifier"
+              },
+              {
+                "name": "asOfDate",
+                "value": "",
+                "type": "query",
+                "description": "Compliance check date"
+              }
+            ]
+          },
+          "docs": "Retrieve the compliance status of a portfolio against all assigned compliance rules, including any current violations or warnings."
+        },
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions List compliance rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/compliance/rules",
+            "params": [
+              {
+                "name": "ruleType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by rule type"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by rule status"
+              }
+            ]
+          },
+          "docs": "Retrieve all configured compliance rules, optionally filtered by rule type or status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

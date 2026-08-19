@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Blotters API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blotters",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get trading blotter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/blotter",
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Blotter date (defaults to current trading day)"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order status"
+              },
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by portfolio"
+              }
+            ]
+          },
+          "docs": "Retrieve a consolidated view of orders and executions for the current trading day or a specified date range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,344 @@
+{
+  "item": [
+    {
+      "id": "f555de04-8e34-403c-8f48-4a64535129ce",
+      "name": "Corporate Actions",
+      "description": {
+        "content": "Corporate action events including dividends, splits, mergers, and restructurings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e9cc01b7-7437-4a97-931e-1b6376e09127",
+          "name": "Bloomberg Buyside Enterprise Solutions Get corporate actions for securities",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get corporate actions for securities",
+            "description": {
+              "content": "Retrieve corporate action events for one or more securities within a specified date range, including dividends, stock splits, mergers, spin-offs, and other corporate events.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data",
+                "v1",
+                "corporate-actions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"actionTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef1cb075-86bf-4e4a-a2b2-1bdcce92b78b",
+              "name": "Corporate actions returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v1",
+                    "corporate-actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"actionTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"securities\": [\n    {\n      \"security\": \"string\",\n      \"actions\": [\n        {\n          \"actionType\": \"string\",\n          \"announcementDate\": \"1964-05-02\",\n          \"effectiveDate\": \"1993-03-05\",\n          \"recordDate\": \"1976-09-12\",\n          \"paymentDate\": \"1967-05-19\",\n          \"amount\": 8328.370827197848,\n          \"currency\": \"string\",\n          \"ratio\": \"string\",\n          \"description\": \"string\"\n        },\n        {\n          \"actionType\": \"string\",\n          \"announcementDate\": \"2022-06-16\",\n          \"effectiveDate\": \"1995-08-28\",\n          \"recordDate\": \"1994-02-05\",\n          \"paymentDate\": \"1988-10-14\",\n          \"amount\": 4538.708367301672,\n          \"currency\": \"string\",\n          \"ratio\": \"string\",\n          \"description\": \"string\"\n        }\n      ]\n    },\n    {\n      \"security\": \"string\",\n      \"actions\": [\n        {\n          \"actionType\": \"string\",\n          \"announcementDate\": \"1962-06-13\",\n          \"effectiveDate\": \"1950-08-16\",\n          \"recordDate\": \"1991-12-03\",\n          \"paymentDate\": \"1959-06-09\",\n          \"amount\": 2670.9768742311567,\n          \"currency\": \"string\",\n          \"ratio\": \"string\",\n          \"description\": \"string\"\n        },\n        {\n          \"actionType\": \"string\",\n          \"announcementDate\": \"1950-03-14\",\n          \"effectiveDate\": \"1995-03-26\",\n          \"recordDate\": \"2000-11-24\",\n          \"paymentDate\": \"1947-04-11\",\n          \"amount\": 2609.85936325397,\n          \"currency\": \"string\",\n          \"ratio\": \"string\",\n          \"description\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebc48603-9195-445d-94d6-4ce0fda04786",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v1",
+                    "corporate-actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"actionTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df2f9b24-c660-44d8-9370-8b808de9b893",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v1",
+                    "corporate-actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"actionTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "49d87884-7a98-430d-bfd1-e743e288e558",
+              "name": "Forbidden - insufficient data entitlements",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v1",
+                    "corporate-actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"actionTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4bb90af-b282-4411-8e74-adb97973f473",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data",
+                    "v1",
+                    "corporate-actions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"actionTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2a9755e8-2fea-4f53-a195-38a5d5da5f67",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Corporate Actions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,500 @@
+{
+  "item": [
+    {
+      "id": "727b67d7-7380-4809-bcfd-e4f99a9a3bcd",
+      "name": "Derivatives",
+      "description": {
+        "content": "Derivatives pricing, Greeks, and valuation models",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed512f84-96b2-43ea-8656-a4cbf39e37e8",
+          "name": "Bloomberg Buyside Enterprise Solutions Price a derivative instrument",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Price a derivative instrument",
+            "description": {
+              "content": "Calculate the theoretical price and Greeks for derivative instruments including options, futures, swaps, and structured products using Bloomberg's pricing models.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "derivatives",
+                "price"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"pricingModel\": \"<string>\",\n  \"volatilitySurface\": \"<string>\",\n  \"underlyingPriceOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\",\n  \"riskFreeRateOverride\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc2d17e3-829e-4035-aa58-6aebd65f6edf",
+              "name": "Derivative pricing results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"pricingModel\": \"<string>\",\n  \"volatilitySurface\": \"<string>\",\n  \"underlyingPriceOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\",\n  \"riskFreeRateOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"security\": \"string\",\n      \"theoreticalPrice\": 7261.994827511221,\n      \"marketPrice\": 6350.0753577897885,\n      \"impliedVolatility\": 4230.83198298556,\n      \"delta\": 8299.235167298953,\n      \"gamma\": 494.6129621887585,\n      \"theta\": 4180.881630847181,\n      \"vega\": 5622.901133817346,\n      \"rho\": 63.677440001731476,\n      \"pricingModel\": \"string\"\n    },\n    {\n      \"security\": \"string\",\n      \"theoreticalPrice\": 5125.615249782262,\n      \"marketPrice\": 1568.7040146858833,\n      \"impliedVolatility\": 4371.362111811745,\n      \"delta\": 7201.6187505430225,\n      \"gamma\": 4794.391803917482,\n      \"theta\": 3396.9309040841845,\n      \"vega\": 4890.132722319219,\n      \"rho\": 4869.333051049829,\n      \"pricingModel\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a899838-56a6-40d1-abdd-1825acc66b0d",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"pricingModel\": \"<string>\",\n  \"volatilitySurface\": \"<string>\",\n  \"underlyingPriceOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\",\n  \"riskFreeRateOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ef2ade3-2cad-410a-ac98-a5d716ec702d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"pricingModel\": \"<string>\",\n  \"volatilitySurface\": \"<string>\",\n  \"underlyingPriceOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\",\n  \"riskFreeRateOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4863aee1-a9ce-4d94-a7cf-1979a53a4c91",
+              "name": "Forbidden - insufficient analytics entitlements",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "price"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"pricingModel\": \"<string>\",\n  \"volatilitySurface\": \"<string>\",\n  \"underlyingPriceOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\",\n  \"riskFreeRateOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c08120bb-d9db-46fa-9c51-860992ddd03a",
+          "name": "Bloomberg Buyside Enterprise Solutions Calculate option Greeks",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Calculate option Greeks",
+            "description": {
+              "content": "Compute option Greeks (delta, gamma, theta, vega, rho) for one or more options or option portfolios.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "derivatives",
+                "greeks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"volatilitySurface\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e5a60a2b-e1fd-4e3f-ba0c-34e1ff7c9486",
+              "name": "Greeks calculation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "greeks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"volatilitySurface\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"security\": \"string\",\n      \"delta\": 4131.086518299606,\n      \"gamma\": 8138.723812698065,\n      \"theta\": 2195.741740426709,\n      \"vega\": 1126.208732266909,\n      \"rho\": 2937.197216919767,\n      \"charm\": 8309.576657777792,\n      \"vanna\": 2829.9886767841385,\n      \"volga\": 1930.7561290367737\n    },\n    {\n      \"security\": \"string\",\n      \"delta\": 888.3750137802981,\n      \"gamma\": 8872.76604688404,\n      \"theta\": 7129.578447719017,\n      \"vega\": 1936.178822753738,\n      \"rho\": 9153.110259882538,\n      \"charm\": 9506.308711427519,\n      \"vanna\": 2671.9027968079536,\n      \"volga\": 8601.723443241357\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8decd9be-7b58-4075-8d0a-b850f5f74614",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "greeks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"volatilitySurface\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "299c8da1-f22d-46f6-a7a8-5d2a6927516c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "derivatives",
+                    "greeks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"volatilitySurface\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3cef066d-2961-4f7b-839d-13ab2f9d188e",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Derivatives API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

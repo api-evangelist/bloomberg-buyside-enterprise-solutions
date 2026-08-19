@@ -1,0 +1,246 @@
+{
+  "item": [
+    {
+      "id": "9605bc98-13f3-45e4-9d44-87b57b7b9fc8",
+      "name": "Pricing",
+      "description": {
+        "content": "Security pricing and valuation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bbb3a4b2-5268-48ad-8abb-387059e77d8d",
+          "name": "Bloomberg Buyside Enterprise Solutions Evaluate security prices",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Evaluate security prices",
+            "description": {
+              "content": "Calculate theoretical prices for securities using Bloomberg's pricing models, with optional overrides for valuation parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "pricing",
+                "evaluate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\",\n  \"creditSpreadOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d895949-d250-4310-bf5f-9ab6440495b9",
+              "name": "Pricing results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pricing",
+                    "evaluate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\",\n  \"creditSpreadOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"security\": \"string\",\n      \"theoreticalPrice\": 2749.158120516907,\n      \"marketPrice\": 2988.481293754679,\n      \"priceDifference\": 6191.067417088477,\n      \"yieldToMaturity\": 8083.370068002534,\n      \"spreadTobenchmark\": 7287.203148744979,\n      \"pricingModel\": \"string\"\n    },\n    {\n      \"security\": \"string\",\n      \"theoreticalPrice\": 6122.287157050894,\n      \"marketPrice\": 5212.014114906803,\n      \"priceDifference\": 817.1172166661822,\n      \"yieldToMaturity\": 7769.395351951708,\n      \"spreadTobenchmark\": 8506.415688346422,\n      \"pricingModel\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14814d2e-3cd8-429e-81a5-144c6557fc20",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pricing",
+                    "evaluate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\",\n  \"creditSpreadOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "660d6874-c00a-4661-aa5a-6662f4bdbfa2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pricing",
+                    "evaluate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"pricingDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\",\n  \"creditSpreadOverride\": \"<number>\",\n  \"volatilityOverride\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ad218634-0956-40f7-b494-4f634d69a720",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Pricing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

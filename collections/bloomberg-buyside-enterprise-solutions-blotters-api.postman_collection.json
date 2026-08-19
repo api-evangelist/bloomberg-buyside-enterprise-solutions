@@ -1,0 +1,206 @@
+{
+  "item": [
+    {
+      "id": "5a0b25d7-354a-4e3e-b26f-143ca80bc912",
+      "name": "Blotters",
+      "description": {
+        "content": "Trading blotter views and filtering",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e1ea7631-dac1-4fd3-9281-a031564d18d4",
+          "name": "Bloomberg Buyside Enterprise Solutions Get trading blotter",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get trading blotter",
+            "description": {
+              "content": "Retrieve a consolidated view of orders and executions for the current trading day or a specified date range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "blotter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Blotter date (defaults to current trading day)"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "ALL",
+                  "description": "Filter by order status"
+                },
+                {
+                  "disabled": false,
+                  "key": "portfolioId",
+                  "value": "<string>",
+                  "description": "Filter by portfolio"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fc5e8046-bdac-4a4d-b9b2-e0e559431b2c",
+              "name": "Trading blotter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blotter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ALL"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"date\": \"2020-04-22\",\n  \"summary\": {\n    \"totalOrders\": 773,\n    \"openOrders\": 9647,\n    \"filledOrders\": 6086,\n    \"cancelledOrders\": 4217,\n    \"totalNotional\": 2217.5908686403677,\n    \"totalCommissions\": 1915.2162760754043\n  },\n  \"entries\": [\n    {\n      \"id\": \"string\",\n      \"security\": \"string\",\n      \"securityName\": \"string\",\n      \"side\": \"SHORT_SELL\",\n      \"orderType\": \"VWAP\",\n      \"quantity\": 4853.130564229128,\n      \"filledQuantity\": 4957.764349420965,\n      \"remainingQuantity\": 3738.028968793763,\n      \"limitPrice\": 1751.0228574670239,\n      \"stopPrice\": 2577.569053928269,\n      \"averageFillPrice\": 9408.292866593247,\n      \"status\": \"CANCELLED\",\n      \"timeInForce\": \"GTC\",\n      \"expirationDate\": \"1981-02-10\",\n      \"portfolioId\": \"string\",\n      \"brokerId\": \"string\",\n      \"algorithm\": \"string\",\n      \"currency\": \"string\",\n      \"trader\": \"string\",\n      \"createdAt\": \"1969-01-05T19:44:07.321Z\",\n      \"updatedAt\": \"2007-06-18T20:49:38.605Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"security\": \"string\",\n      \"securityName\": \"string\",\n      \"side\": \"SELL\",\n      \"orderType\": \"PEGGED\",\n      \"quantity\": 7684.595036414651,\n      \"filledQuantity\": 1571.824103430649,\n      \"remainingQuantity\": 6118.665934595847,\n      \"limitPrice\": 2815.4619799515335,\n      \"stopPrice\": 5016.695462532327,\n      \"averageFillPrice\": 9402.23272557827,\n      \"status\": \"PENDING\",\n      \"timeInForce\": \"FOK\",\n      \"expirationDate\": \"1974-02-02\",\n      \"portfolioId\": \"string\",\n      \"brokerId\": \"string\",\n      \"algorithm\": \"string\",\n      \"currency\": \"string\",\n      \"trader\": \"string\",\n      \"createdAt\": \"1985-08-11T08:03:05.591Z\",\n      \"updatedAt\": \"1956-06-11T04:46:41.534Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86ec5d18-d044-444b-8947-4dcefe12fb71",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "blotter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ALL"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a3cc558d-1c24-4c32-b292-3b0fd9843fe7",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Blotters API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

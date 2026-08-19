@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Derivatives API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Derivatives",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Price a derivative instrument",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/derivatives/price",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculate the theoretical price and Greeks for derivative instruments including options, futures, swaps, and structured products using Bloomberg's pricing models."
+        },
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Calculate option Greeks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/derivatives/greeks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Compute option Greeks (delta, gamma, theta, vega, rho) for one or more options or option portfolios."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

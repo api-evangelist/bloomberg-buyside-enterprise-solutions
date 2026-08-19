@@ -1,0 +1,192 @@
+{
+  "item": [
+    {
+      "id": "fd03fd20-c5e9-4883-a263-86d9338422f1",
+      "name": "Brokers",
+      "description": {
+        "content": "Broker routing and counterparty management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c3dfdbc-c514-4ab6-84ef-ca73334c9fdf",
+          "name": "Bloomberg Buyside Enterprise Solutions List available brokers",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions List available brokers",
+            "description": {
+              "content": "Retrieve a list of configured broker connections available for order routing, including supported order types and algorithms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "brokers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "assetClass",
+                  "value": "<string>",
+                  "description": "Filter by supported asset class"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by connection status"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ae7a071-b298-44f3-ae97-1d0faadef7bc",
+              "name": "List of brokers",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "brokers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assetClass",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"brokers\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"shortCode\": \"string\",\n      \"status\": \"DISCONNECTED\",\n      \"supportedAssetClasses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"supportedOrderTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"algorithms\": [\n        {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"parameters\": [\n            {\n              \"name\": \"string\",\n              \"type\": \"string\",\n              \"required\": false,\n              \"description\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"type\": \"string\",\n              \"required\": true,\n              \"description\": \"string\"\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"parameters\": [\n            {\n              \"name\": \"string\",\n              \"type\": \"string\",\n              \"required\": true,\n              \"description\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"type\": \"string\",\n              \"required\": false,\n              \"description\": \"string\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"shortCode\": \"string\",\n      \"status\": \"CONNECTED\",\n      \"supportedAssetClasses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"supportedOrderTypes\": [\n        \"string\",\n        \"string\"\n      ],\n      \"algorithms\": [\n        {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"parameters\": [\n            {\n              \"name\": \"string\",\n              \"type\": \"string\",\n              \"required\": true,\n              \"description\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"type\": \"string\",\n              \"required\": false,\n              \"description\": \"string\"\n            }\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"description\": \"string\",\n          \"parameters\": [\n            {\n              \"name\": \"string\",\n              \"type\": \"string\",\n              \"required\": false,\n              \"description\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"type\": \"string\",\n              \"required\": false,\n              \"description\": \"string\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39ce3e33-835c-4c3f-8683-5ee8a4e0c9e3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "brokers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "assetClass",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1ee2cc3f-4de7-41f7-96a1-d30b09209154",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Brokers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

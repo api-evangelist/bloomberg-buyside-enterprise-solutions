@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Pricing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pricing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Evaluate security prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/pricing/evaluate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculate theoretical prices for securities using Bloomberg's pricing models, with optional overrides for valuation parameters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

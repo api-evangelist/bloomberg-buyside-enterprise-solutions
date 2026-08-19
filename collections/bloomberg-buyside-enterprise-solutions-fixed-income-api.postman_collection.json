@@ -1,0 +1,500 @@
+{
+  "item": [
+    {
+      "id": "6d31aeb8-dead-4b3c-a7b0-7e332fd4f5ad",
+      "name": "Fixed Income",
+      "description": {
+        "content": "Fixed income analytics including yield, duration, and spread calculations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eb7f9f48-773e-4bd3-89f3-07d2e3800516",
+          "name": "Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics",
+            "description": {
+              "content": "Compute fixed income analytics for one or more securities, including yield to maturity, modified duration, convexity, spread measures, and cash flow projections.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fixed-income",
+                "calculate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"analytics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66c5ac8b-b284-459e-b7ca-45882bbcb8f4",
+              "name": "Fixed income analytics calculated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"analytics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"security\": \"string\",\n      \"price\": 1741.060846973158,\n      \"dirtyPrice\": 8665.416261409247,\n      \"yieldToMaturity\": 6411.345050523229,\n      \"yieldToWorst\": 1115.0732142564912,\n      \"modifiedDuration\": 297.3292108279968,\n      \"effectiveDuration\": 8022.860216416431,\n      \"macaulayDuration\": 4586.691180098129,\n      \"convexity\": 2478.8601158603797,\n      \"oas\": 4747.189103743367,\n      \"zSpread\": 1041.0810393991176,\n      \"iSpread\": 2558.118552909642,\n      \"dv01\": 4022.323958861118,\n      \"accruedInterest\": 6615.8933769750365,\n      \"currentYield\": 8814.018677321623\n    },\n    {\n      \"security\": \"string\",\n      \"price\": 9854.995296436808,\n      \"dirtyPrice\": 6314.567868140884,\n      \"yieldToMaturity\": 5294.813839808603,\n      \"yieldToWorst\": 1413.2662270386975,\n      \"modifiedDuration\": 2136.82766001985,\n      \"effectiveDuration\": 3640.610427567602,\n      \"macaulayDuration\": 7012.547027007649,\n      \"convexity\": 3738.975046077413,\n      \"oas\": 5245.689053229709,\n      \"zSpread\": 4708.164152485446,\n      \"iSpread\": 3275.573337530895,\n      \"dv01\": 8922.672601871318,\n      \"accruedInterest\": 4528.337903446151,\n      \"currentYield\": 9545.80495708075\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ada82a11-007f-4bf0-b8e1-bd8e96744f63",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"analytics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ada3ca2-ed4a-4fa6-bf8c-eab303818d20",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"analytics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "23f4cd76-0260-4a85-a7b2-88dd4d109a03",
+              "name": "Forbidden - insufficient analytics entitlements",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "calculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"analytics\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"yieldCurveId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed629932-7ac2-4bcd-9d0c-3f0700b3b626",
+          "name": "Bloomberg Buyside Enterprise Solutions Get fixed income cash flows",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get fixed income cash flows",
+            "description": {
+              "content": "Retrieve projected cash flow schedules for fixed income securities, including coupon payments, principal payments, and prepayment projections for mortgage-backed securities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "fixed-income",
+                "cashflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"prepaymentSpeed\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c02b7daf-95cb-4a4f-ad0e-b8c2571f9c4c",
+              "name": "Cash flow projections",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "cashflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"prepaymentSpeed\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"security\": \"string\",\n      \"cashflows\": [\n        {\n          \"date\": \"2006-04-12\",\n          \"coupon\": 7078.261026576021,\n          \"principal\": 9559.740024011866,\n          \"totalPayment\": 4636.490761831828,\n          \"remainingBalance\": 5561.335181407792\n        },\n        {\n          \"date\": \"1963-06-18\",\n          \"coupon\": 1610.1960503948264,\n          \"principal\": 4047.978023647857,\n          \"totalPayment\": 6953.470889414555,\n          \"remainingBalance\": 5291.0141064449135\n        }\n      ]\n    },\n    {\n      \"security\": \"string\",\n      \"cashflows\": [\n        {\n          \"date\": \"2008-09-25\",\n          \"coupon\": 503.79530915356077,\n          \"principal\": 1203.7686469578123,\n          \"totalPayment\": 1037.6423394955182,\n          \"remainingBalance\": 4024.370241594617\n        },\n        {\n          \"date\": \"2000-05-27\",\n          \"coupon\": 3020.147429354765,\n          \"principal\": 2455.334176194316,\n          \"totalPayment\": 7846.332433809137,\n          \"remainingBalance\": 7703.121333946101\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fdb96b7e-b207-43dd-8741-dff9c0575ef4",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "cashflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"prepaymentSpeed\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb9cb04f-09ad-4508-8e04-7a2964896f58",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "fixed-income",
+                    "cashflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"settlementDate\": \"<date>\",\n  \"prepaymentSpeed\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dd53bdf5-f2a8-47d7-8750-5fce1aef0adf",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Fixed Income API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Stress Testing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Stress Testing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Run stress test",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/stress-tests/run",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute stress tests on a portfolio using predefined historical scenarios or custom hypothetical shocks. Returns the projected portfolio impact under each stress scenario."
+        },
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions List predefined stress scenarios",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/stress-tests/scenarios",
+            "params": [
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter by scenario category"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of predefined historical stress scenarios available for testing, such as the 2008 financial crisis, COVID-19 market shock, or rate hike scenarios."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

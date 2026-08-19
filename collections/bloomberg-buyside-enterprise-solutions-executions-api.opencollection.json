@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Executions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get order executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/orders/:orderId/executions",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "Unique order identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all execution reports (fills) for a specific order."
+        },
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions List executions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/executions",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter executions on or after this date"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "Filter executions on or before this date"
+              },
+              {
+                "name": "security",
+                "value": "",
+                "type": "query",
+                "description": "Filter by security identifier"
+              },
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "query",
+                "description": "Filter by portfolio"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve execution reports across all orders, with optional filtering by date range, security, or portfolio."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

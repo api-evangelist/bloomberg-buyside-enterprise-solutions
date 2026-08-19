@@ -1,0 +1,443 @@
+{
+  "item": [
+    {
+      "id": "ca828b73-a5ba-4c00-9cdd-c17ec05b06bc",
+      "name": "Allocations",
+      "description": {
+        "content": "Post-trade allocation of executions to portfolios",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0e86639-79b1-4557-ad41-3bb0a44a1a47",
+          "name": "Bloomberg Buyside Enterprise Solutions Create post-trade allocation",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Create post-trade allocation",
+            "description": {
+              "content": "Allocate executed trades to one or more portfolios. Supports pro-rata, manual, and rule-based allocation methods.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "allocations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"executionId\": \"<string>\",\n  \"allocations\": [\n    {\n      \"portfolioId\": \"<string>\",\n      \"quantity\": \"<number>\"\n    }\n  ],\n  \"method\": \"MANUAL\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a12170b2-f743-4155-94b6-4ee0d7b82a20",
+              "name": "Allocation created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "allocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"executionId\": \"<string>\",\n  \"allocations\": [\n    {\n      \"portfolioId\": \"<string>\",\n      \"quantity\": \"<number>\"\n    }\n  ],\n  \"method\": \"MANUAL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"executionId\": \"string\",\n  \"portfolioId\": \"string\",\n  \"security\": \"string\",\n  \"side\": \"string\",\n  \"quantity\": 6186.061934221259,\n  \"price\": 969.494258028657,\n  \"commission\": 1759.4104658790511,\n  \"netAmount\": 827.122353596973,\n  \"status\": \"CONFIRMED\",\n  \"createdAt\": \"1999-12-10T05:44:10.576Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ffe56a32-3ff6-4a09-857d-f6d147cf815d",
+              "name": "Invalid allocation request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "allocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"executionId\": \"<string>\",\n  \"allocations\": [\n    {\n      \"portfolioId\": \"<string>\",\n      \"quantity\": \"<number>\"\n    }\n  ],\n  \"method\": \"MANUAL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19b0c88b-05be-4a30-96ea-28511f923163",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "allocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"executionId\": \"<string>\",\n  \"allocations\": [\n    {\n      \"portfolioId\": \"<string>\",\n      \"quantity\": \"<number>\"\n    }\n  ],\n  \"method\": \"MANUAL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c85521d4-5d09-439f-9bce-ded1da24e3fc",
+          "name": "Bloomberg Buyside Enterprise Solutions List allocations",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions List allocations",
+            "description": {
+              "content": "Retrieve post-trade allocations with optional filtering by date, execution, or portfolio.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "allocations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "executionId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "portfolioId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f014bbe3-ea72-4ce1-ae8d-f6a3b379a7c8",
+              "name": "List of allocations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "allocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "executionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 148,\n  \"allocations\": [\n    {\n      \"id\": \"string\",\n      \"executionId\": \"string\",\n      \"portfolioId\": \"string\",\n      \"security\": \"string\",\n      \"side\": \"string\",\n      \"quantity\": 5998.836297608279,\n      \"price\": 8526.81794453031,\n      \"commission\": 7699.412825226424,\n      \"netAmount\": 9973.99146486179,\n      \"status\": \"PENDING\",\n      \"createdAt\": \"1970-09-14T14:44:02.763Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"executionId\": \"string\",\n      \"portfolioId\": \"string\",\n      \"security\": \"string\",\n      \"side\": \"string\",\n      \"quantity\": 407.1295474484693,\n      \"price\": 7388.260398294188,\n      \"commission\": 6964.3912544345985,\n      \"netAmount\": 8500.895730688122,\n      \"status\": \"SETTLED\",\n      \"createdAt\": \"1994-07-26T06:04:29.695Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1e7aba5-0d3f-482c-bc97-fabfaf5ebdc8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "allocations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "executionId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "46dd8215-29ca-4c26-b699-4091e949965f",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

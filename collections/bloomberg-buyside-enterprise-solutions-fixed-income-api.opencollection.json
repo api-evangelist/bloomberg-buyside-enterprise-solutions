@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Fixed Income API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fixed Income",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Calculate fixed income analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/fixed-income/calculate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Compute fixed income analytics for one or more securities, including yield to maturity, modified duration, convexity, spread measures, and cash flow projections."
+        },
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get fixed income cash flows",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.bloomberg.com/analytics/v1/fixed-income/cashflows",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve projected cash flow schedules for fixed income securities, including coupon payments, principal payments, and prepayment projections for mortgage-backed securities."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

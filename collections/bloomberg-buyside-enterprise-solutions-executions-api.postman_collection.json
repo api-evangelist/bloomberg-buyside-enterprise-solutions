@@ -1,0 +1,446 @@
+{
+  "item": [
+    {
+      "id": "55648a2f-0351-435f-8080-20bebfbd027e",
+      "name": "Executions",
+      "description": {
+        "content": "View execution reports and trade fills",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d406c3d8-704a-4e88-8d62-7181750b45b7",
+          "name": "Bloomberg Buyside Enterprise Solutions Get order executions",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get order executions",
+            "description": {
+              "content": "Retrieve all execution reports (fills) for a specific order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "orders",
+                ":orderId",
+                "executions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) Unique order identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12843d4e-869b-4752-84e9-255cb3fe8cd1",
+              "name": "List of executions for the order",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderId\": \"string\",\n  \"executions\": [\n    {\n      \"id\": \"string\",\n      \"orderId\": \"string\",\n      \"security\": \"string\",\n      \"side\": \"SELL\",\n      \"quantity\": 1248.1132256014926,\n      \"price\": 7408.035713374147,\n      \"commission\": 5369.493608098058,\n      \"fees\": 6558.669174757946,\n      \"netAmount\": 7010.2327393222395,\n      \"currency\": \"string\",\n      \"broker\": \"string\",\n      \"venue\": \"string\",\n      \"settlementDate\": \"1950-07-10\",\n      \"executedAt\": \"1997-12-30T01:16:04.450Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"orderId\": \"string\",\n      \"security\": \"string\",\n      \"side\": \"SELL\",\n      \"quantity\": 519.0842525617279,\n      \"price\": 7045.966847727992,\n      \"commission\": 1673.3812486335764,\n      \"fees\": 1161.12974865478,\n      \"netAmount\": 9926.774446112164,\n      \"currency\": \"string\",\n      \"broker\": \"string\",\n      \"venue\": \"string\",\n      \"settlementDate\": \"2009-09-30\",\n      \"executedAt\": \"1988-09-08T11:00:54.777Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f04e841-7b5b-408f-98e5-b7d909ed6a94",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f39c837-db6d-4572-843a-bf960380229e",
+              "name": "Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aab91b3f-fc07-4965-8a09-6ae8ef9236e8",
+          "name": "Bloomberg Buyside Enterprise Solutions List executions",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions List executions",
+            "description": {
+              "content": "Retrieve execution reports across all orders, with optional filtering by date range, security, or portfolio.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "executions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Filter executions on or after this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "Filter executions on or before this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "security",
+                  "value": "<string>",
+                  "description": "Filter by security identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "portfolioId",
+                  "value": "<string>",
+                  "description": "Filter by portfolio"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c9c0ef7-cca8-4702-a84d-d912161b9df7",
+              "name": "List of executions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "security",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 248,\n  \"executions\": [\n    {\n      \"id\": \"string\",\n      \"orderId\": \"string\",\n      \"security\": \"string\",\n      \"side\": \"SELL\",\n      \"quantity\": 4579.928417862709,\n      \"price\": 2367.804523517133,\n      \"commission\": 6191.5854003436825,\n      \"fees\": 7252.60010823202,\n      \"netAmount\": 9843.990380772238,\n      \"currency\": \"string\",\n      \"broker\": \"string\",\n      \"venue\": \"string\",\n      \"settlementDate\": \"2004-08-21\",\n      \"executedAt\": \"1976-03-22T13:51:45.986Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"orderId\": \"string\",\n      \"security\": \"string\",\n      \"side\": \"BUY\",\n      \"quantity\": 8269.682919619752,\n      \"price\": 6204.1385387499895,\n      \"commission\": 2681.2459259772527,\n      \"fees\": 8758.510449988738,\n      \"netAmount\": 7087.429044346747,\n      \"currency\": \"string\",\n      \"broker\": \"string\",\n      \"venue\": \"string\",\n      \"settlementDate\": \"2021-06-12\",\n      \"executedAt\": \"1955-05-09T19:28:11.160Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae9972ac-4033-4208-bc20-52a04c7de9f2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "executions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "security",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1154eec4-09a8-4704-9bcb-bd30d84804e7",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Executions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

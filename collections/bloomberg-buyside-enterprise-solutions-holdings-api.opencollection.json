@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Holdings API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Holdings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get portfolio holdings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/portfolios/:portfolioId/holdings",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique portfolio identifier"
+              },
+              {
+                "name": "asOfDate",
+                "value": "",
+                "type": "query",
+                "description": "Holdings as of this date (defaults to current date)"
+              },
+              {
+                "name": "includeAnalytics",
+                "value": "",
+                "type": "query",
+                "description": "Include analytics fields for each holding"
+              }
+            ]
+          },
+          "docs": "Retrieve the current holdings of a portfolio as of a specified date, including position quantities, market values, weights, and unrealized gains/losses."
+        },
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Update portfolio holdings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.bloomberg.com/analytics/v1/portfolios/:portfolioId/holdings",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique portfolio identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the full set of holdings for a portfolio as of a specified date. This is a full replacement operation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,366 @@
+{
+  "item": [
+    {
+      "id": "fcedd459-a6f5-4928-9091-013fa29408bb",
+      "name": "Risk",
+      "description": {
+        "content": "Portfolio risk analytics and factor exposure",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b7e57759-b3bf-4d92-9616-ef9cb0dda935",
+          "name": "Bloomberg Buyside Enterprise Solutions Get portfolio risk analytics",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get portfolio risk analytics",
+            "description": {
+              "content": "Retrieve portfolio risk metrics including tracking error, value at risk, beta, factor exposures, and concentration analysis.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "portfolios",
+                ":portfolioId",
+                "risk"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "asOfDate",
+                  "value": "<date>",
+                  "description": "Risk calculation date"
+                },
+                {
+                  "disabled": false,
+                  "key": "riskModel",
+                  "value": "BLOOMBERG_MULTI_ASSET",
+                  "description": "Risk model to use for calculations"
+                },
+                {
+                  "disabled": false,
+                  "key": "confidenceLevel",
+                  "value": "0.95",
+                  "description": "Confidence level for VaR calculations"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "portfolioId",
+                  "description": "(Required) Unique portfolio identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0bf38b0-04b9-4196-a11e-3459a8f5441f",
+              "name": "Portfolio risk analytics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolioId",
+                    "risk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOfDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "riskModel",
+                      "value": "BLOOMBERG_MULTI_ASSET"
+                    },
+                    {
+                      "key": "confidenceLevel",
+                      "value": "0.95"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Unique portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"portfolioId\": \"string\",\n  \"asOfDate\": \"2014-07-16\",\n  \"riskModel\": \"string\",\n  \"totalRisk\": 9886.89069048289,\n  \"trackingError\": 5066.280733488061,\n  \"beta\": 2451.7216731555814,\n  \"valueAtRisk\": 1060.3484737747626,\n  \"conditionalVaR\": 5687.5201837058985,\n  \"factorExposures\": [\n    {\n      \"factor\": \"string\",\n      \"exposure\": 5865.426636234383,\n      \"contribution\": 1309.60724313825\n    },\n    {\n      \"factor\": \"string\",\n      \"exposure\": 758.2653987882071,\n      \"contribution\": 6484.721714295944\n    }\n  ],\n  \"concentrationMetrics\": {\n    \"top10Weight\": 4806.780737462296,\n    \"herfindahlIndex\": 2730.140252154949,\n    \"effectivePositions\": 2781.5876042364785\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d647d7b-7e57-4a08-8d3d-0ad3280a251c",
+              "name": "Invalid request parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolioId",
+                    "risk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOfDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "riskModel",
+                      "value": "BLOOMBERG_MULTI_ASSET"
+                    },
+                    {
+                      "key": "confidenceLevel",
+                      "value": "0.95"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Unique portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8525e9f4-c780-4794-87e1-e06721a22b6f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolioId",
+                    "risk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOfDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "riskModel",
+                      "value": "BLOOMBERG_MULTI_ASSET"
+                    },
+                    {
+                      "key": "confidenceLevel",
+                      "value": "0.95"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Unique portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4de86b52-a61f-40d6-b65f-d9e330957f71",
+              "name": "Portfolio not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "portfolios",
+                    ":portfolioId",
+                    "risk"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "asOfDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "riskModel",
+                      "value": "BLOOMBERG_MULTI_ASSET"
+                    },
+                    {
+                      "key": "confidenceLevel",
+                      "value": "0.95"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "portfolioId",
+                      "description": "(Required) Unique portfolio identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cdc17af4-b7ab-48a8-8f0d-273a73ffac15",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Risk API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}

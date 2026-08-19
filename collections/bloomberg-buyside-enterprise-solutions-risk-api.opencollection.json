@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Risk API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Risk",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get portfolio risk analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.bloomberg.com/analytics/v1/portfolios/:portfolioId/risk",
+            "params": [
+              {
+                "name": "portfolioId",
+                "value": "",
+                "type": "path",
+                "description": "Unique portfolio identifier"
+              },
+              {
+                "name": "asOfDate",
+                "value": "",
+                "type": "query",
+                "description": "Risk calculation date"
+              },
+              {
+                "name": "riskModel",
+                "value": "",
+                "type": "query",
+                "description": "Risk model to use for calculations"
+              },
+              {
+                "name": "confidenceLevel",
+                "value": "",
+                "type": "query",
+                "description": "Confidence level for VaR calculations"
+              }
+            ]
+          },
+          "docs": "Retrieve portfolio risk metrics including tracking error, value at risk, beta, factor exposures, and concentration analysis."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

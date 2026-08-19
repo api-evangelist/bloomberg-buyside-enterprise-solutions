@@ -1,0 +1,1490 @@
+{
+  "item": [
+    {
+      "id": "a53b2795-a376-4179-8d7f-c6bb9af27260",
+      "name": "Orders",
+      "description": {
+        "content": "Create, manage, and monitor trading orders",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2bd579e4-9ae9-486f-bb9f-306b71eb61fc",
+          "name": "Bloomberg Buyside Enterprise Solutions List orders",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions List orders",
+            "description": {
+              "content": "Retrieve a list of orders with optional filtering by status, side, security, date range, or portfolio.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Filter by order status"
+                },
+                {
+                  "disabled": false,
+                  "key": "side",
+                  "value": "<string>",
+                  "description": "Filter by order side"
+                },
+                {
+                  "disabled": false,
+                  "key": "security",
+                  "value": "<string>",
+                  "description": "Filter by security identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "portfolioId",
+                  "value": "<string>",
+                  "description": "Filter by portfolio"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>",
+                  "description": "Filter orders created on or after this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>",
+                  "description": "Filter orders created on or before this date"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0762415e-288f-4042-a1e6-081ed8bd00a6",
+              "name": "List of orders",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "security",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 4089,\n  \"orders\": [\n    {\n      \"id\": \"string\",\n      \"security\": \"string\",\n      \"securityName\": \"string\",\n      \"side\": \"BUY\",\n      \"orderType\": \"LIMIT\",\n      \"quantity\": 6108.532560644177,\n      \"filledQuantity\": 3766.109805127704,\n      \"remainingQuantity\": 8691.532723044082,\n      \"limitPrice\": 2593.2075385202247,\n      \"stopPrice\": 5520.528198602154,\n      \"averageFillPrice\": 2797.436305769514,\n      \"status\": \"NEW\",\n      \"timeInForce\": \"IOC\",\n      \"expirationDate\": \"2009-08-20\",\n      \"portfolioId\": \"string\",\n      \"brokerId\": \"string\",\n      \"algorithm\": \"string\",\n      \"currency\": \"string\",\n      \"trader\": \"string\",\n      \"createdAt\": \"1952-05-29T11:23:54.816Z\",\n      \"updatedAt\": \"2013-05-18T22:01:10.698Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"security\": \"string\",\n      \"securityName\": \"string\",\n      \"side\": \"SELL\",\n      \"orderType\": \"LIMIT\",\n      \"quantity\": 1551.0074667257145,\n      \"filledQuantity\": 1569.148212272482,\n      \"remainingQuantity\": 5928.608216414871,\n      \"limitPrice\": 4003.8915246586603,\n      \"stopPrice\": 2363.430798682662,\n      \"averageFillPrice\": 6300.101298220866,\n      \"status\": \"REJECTED\",\n      \"timeInForce\": \"DAY\",\n      \"expirationDate\": \"1998-09-10\",\n      \"portfolioId\": \"string\",\n      \"brokerId\": \"string\",\n      \"algorithm\": \"string\",\n      \"currency\": \"string\",\n      \"trader\": \"string\",\n      \"createdAt\": \"2006-06-17T04:13:33.289Z\",\n      \"updatedAt\": \"2011-03-10T01:28:04.382Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99ad0a66-0d17-4438-82b5-d5bab1183158",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "security",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "40e4a9ac-d06e-49c2-9580-56f74daf3419",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "side",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "security",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "portfolioId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8820a151-6c89-4592-9203-2631d53d97b0",
+          "name": "Bloomberg Buyside Enterprise Solutions Create an order",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Create an order",
+            "description": {
+              "content": "Create a new trading order with the specified parameters including security, side, quantity, order type, and routing instructions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"security\": \"<string>\",\n  \"side\": \"<string>\",\n  \"orderType\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"stopPrice\": \"<number>\",\n  \"timeInForce\": \"DAY\",\n  \"expirationDate\": \"<date>\",\n  \"portfolioId\": \"<string>\",\n  \"brokerId\": \"<string>\",\n  \"algorithm\": \"<string>\",\n  \"algorithmParams\": {\n    \"key_0\": 979.4399657991837,\n    \"key_1\": 9994\n  },\n  \"notes\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "41726c53-4409-45c0-9021-f4ee28a85f8b",
+              "name": "Order created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"security\": \"<string>\",\n  \"side\": \"<string>\",\n  \"orderType\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"stopPrice\": \"<number>\",\n  \"timeInForce\": \"DAY\",\n  \"expirationDate\": \"<date>\",\n  \"portfolioId\": \"<string>\",\n  \"brokerId\": \"<string>\",\n  \"algorithm\": \"<string>\",\n  \"algorithmParams\": {\n    \"key_0\": 2817,\n    \"key_1\": \"string\"\n  },\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"security\": \"string\",\n  \"securityName\": \"string\",\n  \"side\": \"BUY\",\n  \"orderType\": \"LIMIT\",\n  \"quantity\": 6612.89414229446,\n  \"filledQuantity\": 815.8768374095627,\n  \"remainingQuantity\": 2743.8366238040758,\n  \"limitPrice\": 9696.015999831487,\n  \"stopPrice\": 7725.276254197808,\n  \"averageFillPrice\": 1623.3658212393555,\n  \"status\": \"REJECTED\",\n  \"timeInForce\": \"IOC\",\n  \"expirationDate\": \"1987-06-03\",\n  \"portfolioId\": \"string\",\n  \"brokerId\": \"string\",\n  \"algorithm\": \"string\",\n  \"currency\": \"string\",\n  \"trader\": \"string\",\n  \"createdAt\": \"2010-12-06T18:02:06.964Z\",\n  \"updatedAt\": \"2024-10-23T07:21:59.283Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cf0d2b5-40f1-4fe3-aa27-7d6cc001e661",
+              "name": "Invalid order parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"security\": \"<string>\",\n  \"side\": \"<string>\",\n  \"orderType\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"stopPrice\": \"<number>\",\n  \"timeInForce\": \"DAY\",\n  \"expirationDate\": \"<date>\",\n  \"portfolioId\": \"<string>\",\n  \"brokerId\": \"<string>\",\n  \"algorithm\": \"<string>\",\n  \"algorithmParams\": {\n    \"key_0\": 2817,\n    \"key_1\": \"string\"\n  },\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62e873b4-34be-4467-a5e8-3bb5d632981a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"security\": \"<string>\",\n  \"side\": \"<string>\",\n  \"orderType\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"stopPrice\": \"<number>\",\n  \"timeInForce\": \"DAY\",\n  \"expirationDate\": \"<date>\",\n  \"portfolioId\": \"<string>\",\n  \"brokerId\": \"<string>\",\n  \"algorithm\": \"<string>\",\n  \"algorithmParams\": {\n    \"key_0\": 2817,\n    \"key_1\": \"string\"\n  },\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "465ca7ac-c438-44be-a07a-cfab8fa958b4",
+              "name": "Forbidden - insufficient trading permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"security\": \"<string>\",\n  \"side\": \"<string>\",\n  \"orderType\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"stopPrice\": \"<number>\",\n  \"timeInForce\": \"DAY\",\n  \"expirationDate\": \"<date>\",\n  \"portfolioId\": \"<string>\",\n  \"brokerId\": \"<string>\",\n  \"algorithm\": \"<string>\",\n  \"algorithmParams\": {\n    \"key_0\": 2817,\n    \"key_1\": \"string\"\n  },\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f81dd1d9-ed60-47b7-b382-6c4dd4126949",
+              "name": "Order rejected by compliance pre-trade check",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"security\": \"<string>\",\n  \"side\": \"<string>\",\n  \"orderType\": \"<string>\",\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"stopPrice\": \"<number>\",\n  \"timeInForce\": \"DAY\",\n  \"expirationDate\": \"<date>\",\n  \"portfolioId\": \"<string>\",\n  \"brokerId\": \"<string>\",\n  \"algorithm\": \"<string>\",\n  \"algorithmParams\": {\n    \"key_0\": 2817,\n    \"key_1\": \"string\"\n  },\n  \"notes\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orderId\": \"string\",\n  \"violations\": [\n    {\n      \"ruleId\": \"string\",\n      \"ruleName\": \"string\",\n      \"message\": \"string\",\n      \"severity\": \"WARNING\"\n    },\n    {\n      \"ruleId\": \"string\",\n      \"ruleName\": \"string\",\n      \"message\": \"string\",\n      \"severity\": \"HARD_BLOCK\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61313f32-aa4a-4742-a81e-ee8e6fd78ad6",
+          "name": "Bloomberg Buyside Enterprise Solutions Get order details",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Get order details",
+            "description": {
+              "content": "Retrieve detailed information about a specific order, including current status, fill information, and audit trail.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) Unique order identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47ed1b8e-3a41-4ae9-a1d1-5b14ceac06a8",
+              "name": "Order details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"security\": \"string\",\n  \"securityName\": \"string\",\n  \"side\": \"BUY\",\n  \"orderType\": \"LIMIT\",\n  \"quantity\": 6612.89414229446,\n  \"filledQuantity\": 815.8768374095627,\n  \"remainingQuantity\": 2743.8366238040758,\n  \"limitPrice\": 9696.015999831487,\n  \"stopPrice\": 7725.276254197808,\n  \"averageFillPrice\": 1623.3658212393555,\n  \"status\": \"REJECTED\",\n  \"timeInForce\": \"IOC\",\n  \"expirationDate\": \"1987-06-03\",\n  \"portfolioId\": \"string\",\n  \"brokerId\": \"string\",\n  \"algorithm\": \"string\",\n  \"currency\": \"string\",\n  \"trader\": \"string\",\n  \"createdAt\": \"2010-12-06T18:02:06.964Z\",\n  \"updatedAt\": \"2024-10-23T07:21:59.283Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06b67777-cc5e-4079-8acf-a4c33289a993",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "283a43e5-d399-4de7-84a2-ca43c1d9a65c",
+              "name": "Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e208ac32-85f1-4e4a-b338-9b6f4b3e17f2",
+          "name": "Bloomberg Buyside Enterprise Solutions Amend an order",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Amend an order",
+            "description": {
+              "content": "Amend an existing order's quantity, limit price, or time in force. Only open orders can be amended.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "orders",
+                ":orderId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) Unique order identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"timeInForce\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dd3fef65-a0a5-4644-9f6c-5fe76523c765",
+              "name": "Order amended successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"timeInForce\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"security\": \"string\",\n  \"securityName\": \"string\",\n  \"side\": \"BUY\",\n  \"orderType\": \"LIMIT\",\n  \"quantity\": 6612.89414229446,\n  \"filledQuantity\": 815.8768374095627,\n  \"remainingQuantity\": 2743.8366238040758,\n  \"limitPrice\": 9696.015999831487,\n  \"stopPrice\": 7725.276254197808,\n  \"averageFillPrice\": 1623.3658212393555,\n  \"status\": \"REJECTED\",\n  \"timeInForce\": \"IOC\",\n  \"expirationDate\": \"1987-06-03\",\n  \"portfolioId\": \"string\",\n  \"brokerId\": \"string\",\n  \"algorithm\": \"string\",\n  \"currency\": \"string\",\n  \"trader\": \"string\",\n  \"createdAt\": \"2010-12-06T18:02:06.964Z\",\n  \"updatedAt\": \"2024-10-23T07:21:59.283Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00fe0332-c997-4ee0-90cb-ac5086c14be9",
+              "name": "Invalid amendment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"timeInForce\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4375c2b9-3800-4116-bee1-2cc7250954b3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"timeInForce\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "91789768-1d78-4533-8981-f04289bdf403",
+              "name": "Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"timeInForce\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b56bb1db-b543-42cd-a5e2-b5bad3030462",
+              "name": "Order cannot be amended in its current state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quantity\": \"<number>\",\n  \"limitPrice\": \"<number>\",\n  \"timeInForce\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ee9dc37-b39b-4ed0-8879-3e7820019994",
+          "name": "Bloomberg Buyside Enterprise Solutions Cancel an order",
+          "request": {
+            "name": "Bloomberg Buyside Enterprise Solutions Cancel an order",
+            "description": {
+              "content": "Request cancellation of an open order. The order must be in a cancellable state (NEW, PENDING, or PARTIALLY_FILLED).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "orders",
+                ":orderId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orderId",
+                  "description": "(Required) Unique order identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b87faa46-6e91-44d6-aa05-055655b9b79b",
+              "name": "Cancellation request accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"security\": \"string\",\n  \"securityName\": \"string\",\n  \"side\": \"BUY\",\n  \"orderType\": \"LIMIT\",\n  \"quantity\": 6612.89414229446,\n  \"filledQuantity\": 815.8768374095627,\n  \"remainingQuantity\": 2743.8366238040758,\n  \"limitPrice\": 9696.015999831487,\n  \"stopPrice\": 7725.276254197808,\n  \"averageFillPrice\": 1623.3658212393555,\n  \"status\": \"REJECTED\",\n  \"timeInForce\": \"IOC\",\n  \"expirationDate\": \"1987-06-03\",\n  \"portfolioId\": \"string\",\n  \"brokerId\": \"string\",\n  \"algorithm\": \"string\",\n  \"currency\": \"string\",\n  \"trader\": \"string\",\n  \"createdAt\": \"2010-12-06T18:02:06.964Z\",\n  \"updatedAt\": \"2024-10-23T07:21:59.283Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "029001d0-967e-48bc-a76e-861d4a6a2ee6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ff55cb2-5bd9-47cb-a5de-74042fbae094",
+              "name": "Order not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "da2bed1b-3ddc-4161-b449-f2f1a0f08373",
+              "name": "Order cannot be cancelled in its current state",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "orders",
+                    ":orderId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orderId",
+                      "description": "(Required) Unique order identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.bloomberg.com/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "20029f9c-022c-4994-a8e2-f0253a212fa5",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+      "type": "text/plain"
+    }
+  }
+}
