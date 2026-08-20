@@ -23,6 +23,15 @@ tags:
   - Asset Management
   - Buy-Side
   - Enterprise Solutions
+  - Financial-Services
+  - Market Data
+  - Portfolio-Management
+  - Trading
+tags_raw:
+  - Analytics
+  - Asset Management
+  - Buy-Side
+  - Enterprise Solutions
   - Financial Services
   - Market Data
   - Portfolio Management
@@ -139,6 +148,8 @@ apis:
   description: View execution reports and trade fills
   humanURL: https://www.bloomberg.com/professional/support/api-library/
   tags:
+  - Execution
+  tags_raw:
   - Executions
   properties:
   - type: OpenAPI
@@ -198,6 +209,8 @@ apis:
   description: Create, manage, and monitor trading orders
   humanURL: https://www.bloomberg.com/professional/support/api-library/
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -218,6 +231,8 @@ apis:
   description: Create, read, update, and delete portfolio definitions
   humanURL: https://www.bloomberg.com/professional/support/api-library/
   tags:
+  - Portfolio
+  tags_raw:
   - Portfolios
   properties:
   - type: OpenAPI
