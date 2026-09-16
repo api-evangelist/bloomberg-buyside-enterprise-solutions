@@ -1,7 +1,8 @@
 aid: bloomberg-buyside-enterprise-solutions
 name: Bloomberg Buyside Enterprise Solutions
-description: Bloomberg's enterprise solutions for buy-side firms including asset managers, hedge funds, and institutional
-  investors, providing integrated workflows, data management, portfolio analytics, and trading capabilities.
+description: Bloomberg's enterprise solutions for buy-side firms including asset managers, hedge funds,
+  and institutional investors, providing integrated workflows, data management, portfolio analytics, and
+  trading capabilities.
 type: Index
 deliveryModel:
   model: saas
@@ -50,13 +51,13 @@ tags_raw:
 - Trading
 url: https://raw.githubusercontent.com/api-evangelist/bloomberg-buyside-enterprise-solutions/refs/heads/main/apis.yml
 created: '2024-01-01'
-modified: '2026-08-27'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 apis:
 - aid: bloomberg-buyside-enterprise-solutions:bloomberg-data-api
   name: Bloomberg Data API
-  description: Programmatic access to Bloomberg's financial data including reference data, historical pricing, corporate
-    actions, and market data for portfolio management and analytics.
+  description: Programmatic access to Bloomberg's financial data including reference data, historical
+    pricing, corporate actions, and market data for portfolio management and analytics.
   humanURL: https://www.bloomberg.com/professional/support/api-library/
   tags:
   - Corporate Actions
@@ -71,8 +72,8 @@ apis:
     url: https://www.bloomberg.com/professional/support/api-library/#authentication
 - aid: bloomberg-buyside-enterprise-solutions:bloomberg-order-management-api
   name: Bloomberg Order Management API
-  description: API for order and execution management, enabling algorithmic trading, smart order routing, and integration
-    with trading platforms for buy-side workflows.
+  description: API for order and execution management, enabling algorithmic trading, smart order routing,
+    and integration with trading platforms for buy-side workflows.
   humanURL: https://www.bloomberg.com/professional/product/buy-side-trading/
   tags:
   - Algorithmic Trading
@@ -287,6 +288,8 @@ apis:
   - type: OpenAPI
     url: openapi/bloomberg-buyside-enterprise-solutions-yield-curves-api-openapi.yml
 common:
+- type: Website
+  url: https://bloomberg.com
 - type: CapabilityMap
   url: capabilities/bloomberg-buyside-enterprise-solutions-capability-edges.yml
   name: Bloomberg Buyside Enterprise Solutions Business Capability Map
