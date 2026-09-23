@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Yield Curves API
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics…
   description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
   version: '1.0'
   contact:

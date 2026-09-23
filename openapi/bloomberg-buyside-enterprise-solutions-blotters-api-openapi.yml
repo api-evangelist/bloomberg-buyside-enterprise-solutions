@@ -1,15 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Blotters API
-  description: Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.
+  title: Bloomberg Buyside Enterprise Solutions Bloomberg Order…
+  description: API for order and execution management, enabling algorithmic trading, smart order routing, and integration with trading platforms for buy-side workflows. Supports the full order lifecycle from creation through execution and settlement for institutional investors.
   version: '1.0'
   contact:
     name: Bloomberg Support
     url: https://www.bloomberg.com/professional/support/
   termsOfService: https://www.bloomberg.com/professional/terms-of-use/
 servers:
-- url: https://api.bloomberg.com/analytics
-  description: Bloomberg Analytics API Production
+- url: https://api.bloomberg.com/oms
+  description: Bloomberg Order Management API Production
 security:
 - bearerAuth: []
 tags:
@@ -185,5 +185,5 @@ components:
       bearerFormat: JWT
       description: Bloomberg API bearer token obtained via OAuth 2.0 authentication
 externalDocs:
-  description: Bloomberg Analytics Documentation
-  url: https://www.bloomberg.com/professional/product/analytics/
+  description: Bloomberg Buy-Side Trading Documentation
+  url: https://www.bloomberg.com/professional/product/buy-side-trading/
