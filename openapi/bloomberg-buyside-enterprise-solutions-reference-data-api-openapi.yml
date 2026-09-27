@@ -107,6 +107,15 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    SecurityError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error description
     SecuritySummary:
       type: object
       properties:
@@ -137,25 +146,6 @@ components:
         figi:
           type: string
           description: FIGI identifier
-    SecurityError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Error description
-    SecuritySearchResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of matching securities
-        securities:
-          type: array
-          items:
-            $ref: '#/components/schemas/SecuritySummary'
     ErrorResponse:
       type: object
       properties:
@@ -177,18 +167,6 @@ components:
                     type: string
                   message:
                     type: string
-    SecurityData:
-      type: object
-      properties:
-        security:
-          type: string
-          description: Security identifier
-        fields:
-          type: object
-          additionalProperties: true
-          description: Map of field mnemonics to their values
-        error:
-          $ref: '#/components/schemas/SecurityError'
     ReferenceDataRequest:
       type: object
       required:
@@ -214,6 +192,35 @@ components:
           items:
             $ref: '#/components/schemas/FieldOverride'
           description: Optional field overrides for parameterized fields
+    ReferenceDataResponse:
+      type: object
+      properties:
+        securities:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityData'
+    SecuritySearchResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of matching securities
+        securities:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecuritySummary'
+    SecurityData:
+      type: object
+      properties:
+        security:
+          type: string
+          description: Security identifier
+        fields:
+          type: object
+          additionalProperties: true
+          description: Map of field mnemonics to their values
+        error:
+          $ref: '#/components/schemas/SecurityError'
     FieldOverride:
       type: object
       properties:
@@ -223,13 +230,6 @@ components:
         value:
           type: string
           description: Override value
-    ReferenceDataResponse:
-      type: object
-      properties:
-        securities:
-          type: array
-          items:
-            $ref: '#/components/schemas/SecurityData'
   securitySchemes:
     bearerAuth:
       type: http

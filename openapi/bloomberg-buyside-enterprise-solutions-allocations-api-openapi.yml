@@ -97,38 +97,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    AllocationResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Allocation identifier
-        executionId:
-          type: string
-        portfolioId:
-          type: string
-        security:
-          type: string
-        side:
-          type: string
-        quantity:
-          type: number
-        price:
-          type: number
-        commission:
-          type: number
-        netAmount:
-          type: number
-        status:
-          type: string
-          enum:
-          - PENDING
-          - CONFIRMED
-          - SETTLED
-          - REJECTED
-        createdAt:
-          type: string
-          format: date-time
     ErrorResponse:
       type: object
       properties:
@@ -180,6 +148,38 @@ components:
                 type: number
                 description: Quantity to allocate
           minItems: 1
+    AllocationResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Allocation identifier
+        executionId:
+          type: string
+        portfolioId:
+          type: string
+        security:
+          type: string
+        side:
+          type: string
+        quantity:
+          type: number
+        price:
+          type: number
+        commission:
+          type: number
+        netAmount:
+          type: number
+        status:
+          type: string
+          enum:
+          - PENDING
+          - CONFIRMED
+          - SETTLED
+          - REJECTED
+        createdAt:
+          type: string
+          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

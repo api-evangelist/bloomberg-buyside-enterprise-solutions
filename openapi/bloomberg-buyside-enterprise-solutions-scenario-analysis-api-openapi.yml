@@ -46,6 +46,38 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    ScenarioResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        baseValue:
+          type: number
+          description: Current portfolio market value
+        scenarioValue:
+          type: number
+          description: Portfolio value under scenario
+        pnlImpact:
+          type: number
+          description: Profit/loss impact
+        pnlImpactPct:
+          type: number
+          description: Profit/loss impact as a percentage
+        securityImpacts:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+              baseValue:
+                type: number
+              scenarioValue:
+                type: number
+              pnlImpact:
+                type: number
+              pnlImpactPct:
+                type: number
     MarketShock:
       type: object
       required:
@@ -80,6 +112,25 @@ components:
         currency:
           type: string
           description: Currency for the shock (ISO 4217)
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
     ScenarioRequest:
       type: object
       required:
@@ -100,57 +151,6 @@ components:
             $ref: '#/components/schemas/MarketShock'
           description: Market variable shocks to apply
           minItems: 1
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
-    ScenarioResponse:
-      type: object
-      properties:
-        portfolioId:
-          type: string
-        baseValue:
-          type: number
-          description: Current portfolio market value
-        scenarioValue:
-          type: number
-          description: Portfolio value under scenario
-        pnlImpact:
-          type: number
-          description: Profit/loss impact
-        pnlImpactPct:
-          type: number
-          description: Profit/loss impact as a percentage
-        securityImpacts:
-          type: array
-          items:
-            type: object
-            properties:
-              security:
-                type: string
-              baseValue:
-                type: number
-              scenarioValue:
-                type: number
-              pnlImpact:
-                type: number
-              pnlImpactPct:
-                type: number
   securitySchemes:
     bearerAuth:
       type: http

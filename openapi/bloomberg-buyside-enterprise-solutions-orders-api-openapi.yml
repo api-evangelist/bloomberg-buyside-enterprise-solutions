@@ -286,6 +286,42 @@ components:
         notes:
           type: string
           description: Order notes or instructions
+    AmendOrderRequest:
+      type: object
+      properties:
+        quantity:
+          type: number
+          description: New order quantity
+        limitPrice:
+          type: number
+          description: New limit price
+        timeInForce:
+          type: string
+          enum:
+          - DAY
+          - GTC
+          - IOC
+          - FOK
+          - GTD
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
     Order:
       type: object
       properties:
@@ -382,23 +418,6 @@ components:
           type: string
           format: date-time
           description: Last update timestamp
-    AmendOrderRequest:
-      type: object
-      properties:
-        quantity:
-          type: number
-          description: New order quantity
-        limitPrice:
-          type: number
-          description: New limit price
-        timeInForce:
-          type: string
-          enum:
-          - DAY
-          - GTC
-          - IOC
-          - FOK
-          - GTD
     ComplianceRejection:
       type: object
       properties:
@@ -420,25 +439,6 @@ components:
                 enum:
                 - WARNING
                 - HARD_BLOCK
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
   parameters:
     orderId:
       name: orderId

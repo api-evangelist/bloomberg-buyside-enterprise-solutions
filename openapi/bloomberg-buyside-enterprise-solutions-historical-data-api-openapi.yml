@@ -106,32 +106,6 @@ components:
         currency:
           type: string
           description: Override currency for price fields (ISO 4217)
-    HistoricalDataPoint:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date
-          description: Date of the data point
-        fields:
-          type: object
-          additionalProperties: true
-          description: Map of field mnemonics to their values for this date
-    HistoricalDataResponse:
-      type: object
-      properties:
-        securities:
-          type: array
-          items:
-            type: object
-            properties:
-              security:
-                type: string
-                description: Security identifier
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/HistoricalDataPoint'
     ErrorResponse:
       type: object
       properties:
@@ -153,6 +127,32 @@ components:
                     type: string
                   message:
                     type: string
+    HistoricalDataResponse:
+      type: object
+      properties:
+        securities:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+                description: Security identifier
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistoricalDataPoint'
+    HistoricalDataPoint:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Date of the data point
+        fields:
+          type: object
+          additionalProperties: true
+          description: Map of field mnemonics to their values for this date
   securitySchemes:
     bearerAuth:
       type: http

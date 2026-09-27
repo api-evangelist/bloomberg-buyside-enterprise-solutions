@@ -50,6 +50,76 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
+    CorporateActionsResponse:
+      type: object
+      properties:
+        securities:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+                description: Security identifier
+              actions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CorporateAction'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+    CorporateAction:
+      type: object
+      properties:
+        actionType:
+          type: string
+          description: Type of corporate action
+        announcementDate:
+          type: string
+          format: date
+          description: Date the action was announced
+        effectiveDate:
+          type: string
+          format: date
+          description: Effective date of the action
+        recordDate:
+          type: string
+          format: date
+          description: Record date for the action
+        paymentDate:
+          type: string
+          format: date
+          description: Payment date (for dividends)
+        amount:
+          type: number
+          description: Amount associated with the action (e.g., dividend per share)
+        currency:
+          type: string
+          description: Currency of the amount (ISO 4217)
+        ratio:
+          type: string
+          description: Ratio for splits (e.g., "2:1")
+        description:
+          type: string
+          description: Human-readable description of the action
     CorporateActionsRequest:
       type: object
       required:
@@ -85,76 +155,6 @@ components:
             - TENDER_OFFER
             - BANKRUPTCY
           description: Filter by specific corporate action types
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
-    CorporateActionsResponse:
-      type: object
-      properties:
-        securities:
-          type: array
-          items:
-            type: object
-            properties:
-              security:
-                type: string
-                description: Security identifier
-              actions:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CorporateAction'
-    CorporateAction:
-      type: object
-      properties:
-        actionType:
-          type: string
-          description: Type of corporate action
-        announcementDate:
-          type: string
-          format: date
-          description: Date the action was announced
-        effectiveDate:
-          type: string
-          format: date
-          description: Effective date of the action
-        recordDate:
-          type: string
-          format: date
-          description: Record date for the action
-        paymentDate:
-          type: string
-          format: date
-          description: Payment date (for dividends)
-        amount:
-          type: number
-          description: Amount associated with the action (e.g., dividend per share)
-        currency:
-          type: string
-          description: Currency of the amount (ISO 4217)
-        ratio:
-          type: string
-          description: Ratio for splits (e.g., "2:1")
-        description:
-          type: string
-          description: Human-readable description of the action
   securitySchemes:
     bearerAuth:
       type: http

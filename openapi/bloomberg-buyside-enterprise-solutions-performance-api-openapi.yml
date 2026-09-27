@@ -120,69 +120,6 @@ paths:
           description: Portfolio not found
 components:
   schemas:
-    AttributionResponse:
-      type: object
-      properties:
-        portfolioId:
-          type: string
-        startDate:
-          type: string
-          format: date
-        endDate:
-          type: string
-          format: date
-        totalAllocationEffect:
-          type: number
-          description: Total allocation effect
-        totalSelectionEffect:
-          type: number
-          description: Total selection effect
-        totalInteractionEffect:
-          type: number
-          description: Total interaction effect
-        groups:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Group name (e.g., sector name)
-              portfolioWeight:
-                type: number
-              benchmarkWeight:
-                type: number
-              portfolioReturn:
-                type: number
-              benchmarkReturn:
-                type: number
-              allocationEffect:
-                type: number
-              selectionEffect:
-                type: number
-              interactionEffect:
-                type: number
-              totalEffect:
-                type: number
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
     PerformanceResponse:
       type: object
       properties:
@@ -230,6 +167,69 @@ components:
               cumulativeReturn:
                 type: number
               cumulativeBenchmarkReturn:
+                type: number
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+    AttributionResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        totalAllocationEffect:
+          type: number
+          description: Total allocation effect
+        totalSelectionEffect:
+          type: number
+          description: Total selection effect
+        totalInteractionEffect:
+          type: number
+          description: Total interaction effect
+        groups:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Group name (e.g., sector name)
+              portfolioWeight:
+                type: number
+              benchmarkWeight:
+                type: number
+              portfolioReturn:
+                type: number
+              benchmarkReturn:
+                type: number
+              allocationEffect:
+                type: number
+              selectionEffect:
+                type: number
+              interactionEffect:
+                type: number
+              totalEffect:
                 type: number
   parameters:
     portfolioId:

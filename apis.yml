@@ -36,9 +36,9 @@ tags:
 - Asset Management
 - Buy-Side
 - Enterprise Solutions
-- Financial-Services
+- Financial Services
 - Market Data
-- Portfolio-Management
+- Portfolio Management
 - Trading
 tags_raw:
 - Analytics
@@ -49,6 +49,8 @@ tags_raw:
 - Market Data
 - Portfolio Management
 - Trading
+- Financial-Services
+- Portfolio-Management
 url: https://raw.githubusercontent.com/api-evangelist/bloomberg-buyside-enterprise-solutions/refs/heads/main/apis.yml
 created: '2024-01-01'
 modified: '2026-09-16'
@@ -256,6 +258,8 @@ apis:
   description: Portfolio risk analytics and factor exposure
   humanURL: https://www.bloomberg.com/professional/support/api-library/
   tags:
+  - Risk Management
+  tags_raw:
   - Risk
   properties:
   - type: OpenAPI

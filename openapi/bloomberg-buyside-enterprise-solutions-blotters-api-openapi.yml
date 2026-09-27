@@ -57,6 +57,31 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    BlotterResponse:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        summary:
+          type: object
+          properties:
+            totalOrders:
+              type: integer
+            openOrders:
+              type: integer
+            filledOrders:
+              type: integer
+            cancelledOrders:
+              type: integer
+            totalNotional:
+              type: number
+            totalCommissions:
+              type: number
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
     Order:
       type: object
       properties:
@@ -153,31 +178,6 @@ components:
           type: string
           format: date-time
           description: Last update timestamp
-    BlotterResponse:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date
-        summary:
-          type: object
-          properties:
-            totalOrders:
-              type: integer
-            openOrders:
-              type: integer
-            filledOrders:
-              type: integer
-            cancelledOrders:
-              type: integer
-            totalNotional:
-              type: number
-            totalCommissions:
-              type: number
-        entries:
-          type: array
-          items:
-            $ref: '#/components/schemas/Order'
   securitySchemes:
     bearerAuth:
       type: http

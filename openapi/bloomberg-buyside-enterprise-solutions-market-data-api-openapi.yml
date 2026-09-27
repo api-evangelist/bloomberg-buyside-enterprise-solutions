@@ -59,18 +59,6 @@ components:
         message:
           type: string
           description: Error description
-    SecurityData:
-      type: object
-      properties:
-        security:
-          type: string
-          description: Security identifier
-        fields:
-          type: object
-          additionalProperties: true
-          description: Map of field mnemonics to their values
-        error:
-          $ref: '#/components/schemas/SecurityError'
     MarketDataResponse:
       type: object
       properties:
@@ -123,6 +111,18 @@ components:
           description: List of Bloomberg field mnemonics for market data
           minItems: 1
           maxItems: 50
+    SecurityData:
+      type: object
+      properties:
+        security:
+          type: string
+          description: Security identifier
+        fields:
+          type: object
+          additionalProperties: true
+          description: Map of field mnemonics to their values
+        error:
+          $ref: '#/components/schemas/SecurityError'
   securitySchemes:
     bearerAuth:
       type: http
