@@ -103,6 +103,25 @@ paths:
           description: Portfolio not found
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
     UpdateHoldingsRequest:
       type: object
       required:
@@ -130,25 +149,6 @@ components:
               costBasis:
                 type: number
                 description: Cost basis per unit
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
     Holding:
       type: object
       properties:

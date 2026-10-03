@@ -50,6 +50,42 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+    HistoricalDataResponse:
+      type: object
+      properties:
+        securities:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+                description: Security identifier
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HistoricalDataPoint'
     HistoricalDataRequest:
       type: object
       required:
@@ -106,42 +142,6 @@ components:
         currency:
           type: string
           description: Override currency for price fields (ISO 4217)
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
-    HistoricalDataResponse:
-      type: object
-      properties:
-        securities:
-          type: array
-          items:
-            type: object
-            properties:
-              security:
-                type: string
-                description: Security identifier
-              data:
-                type: array
-                items:
-                  $ref: '#/components/schemas/HistoricalDataPoint'
     HistoricalDataPoint:
       type: object
       properties:

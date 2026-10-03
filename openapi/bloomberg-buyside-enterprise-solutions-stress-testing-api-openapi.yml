@@ -85,6 +85,59 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    MarketShock:
+      type: object
+      required:
+      - variable
+      - shockType
+      - value
+      properties:
+        variable:
+          type: string
+          enum:
+          - INTEREST_RATE
+          - CREDIT_SPREAD
+          - EQUITY_PRICE
+          - FX_RATE
+          - VOLATILITY
+          - COMMODITY_PRICE
+          - INFLATION
+          description: Market variable to shock
+        shockType:
+          type: string
+          enum:
+          - ABSOLUTE
+          - RELATIVE
+          - OVERRIDE
+          description: Type of shock to apply
+        value:
+          type: number
+          description: Shock magnitude
+        tenor:
+          type: string
+          description: Specific tenor for rate shocks (e.g., "5Y", "10Y")
+        currency:
+          type: string
+          description: Currency for the shock (ISO 4217)
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
     StressScenario:
       type: object
       properties:
@@ -114,6 +167,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MarketShock'
+    StressTestRequest:
+      type: object
+      required:
+      - portfolioId
+      properties:
+        portfolioId:
+          type: string
+          description: Portfolio to stress test
+        scenarioIds:
+          type: array
+          items:
+            type: string
+          description: Predefined stress scenario identifiers
+        customScenarios:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Custom scenario name
+              shocks:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MarketShock'
+          description: Custom stress scenarios
     StressTestResponse:
       type: object
       properties:
@@ -152,85 +231,6 @@ components:
                     pnlImpactPct:
                       type: number
                 description: Securities with largest negative impact
-    StressTestRequest:
-      type: object
-      required:
-      - portfolioId
-      properties:
-        portfolioId:
-          type: string
-          description: Portfolio to stress test
-        scenarioIds:
-          type: array
-          items:
-            type: string
-          description: Predefined stress scenario identifiers
-        customScenarios:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Custom scenario name
-              shocks:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MarketShock'
-          description: Custom stress scenarios
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
-    MarketShock:
-      type: object
-      required:
-      - variable
-      - shockType
-      - value
-      properties:
-        variable:
-          type: string
-          enum:
-          - INTEREST_RATE
-          - CREDIT_SPREAD
-          - EQUITY_PRICE
-          - FX_RATE
-          - VOLATILITY
-          - COMMODITY_PRICE
-          - INFLATION
-          description: Market variable to shock
-        shockType:
-          type: string
-          enum:
-          - ABSOLUTE
-          - RELATIVE
-          - OVERRIDE
-          description: Type of shock to apply
-        value:
-          type: number
-          description: Shock magnitude
-        tenor:
-          type: string
-          description: Specific tenor for rate shocks (e.g., "5Y", "10Y")
-        currency:
-          type: string
-          description: Currency for the shock (ISO 4217)
   securitySchemes:
     bearerAuth:
       type: http

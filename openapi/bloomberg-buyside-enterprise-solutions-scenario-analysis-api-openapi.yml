@@ -46,72 +46,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ScenarioResponse:
-      type: object
-      properties:
-        portfolioId:
-          type: string
-        baseValue:
-          type: number
-          description: Current portfolio market value
-        scenarioValue:
-          type: number
-          description: Portfolio value under scenario
-        pnlImpact:
-          type: number
-          description: Profit/loss impact
-        pnlImpactPct:
-          type: number
-          description: Profit/loss impact as a percentage
-        securityImpacts:
-          type: array
-          items:
-            type: object
-            properties:
-              security:
-                type: string
-              baseValue:
-                type: number
-              scenarioValue:
-                type: number
-              pnlImpact:
-                type: number
-              pnlImpactPct:
-                type: number
-    MarketShock:
-      type: object
-      required:
-      - variable
-      - shockType
-      - value
-      properties:
-        variable:
-          type: string
-          enum:
-          - INTEREST_RATE
-          - CREDIT_SPREAD
-          - EQUITY_PRICE
-          - FX_RATE
-          - VOLATILITY
-          - COMMODITY_PRICE
-          - INFLATION
-          description: Market variable to shock
-        shockType:
-          type: string
-          enum:
-          - ABSOLUTE
-          - RELATIVE
-          - OVERRIDE
-          description: Type of shock to apply
-        value:
-          type: number
-          description: Shock magnitude
-        tenor:
-          type: string
-          description: Specific tenor for rate shocks (e.g., "5Y", "10Y")
-        currency:
-          type: string
-          description: Currency for the shock (ISO 4217)
     ErrorResponse:
       type: object
       properties:
@@ -151,6 +85,72 @@ components:
             $ref: '#/components/schemas/MarketShock'
           description: Market variable shocks to apply
           minItems: 1
+    MarketShock:
+      type: object
+      required:
+      - variable
+      - shockType
+      - value
+      properties:
+        variable:
+          type: string
+          enum:
+          - INTEREST_RATE
+          - CREDIT_SPREAD
+          - EQUITY_PRICE
+          - FX_RATE
+          - VOLATILITY
+          - COMMODITY_PRICE
+          - INFLATION
+          description: Market variable to shock
+        shockType:
+          type: string
+          enum:
+          - ABSOLUTE
+          - RELATIVE
+          - OVERRIDE
+          description: Type of shock to apply
+        value:
+          type: number
+          description: Shock magnitude
+        tenor:
+          type: string
+          description: Specific tenor for rate shocks (e.g., "5Y", "10Y")
+        currency:
+          type: string
+          description: Currency for the shock (ISO 4217)
+    ScenarioResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        baseValue:
+          type: number
+          description: Current portfolio market value
+        scenarioValue:
+          type: number
+          description: Portfolio value under scenario
+        pnlImpact:
+          type: number
+          description: Profit/loss impact
+        pnlImpactPct:
+          type: number
+          description: Profit/loss impact as a percentage
+        securityImpacts:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+              baseValue:
+                type: number
+              scenarioValue:
+                type: number
+              pnlImpact:
+                type: number
+              pnlImpactPct:
+                type: number
   securitySchemes:
     bearerAuth:
       type: http

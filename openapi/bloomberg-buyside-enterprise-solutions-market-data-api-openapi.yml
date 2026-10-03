@@ -50,15 +50,6 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
-    SecurityError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code
-        message:
-          type: string
-          description: Error description
     MarketDataResponse:
       type: object
       properties:
@@ -70,6 +61,27 @@ components:
           type: string
           format: date-time
           description: Timestamp of the market data snapshot
+    SecurityError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+        message:
+          type: string
+          description: Error description
+    SecurityData:
+      type: object
+      properties:
+        security:
+          type: string
+          description: Security identifier
+        fields:
+          type: object
+          additionalProperties: true
+          description: Map of field mnemonics to their values
+        error:
+          $ref: '#/components/schemas/SecurityError'
     ErrorResponse:
       type: object
       properties:
@@ -111,18 +123,6 @@ components:
           description: List of Bloomberg field mnemonics for market data
           minItems: 1
           maxItems: 50
-    SecurityData:
-      type: object
-      properties:
-        security:
-          type: string
-          description: Security identifier
-        fields:
-          type: object
-          additionalProperties: true
-          description: Map of field mnemonics to their values
-        error:
-          $ref: '#/components/schemas/SecurityError'
   securitySchemes:
     bearerAuth:
       type: http

@@ -93,44 +93,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    DerivativePricingRequest:
-      type: object
-      required:
-      - securities
-      properties:
-        securities:
-          type: array
-          items:
-            type: string
-          description: List of derivative security identifiers
-          minItems: 1
-          maxItems: 25
-        pricingDate:
-          type: string
-          format: date
-          description: Pricing date
-        pricingModel:
-          type: string
-          enum:
-          - BLACK_SCHOLES
-          - BINOMIAL
-          - MONTE_CARLO
-          - BLACK76
-          - BACHELIER
-          - HJM
-          description: Pricing model to use
-        volatilitySurface:
-          type: string
-          description: Volatility surface identifier
-        underlyingPriceOverride:
-          type: number
-          description: Override underlying asset price
-        volatilityOverride:
-          type: number
-          description: Override implied volatility
-        riskFreeRateOverride:
-          type: number
-          description: Override risk-free rate
     ErrorResponse:
       type: object
       properties:
@@ -216,6 +178,44 @@ components:
               volga:
                 type: number
                 description: Sensitivity of vega to volatility
+    DerivativePricingRequest:
+      type: object
+      required:
+      - securities
+      properties:
+        securities:
+          type: array
+          items:
+            type: string
+          description: List of derivative security identifiers
+          minItems: 1
+          maxItems: 25
+        pricingDate:
+          type: string
+          format: date
+          description: Pricing date
+        pricingModel:
+          type: string
+          enum:
+          - BLACK_SCHOLES
+          - BINOMIAL
+          - MONTE_CARLO
+          - BLACK76
+          - BACHELIER
+          - HJM
+          description: Pricing model to use
+        volatilitySurface:
+          type: string
+          description: Volatility surface identifier
+        underlyingPriceOverride:
+          type: number
+          description: Override underlying asset price
+        volatilityOverride:
+          type: number
+          description: Override implied volatility
+        riskFreeRateOverride:
+          type: number
+          description: Override risk-free rate
   securitySchemes:
     bearerAuth:
       type: http

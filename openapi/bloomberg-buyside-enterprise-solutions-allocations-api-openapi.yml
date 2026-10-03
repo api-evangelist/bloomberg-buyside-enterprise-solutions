@@ -116,38 +116,6 @@ components:
                     type: string
                   message:
                     type: string
-    AllocationRequest:
-      type: object
-      required:
-      - executionId
-      - allocations
-      properties:
-        executionId:
-          type: string
-          description: Execution to allocate
-        method:
-          type: string
-          enum:
-          - PRO_RATA
-          - MANUAL
-          - RULE_BASED
-          default: MANUAL
-          description: Allocation method
-        allocations:
-          type: array
-          items:
-            type: object
-            required:
-            - portfolioId
-            - quantity
-            properties:
-              portfolioId:
-                type: string
-                description: Target portfolio
-              quantity:
-                type: number
-                description: Quantity to allocate
-          minItems: 1
     AllocationResponse:
       type: object
       properties:
@@ -180,6 +148,38 @@ components:
         createdAt:
           type: string
           format: date-time
+    AllocationRequest:
+      type: object
+      required:
+      - executionId
+      - allocations
+      properties:
+        executionId:
+          type: string
+          description: Execution to allocate
+        method:
+          type: string
+          enum:
+          - PRO_RATA
+          - MANUAL
+          - RULE_BASED
+          default: MANUAL
+          description: Allocation method
+        allocations:
+          type: array
+          items:
+            type: object
+            required:
+            - portfolioId
+            - quantity
+            properties:
+              portfolioId:
+                type: string
+                description: Target portfolio
+              quantity:
+                type: number
+                description: Quantity to allocate
+          minItems: 1
   securitySchemes:
     bearerAuth:
       type: http

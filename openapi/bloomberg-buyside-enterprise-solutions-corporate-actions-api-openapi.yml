@@ -50,21 +50,6 @@ paths:
           description: Rate limit exceeded
 components:
   schemas:
-    CorporateActionsResponse:
-      type: object
-      properties:
-        securities:
-          type: array
-          items:
-            type: object
-            properties:
-              security:
-                type: string
-                description: Security identifier
-              actions:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CorporateAction'
     ErrorResponse:
       type: object
       properties:
@@ -155,6 +140,21 @@ components:
             - TENDER_OFFER
             - BANKRUPTCY
           description: Filter by specific corporate action types
+    CorporateActionsResponse:
+      type: object
+      properties:
+        securities:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+                description: Security identifier
+              actions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CorporateAction'
   securitySchemes:
     bearerAuth:
       type: http
