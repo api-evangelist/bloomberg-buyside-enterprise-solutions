@@ -195,6 +195,58 @@ components:
                     type: string
                   message:
                     type: string
+    CreatePortfolioRequest:
+      type: object
+      required:
+      - name
+      - type
+      - currency
+      properties:
+        name:
+          type: string
+          description: Portfolio name
+          minLength: 1
+          maxLength: 256
+        description:
+          type: string
+          description: Portfolio description
+        type:
+          type: string
+          enum:
+          - TRADING
+          - MODEL
+          - BENCHMARK
+          - COMPOSITE
+        currency:
+          type: string
+          description: Base currency (ISO 4217)
+        benchmarkId:
+          type: string
+          description: Benchmark identifier to assign
+        manager:
+          type: string
+          description: Portfolio manager identifier
+        inceptionDate:
+          type: string
+          format: date
+          description: Portfolio inception date
+    UpdatePortfolioRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - CLOSED
+        benchmarkId:
+          type: string
+        manager:
+          type: string
     Portfolio:
       type: object
       properties:
@@ -249,58 +301,6 @@ components:
           type: string
           format: date-time
           description: Last update timestamp
-    UpdatePortfolioRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - ACTIVE
-          - INACTIVE
-          - CLOSED
-        benchmarkId:
-          type: string
-        manager:
-          type: string
-    CreatePortfolioRequest:
-      type: object
-      required:
-      - name
-      - type
-      - currency
-      properties:
-        name:
-          type: string
-          description: Portfolio name
-          minLength: 1
-          maxLength: 256
-        description:
-          type: string
-          description: Portfolio description
-        type:
-          type: string
-          enum:
-          - TRADING
-          - MODEL
-          - BENCHMARK
-          - COMPOSITE
-        currency:
-          type: string
-          description: Base currency (ISO 4217)
-        benchmarkId:
-          type: string
-          description: Benchmark identifier to assign
-        manager:
-          type: string
-          description: Portfolio manager identifier
-        inceptionDate:
-          type: string
-          format: date
-          description: Portfolio inception date
   parameters:
     portfolioId:
       name: portfolioId

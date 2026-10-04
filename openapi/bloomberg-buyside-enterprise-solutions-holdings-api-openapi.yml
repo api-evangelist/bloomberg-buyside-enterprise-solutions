@@ -122,33 +122,6 @@ components:
                     type: string
                   message:
                     type: string
-    UpdateHoldingsRequest:
-      type: object
-      required:
-      - asOfDate
-      - holdings
-      properties:
-        asOfDate:
-          type: string
-          format: date
-          description: Date for which holdings are effective
-        holdings:
-          type: array
-          items:
-            type: object
-            required:
-            - security
-            - quantity
-            properties:
-              security:
-                type: string
-                description: Bloomberg security identifier
-              quantity:
-                type: number
-                description: Number of shares or units
-              costBasis:
-                type: number
-                description: Cost basis per unit
     Holding:
       type: object
       properties:
@@ -188,6 +161,33 @@ components:
         currency:
           type: string
           description: Security currency (ISO 4217)
+    UpdateHoldingsRequest:
+      type: object
+      required:
+      - asOfDate
+      - holdings
+      properties:
+        asOfDate:
+          type: string
+          format: date
+          description: Date for which holdings are effective
+        holdings:
+          type: array
+          items:
+            type: object
+            required:
+            - security
+            - quantity
+            properties:
+              security:
+                type: string
+                description: Bloomberg security identifier
+              quantity:
+                type: number
+                description: Number of shares or units
+              costBasis:
+                type: number
+                description: Cost basis per unit
   parameters:
     portfolioId:
       name: portfolioId

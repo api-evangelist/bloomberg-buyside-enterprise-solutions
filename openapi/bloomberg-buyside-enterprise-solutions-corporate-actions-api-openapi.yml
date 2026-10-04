@@ -105,6 +105,21 @@ components:
         description:
           type: string
           description: Human-readable description of the action
+    CorporateActionsResponse:
+      type: object
+      properties:
+        securities:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+                description: Security identifier
+              actions:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CorporateAction'
     CorporateActionsRequest:
       type: object
       required:
@@ -140,21 +155,6 @@ components:
             - TENDER_OFFER
             - BANKRUPTCY
           description: Filter by specific corporate action types
-    CorporateActionsResponse:
-      type: object
-      properties:
-        securities:
-          type: array
-          items:
-            type: object
-            properties:
-              security:
-                type: string
-                description: Security identifier
-              actions:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CorporateAction'
   securitySchemes:
     bearerAuth:
       type: http

@@ -85,6 +85,25 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
     MarketShock:
       type: object
       required:
@@ -119,80 +138,6 @@ components:
         currency:
           type: string
           description: Currency for the shock (ISO 4217)
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
-    StressScenario:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Scenario identifier
-        name:
-          type: string
-          description: Scenario name
-        description:
-          type: string
-          description: Scenario description
-        category:
-          type: string
-          enum:
-          - HISTORICAL
-          - RATE_SHOCK
-          - CREDIT_SHOCK
-          - EQUITY_SHOCK
-          - FX_SHOCK
-          - CUSTOM
-        historicalDate:
-          type: string
-          format: date
-          description: Reference date for historical scenarios
-        shocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/MarketShock'
-    StressTestRequest:
-      type: object
-      required:
-      - portfolioId
-      properties:
-        portfolioId:
-          type: string
-          description: Portfolio to stress test
-        scenarioIds:
-          type: array
-          items:
-            type: string
-          description: Predefined stress scenario identifiers
-        customScenarios:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Custom scenario name
-              shocks:
-                type: array
-                items:
-                  $ref: '#/components/schemas/MarketShock'
-          description: Custom stress scenarios
     StressTestResponse:
       type: object
       properties:
@@ -231,6 +176,61 @@ components:
                     pnlImpactPct:
                       type: number
                 description: Securities with largest negative impact
+    StressTestRequest:
+      type: object
+      required:
+      - portfolioId
+      properties:
+        portfolioId:
+          type: string
+          description: Portfolio to stress test
+        scenarioIds:
+          type: array
+          items:
+            type: string
+          description: Predefined stress scenario identifiers
+        customScenarios:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Custom scenario name
+              shocks:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MarketShock'
+          description: Custom stress scenarios
+    StressScenario:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Scenario identifier
+        name:
+          type: string
+          description: Scenario name
+        description:
+          type: string
+          description: Scenario description
+        category:
+          type: string
+          enum:
+          - HISTORICAL
+          - RATE_SHOCK
+          - CREDIT_SHOCK
+          - EQUITY_SHOCK
+          - FX_SHOCK
+          - CUSTOM
+        historicalDate:
+          type: string
+          format: date
+          description: Reference date for historical scenarios
+        shocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketShock'
   securitySchemes:
     bearerAuth:
       type: http

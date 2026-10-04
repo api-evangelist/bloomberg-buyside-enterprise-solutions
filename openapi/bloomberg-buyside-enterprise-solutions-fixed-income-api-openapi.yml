@@ -142,6 +142,43 @@ components:
                     remainingBalance:
                       type: number
                       description: Outstanding principal balance
+    FixedIncomeRequest:
+      type: object
+      required:
+      - securities
+      properties:
+        securities:
+          type: array
+          items:
+            type: string
+          description: List of fixed income security identifiers
+          minItems: 1
+          maxItems: 50
+        analytics:
+          type: array
+          items:
+            type: string
+            enum:
+            - YIELD_TO_MATURITY
+            - YIELD_TO_WORST
+            - MODIFIED_DURATION
+            - EFFECTIVE_DURATION
+            - MACAULAY_DURATION
+            - CONVEXITY
+            - OAS
+            - Z_SPREAD
+            - I_SPREAD
+            - DV01
+            - ACCRUED_INTEREST
+            - CURRENT_YIELD
+          description: Analytics to calculate (defaults to all)
+        settlementDate:
+          type: string
+          format: date
+          description: Settlement date for calculations
+        yieldCurveId:
+          type: string
+          description: Yield curve to use for spread calculations
     FixedIncomeResponse:
       type: object
       properties:
@@ -195,43 +232,6 @@ components:
               currentYield:
                 type: number
                 description: Current yield
-    FixedIncomeRequest:
-      type: object
-      required:
-      - securities
-      properties:
-        securities:
-          type: array
-          items:
-            type: string
-          description: List of fixed income security identifiers
-          minItems: 1
-          maxItems: 50
-        analytics:
-          type: array
-          items:
-            type: string
-            enum:
-            - YIELD_TO_MATURITY
-            - YIELD_TO_WORST
-            - MODIFIED_DURATION
-            - EFFECTIVE_DURATION
-            - MACAULAY_DURATION
-            - CONVEXITY
-            - OAS
-            - Z_SPREAD
-            - I_SPREAD
-            - DV01
-            - ACCRUED_INTEREST
-            - CURRENT_YIELD
-          description: Analytics to calculate (defaults to all)
-        settlementDate:
-          type: string
-          format: date
-          description: Settlement date for calculations
-        yieldCurveId:
-          type: string
-          description: Yield curve to use for spread calculations
   securitySchemes:
     bearerAuth:
       type: http

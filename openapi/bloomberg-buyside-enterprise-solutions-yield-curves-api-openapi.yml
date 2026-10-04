@@ -91,6 +91,28 @@ paths:
           description: Yield curve not found
 components:
   schemas:
+    YieldCurveSummary:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Curve identifier
+        name:
+          type: string
+          description: Curve name
+        currency:
+          type: string
+          description: Currency (ISO 4217)
+        type:
+          type: string
+          enum:
+          - SOVEREIGN
+          - SWAP
+          - CORPORATE
+          - MUNICIPAL
+        country:
+          type: string
+          description: Country (ISO 3166)
     YieldCurveData:
       type: object
       properties:
@@ -128,28 +150,6 @@ components:
               discountFactor:
                 type: number
                 description: Discount factor
-    YieldCurveSummary:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Curve identifier
-        name:
-          type: string
-          description: Curve name
-        currency:
-          type: string
-          description: Currency (ISO 4217)
-        type:
-          type: string
-          enum:
-          - SOVEREIGN
-          - SWAP
-          - CORPORATE
-          - MUNICIPAL
-        country:
-          type: string
-          description: Country (ISO 3166)
   securitySchemes:
     bearerAuth:
       type: http

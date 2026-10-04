@@ -86,42 +86,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ComplianceResponse:
-      type: object
-      properties:
-        portfolioId:
-          type: string
-        asOfDate:
-          type: string
-          format: date
-        overallStatus:
-          type: string
-          enum:
-          - COMPLIANT
-          - WARNING
-          - VIOLATION
-          description: Overall compliance status
-        rules:
-          type: array
-          items:
-            type: object
-            properties:
-              ruleId:
-                type: string
-              ruleName:
-                type: string
-              status:
-                type: string
-                enum:
-                - PASS
-                - WARNING
-                - FAIL
-              currentValue:
-                type: number
-              threshold:
-                type: number
-              message:
-                type: string
     ComplianceRule:
       type: object
       properties:
@@ -159,6 +123,42 @@ components:
           - GREATER_THAN
           - GREATER_THAN_OR_EQUAL
           - BETWEEN
+    ComplianceResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        asOfDate:
+          type: string
+          format: date
+        overallStatus:
+          type: string
+          enum:
+          - COMPLIANT
+          - WARNING
+          - VIOLATION
+          description: Overall compliance status
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              ruleId:
+                type: string
+              ruleName:
+                type: string
+              status:
+                type: string
+                enum:
+                - PASS
+                - WARNING
+                - FAIL
+              currentValue:
+                type: number
+              threshold:
+                type: number
+              message:
+                type: string
   parameters:
     portfolioId:
       name: portfolioId

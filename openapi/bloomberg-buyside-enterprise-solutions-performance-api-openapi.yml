@@ -120,25 +120,6 @@ paths:
           description: Portfolio not found
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
     PerformanceResponse:
       type: object
       properties:
@@ -187,6 +168,25 @@ components:
                 type: number
               cumulativeBenchmarkReturn:
                 type: number
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
     AttributionResponse:
       type: object
       properties:
