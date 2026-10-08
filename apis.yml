@@ -292,6 +292,12 @@ apis:
   - type: OpenAPI
     url: openapi/bloomberg-buyside-enterprise-solutions-yield-curves-api-openapi.yml
 common:
+- type: Plans
+  url: plans/bloomberg-buyside-enterprise-solutions-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/bloomberg-buyside-enterprise-solutions-rate-limits.yml
+- type: FinOps
+  url: finops/bloomberg-buyside-enterprise-solutions-finops.yml
 - type: Website
   url: https://bloomberg.com
 - type: CapabilityMap
