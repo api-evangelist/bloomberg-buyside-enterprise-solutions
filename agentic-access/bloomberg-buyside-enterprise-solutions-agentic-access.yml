@@ -1,53 +1,118 @@
-generated: '2026-07-15'
+generated: '2026-09-23'
 method: generated
-source: openapi/bloomberg-buyside-analytics-openapi.yml, openapi/bloomberg-buyside-data-openapi.yml,
-  openapi/bloomberg-buyside-order-management-openapi.yml, openapi/bloomberg-buyside-portfolio-openapi.yml
+source: openapi/bloomberg-buyside-enterprise-solutions-allocations-api-openapi.yml, openapi/bloomberg-buyside-enterprise-solutions-benchmarks-api-openapi.yml,
+  openapi/bloomberg-buyside-enterprise-solutions-blotters-api-openapi.yml, openapi/bloomberg-buyside-enterprise-solutions-brokers-api-openapi.yml,
+  openapi/bloomberg-buyside-enterprise-solutions-compliance-api-openapi.yml, openapi/bloomberg-buyside-enterprise-solutions-corporate-actions-api-openapi.yml,
+  openapi/bloomberg-buyside-enterprise-solutions-derivatives-api-openapi.yml, openapi/bloomberg-buyside-enterprise-solutions-executions-api-openapi.yml,
+  openapi/bloomberg-buyside-enterprise-solutions-field-search-api-openapi.yml, openapi/bloomberg-buyside-enterprise-solutions-fixed-income-api-openapi.yml,
+  openapi/bloomberg-buyside-enterprise-solutions-historical-data-api-openapi.yml, openapi/bloomberg-buyside-enterprise-solutions-holdings-api-openapi.yml,
+  openapi/bloomberg-buyside-enterprise-solutions-market-data-api-openapi.yml, openapi/bloomberg-buyside-enterprise-solutions-orders-api-openapi.yml,
+  openapi/bloomberg-buyside-enterprise-solutions-performance-api-openapi.yml, openapi/bloomberg-buyside-enterprise-solutions-portfolios-api-openapi.yml,
+  openapi/bloomberg-buyside-enterprise-solutions-pricing-api-openapi.yml, openapi/bloomberg-buyside-enterprise-solutions-reference-data-api-openapi.yml,
+  openapi/bloomberg-buyside-enterprise-solutions-risk-api-openapi.yml, openapi/bloomberg-buyside-enterprise-solutions-scenario-analysis-api-openapi.yml,
+  openapi/bloomberg-buyside-enterprise-solutions-stress-testing-api-openapi.yml, openapi/bloomberg-buyside-enterprise-solutions-yield-curves-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 40
   by_action_class:
-    acting: 19
-    connected: 21
+    acting: 14
+    connected: 26
   by_consequence:
-    write: 15
-    read: 21
     physical: 4
+    read: 26
+    write: 10
   human_in_the_loop_required: 0
 operations:
-- path: /v1/fixed-income/calculate
+- path: /v1/allocations
   method: post
-  operationId: calculateFixedIncome
+  operationId: createAllocation
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: physical
     subject: required
     audience: null
     token:
-      max-ttl: 900
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
     audit: required
-- path: /v1/fixed-income/cashflows
-  method: post
-  operationId: getFixedIncomeCashflows
+- path: /v1/allocations
+  method: get
+  operationId: listAllocations
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
+- path: /v1/benchmarks
+  method: get
+  operationId: listBenchmarks
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/blotter
+  method: get
+  operationId: getBlotter
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/brokers
+  method: get
+  operationId: listBrokers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/portfolios/{portfolioId}/compliance
+  method: get
+  operationId: getComplianceStatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/compliance/rules
+  method: get
+  operationId: listComplianceRules
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /data/v1/corporate-actions
+  method: post
+  operationId: getCorporateActions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /v1/derivatives/price
   method: post
   operationId: priceDerivative
@@ -80,41 +145,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v1/scenarios/analyze
-  method: post
-  operationId: analyzeScenario
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/stress-tests/run
-  method: post
-  operationId: runStressTest
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/stress-tests/scenarios
+- path: /v1/orders/{orderId}/executions
   method: get
-  operationId: listStressScenarios
+  operationId: getOrderExecutions
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -122,9 +155,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/yield-curves
+- path: /v1/executions
   method: get
-  operationId: listYieldCurves
+  operationId: listExecutions
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -132,9 +165,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/yield-curves/{curveId}
+- path: /data/v1/fields
   method: get
-  operationId: getYieldCurve
+  operationId: searchFields
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -142,9 +175,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/pricing/evaluate
+- path: /v1/fixed-income/calculate
   method: post
-  operationId: evaluateSecurities
+  operationId: calculateFixedIncome
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -158,25 +191,39 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /data/v1/reference
+- path: /v1/fixed-income/cashflows
   method: post
-  operationId: getReferenceData
+  operationId: getFixedIncomeCashflows
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /data/v1/historical
   method: post
   operationId: getHistoricalData
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/portfolios/{portfolioId}/holdings
+  method: get
+  operationId: getPortfolioHoldings
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/portfolios/{portfolioId}/holdings
+  method: put
+  operationId: updatePortfolioHoldings
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -193,48 +240,6 @@ operations:
 - path: /data/v1/market
   method: post
   operationId: getMarketData
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /data/v1/corporate-actions
-  method: post
-  operationId: getCorporateActions
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /data/v1/fields
-  method: get
-  operationId: searchFields
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /data/v1/securities/search
-  method: get
-  operationId: searchSecurities
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -316,9 +321,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v1/orders/{orderId}/executions
+- path: /v1/portfolios/{portfolioId}/performance
   method: get
-  operationId: getOrderExecutions
+  operationId: getPortfolioPerformance
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -326,57 +331,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/executions
+- path: /v1/portfolios/{portfolioId}/performance/attribution
   method: get
-  operationId: listExecutions
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/allocations
-  method: post
-  operationId: createAllocation
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /v1/allocations
-  method: get
-  operationId: listAllocations
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/brokers
-  method: get
-  operationId: listBrokers
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/blotter
-  method: get
-  operationId: getBlotter
+  operationId: getPerformanceAttribution
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -452,19 +409,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v1/portfolios/{portfolioId}/holdings
-  method: get
-  operationId: getPortfolioHoldings
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /v1/portfolios/{portfolioId}/holdings
-  method: put
-  operationId: updatePortfolioHoldings
+- path: /v1/pricing/evaluate
+  method: post
+  operationId: evaluateSecurities
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -478,9 +425,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /v1/portfolios/{portfolioId}/performance
-  method: get
-  operationId: getPortfolioPerformance
+- path: /data/v1/reference
+  method: post
+  operationId: getReferenceData
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -488,9 +435,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/portfolios/{portfolioId}/performance/attribution
+- path: /data/v1/securities/search
   method: get
-  operationId: getPerformanceAttribution
+  operationId: searchSecurities
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -508,9 +455,41 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/portfolios/{portfolioId}/compliance
+- path: /v1/scenarios/analyze
+  method: post
+  operationId: analyzeScenario
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/stress-tests/run
+  method: post
+  operationId: runStressTest
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/stress-tests/scenarios
   method: get
-  operationId: getComplianceStatus
+  operationId: listStressScenarios
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -518,9 +497,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/compliance/rules
+- path: /v1/yield-curves
   method: get
-  operationId: listComplianceRules
+  operationId: listYieldCurves
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -528,9 +507,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /v1/benchmarks
+- path: /v1/yield-curves/{curveId}
   method: get
-  operationId: listBenchmarks
+  operationId: getYieldCurve
   x-agentic-access:
     action-class: connected
     consequence: read
