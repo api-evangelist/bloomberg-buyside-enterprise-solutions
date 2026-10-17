@@ -219,6 +219,90 @@ paths:
           description: Order cannot be cancelled in its current state
 components:
   schemas:
+    AmendOrderRequest:
+      type: object
+      properties:
+        quantity:
+          type: number
+          description: New order quantity
+        limitPrice:
+          type: number
+          description: New limit price
+        timeInForce:
+          type: string
+          enum:
+          - DAY
+          - GTC
+          - IOC
+          - FOK
+          - GTD
+    CreateOrderRequest:
+      type: object
+      required:
+      - security
+      - side
+      - orderType
+      - quantity
+      properties:
+        security:
+          type: string
+          description: Bloomberg security identifier
+        side:
+          type: string
+          enum:
+          - BUY
+          - SELL
+          - SHORT_SELL
+          - BUY_TO_COVER
+        orderType:
+          type: string
+          enum:
+          - MARKET
+          - LIMIT
+          - STOP
+          - STOP_LIMIT
+          - PEGGED
+          - VWAP
+          - TWAP
+        quantity:
+          type: number
+          description: Order quantity
+          minimum: 0
+        limitPrice:
+          type: number
+          description: Limit price (required for LIMIT and STOP_LIMIT orders)
+        stopPrice:
+          type: number
+          description: Stop price (required for STOP and STOP_LIMIT orders)
+        timeInForce:
+          type: string
+          enum:
+          - DAY
+          - GTC
+          - IOC
+          - FOK
+          - GTD
+          default: DAY
+        expirationDate:
+          type: string
+          format: date
+          description: Expiration date (required for GTD orders)
+        portfolioId:
+          type: string
+          description: Target portfolio for allocation
+        brokerId:
+          type: string
+          description: Broker to route the order to
+        algorithm:
+          type: string
+          description: Algorithm name for algorithmic execution
+        algorithmParams:
+          type: object
+          additionalProperties: true
+          description: Algorithm-specific parameters
+        notes:
+          type: string
+          description: Order notes or instructions
     ErrorResponse:
       type: object
       properties:
@@ -238,44 +322,6 @@ components:
                     type: string
                   message:
                     type: string
-    AmendOrderRequest:
-      type: object
-      properties:
-        quantity:
-          type: number
-          description: New order quantity
-        limitPrice:
-          type: number
-          description: New limit price
-        timeInForce:
-          type: string
-          enum:
-          - DAY
-          - GTC
-          - IOC
-          - FOK
-          - GTD
-    ComplianceRejection:
-      type: object
-      properties:
-        orderId:
-          type: string
-        violations:
-          type: array
-          items:
-            type: object
-            properties:
-              ruleId:
-                type: string
-              ruleName:
-                type: string
-              message:
-                type: string
-              severity:
-                type: string
-                enum:
-                - WARNING
-                - HARD_BLOCK
     Order:
       type: object
       properties:
@@ -372,73 +418,27 @@ components:
           type: string
           format: date-time
           description: Last update timestamp
-    CreateOrderRequest:
+    ComplianceRejection:
       type: object
-      required:
-      - security
-      - side
-      - orderType
-      - quantity
       properties:
-        security:
+        orderId:
           type: string
-          description: Bloomberg security identifier
-        side:
-          type: string
-          enum:
-          - BUY
-          - SELL
-          - SHORT_SELL
-          - BUY_TO_COVER
-        orderType:
-          type: string
-          enum:
-          - MARKET
-          - LIMIT
-          - STOP
-          - STOP_LIMIT
-          - PEGGED
-          - VWAP
-          - TWAP
-        quantity:
-          type: number
-          description: Order quantity
-          minimum: 0
-        limitPrice:
-          type: number
-          description: Limit price (required for LIMIT and STOP_LIMIT orders)
-        stopPrice:
-          type: number
-          description: Stop price (required for STOP and STOP_LIMIT orders)
-        timeInForce:
-          type: string
-          enum:
-          - DAY
-          - GTC
-          - IOC
-          - FOK
-          - GTD
-          default: DAY
-        expirationDate:
-          type: string
-          format: date
-          description: Expiration date (required for GTD orders)
-        portfolioId:
-          type: string
-          description: Target portfolio for allocation
-        brokerId:
-          type: string
-          description: Broker to route the order to
-        algorithm:
-          type: string
-          description: Algorithm name for algorithmic execution
-        algorithmParams:
-          type: object
-          additionalProperties: true
-          description: Algorithm-specific parameters
-        notes:
-          type: string
-          description: Order notes or instructions
+        violations:
+          type: array
+          items:
+            type: object
+            properties:
+              ruleId:
+                type: string
+              ruleName:
+                type: string
+              message:
+                type: string
+              severity:
+                type: string
+                enum:
+                - WARNING
+                - HARD_BLOCK
   parameters:
     orderId:
       name: orderId

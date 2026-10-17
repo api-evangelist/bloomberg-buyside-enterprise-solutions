@@ -93,6 +93,16 @@ components:
                     type: string
                   message:
                     type: string
+    FieldSearchResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of matching fields
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldMetadata'
     FieldMetadata:
       type: object
       properties:
@@ -118,16 +128,6 @@ components:
         category:
           type: string
           description: Field category
-    FieldSearchResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of matching fields
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldMetadata'
   securitySchemes:
     bearerAuth:
       type: http

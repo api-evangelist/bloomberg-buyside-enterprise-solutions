@@ -46,77 +46,6 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
-    ScenarioResponse:
-      type: object
-      properties:
-        portfolioId:
-          type: string
-        baseValue:
-          type: number
-          description: Current portfolio market value
-        scenarioValue:
-          type: number
-          description: Portfolio value under scenario
-        pnlImpact:
-          type: number
-          description: Profit/loss impact
-        pnlImpactPct:
-          type: number
-          description: Profit/loss impact as a percentage
-        securityImpacts:
-          type: array
-          items:
-            type: object
-            properties:
-              security:
-                type: string
-              baseValue:
-                type: number
-              scenarioValue:
-                type: number
-              pnlImpact:
-                type: number
-              pnlImpactPct:
-                type: number
-    ScenarioRequest:
-      type: object
-      required:
-      - portfolioId
-      - shocks
-      properties:
-        portfolioId:
-          type: string
-          description: Portfolio to analyze
-        securities:
-          type: array
-          items:
-            type: string
-          description: Specific securities to analyze (if not using portfolioId)
-        shocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/MarketShock'
-          description: Market variable shocks to apply
-          minItems: 1
     MarketShock:
       type: object
       required:
@@ -151,6 +80,77 @@ components:
         currency:
           type: string
           description: Currency for the shock (ISO 4217)
+    ScenarioResponse:
+      type: object
+      properties:
+        portfolioId:
+          type: string
+        baseValue:
+          type: number
+          description: Current portfolio market value
+        scenarioValue:
+          type: number
+          description: Portfolio value under scenario
+        pnlImpact:
+          type: number
+          description: Profit/loss impact
+        pnlImpactPct:
+          type: number
+          description: Profit/loss impact as a percentage
+        securityImpacts:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+              baseValue:
+                type: number
+              scenarioValue:
+                type: number
+              pnlImpact:
+                type: number
+              pnlImpactPct:
+                type: number
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+    ScenarioRequest:
+      type: object
+      required:
+      - portfolioId
+      - shocks
+      properties:
+        portfolioId:
+          type: string
+          description: Portfolio to analyze
+        securities:
+          type: array
+          items:
+            type: string
+          description: Specific securities to analyze (if not using portfolioId)
+        shocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketShock'
+          description: Market variable shocks to apply
+          minItems: 1
   securitySchemes:
     bearerAuth:
       type: http

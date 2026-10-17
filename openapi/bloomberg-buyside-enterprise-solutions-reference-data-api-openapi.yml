@@ -107,44 +107,18 @@ paths:
           description: Unauthorized
 components:
   schemas:
-    ReferenceDataResponse:
+    SecurityData:
       type: object
       properties:
-        securities:
-          type: array
-          items:
-            $ref: '#/components/schemas/SecurityData'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
+        security:
+          type: string
+          description: Security identifier
+        fields:
           type: object
-          properties:
-            code:
-              type: string
-              description: Error code
-            message:
-              type: string
-              description: Human-readable error message
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
-    SecuritySearchResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-          description: Total number of matching securities
-        securities:
-          type: array
-          items:
-            $ref: '#/components/schemas/SecuritySummary'
+          additionalProperties: true
+          description: Map of field mnemonics to their values
+        error:
+          $ref: '#/components/schemas/SecurityError'
     SecurityError:
       type: object
       properties:
@@ -218,18 +192,44 @@ components:
         value:
           type: string
           description: Override value
-    SecurityData:
+    ReferenceDataResponse:
       type: object
       properties:
-        security:
-          type: string
-          description: Security identifier
-        fields:
-          type: object
-          additionalProperties: true
-          description: Map of field mnemonics to their values
+        securities:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecurityData'
+    ErrorResponse:
+      type: object
+      properties:
         error:
-          $ref: '#/components/schemas/SecurityError'
+          type: object
+          properties:
+            code:
+              type: string
+              description: Error code
+            message:
+              type: string
+              description: Human-readable error message
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+    SecuritySearchResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+          description: Total number of matching securities
+        securities:
+          type: array
+          items:
+            $ref: '#/components/schemas/SecuritySummary'
   securitySchemes:
     bearerAuth:
       type: http

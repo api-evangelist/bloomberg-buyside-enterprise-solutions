@@ -93,6 +93,25 @@ paths:
           description: Unauthorized
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
     DerivativePricingRequest:
       type: object
       required:
@@ -131,25 +150,35 @@ components:
         riskFreeRateOverride:
           type: number
           description: Override risk-free rate
-    ErrorResponse:
+    GreeksResponse:
       type: object
       properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                  message:
-                    type: string
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              security:
+                type: string
+              delta:
+                type: number
+              gamma:
+                type: number
+              theta:
+                type: number
+              vega:
+                type: number
+              rho:
+                type: number
+              charm:
+                type: number
+                description: Rate of change of delta over time
+              vanna:
+                type: number
+                description: Sensitivity of delta to volatility
+              volga:
+                type: number
+                description: Sensitivity of vega to volatility
     DerivativePricingResponse:
       type: object
       properties:
@@ -187,35 +216,6 @@ components:
               pricingModel:
                 type: string
                 description: Model used for pricing
-    GreeksResponse:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              security:
-                type: string
-              delta:
-                type: number
-              gamma:
-                type: number
-              theta:
-                type: number
-              vega:
-                type: number
-              rho:
-                type: number
-              charm:
-                type: number
-                description: Rate of change of delta over time
-              vanna:
-                type: number
-                description: Sensitivity of delta to volatility
-              volga:
-                type: number
-                description: Sensitivity of vega to volatility
   securitySchemes:
     bearerAuth:
       type: http

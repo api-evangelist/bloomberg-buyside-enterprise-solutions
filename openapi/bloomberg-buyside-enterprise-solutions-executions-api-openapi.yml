@@ -101,6 +101,14 @@ paths:
         '401':
           description: Unauthorized
 components:
+  parameters:
+    orderId:
+      name: orderId
+      in: path
+      required: true
+      description: Unique order identifier
+      schema:
+        type: string
   schemas:
     Execution:
       type: object
@@ -153,14 +161,6 @@ components:
           type: string
           format: date-time
           description: Execution timestamp
-  parameters:
-    orderId:
-      name: orderId
-      in: path
-      required: true
-      description: Unique order identifier
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http
