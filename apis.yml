@@ -117,6 +117,8 @@ apis:
   description: Broker routing and counterparty management
   humanURL: https://www.bloomberg.com/professional/support/api-library/
   tags:
+  - Brokerage
+  tags_raw:
   - Brokers
   properties:
   - type: OpenAPI
