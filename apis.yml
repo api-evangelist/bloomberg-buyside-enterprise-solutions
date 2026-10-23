@@ -294,6 +294,8 @@ apis:
   - type: OpenAPI
     url: openapi/bloomberg-buyside-enterprise-solutions-yield-curves-api-openapi.yml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/bloomberg-buyside-enterprise-solutions/overview
 - type: Plans
   url: plans/bloomberg-buyside-enterprise-solutions-plans-pricing.yml
 - type: RateLimits
