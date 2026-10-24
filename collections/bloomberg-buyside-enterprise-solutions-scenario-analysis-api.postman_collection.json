@@ -1,228 +1,253 @@
 {
+  "info": {
+    "_postman_id": "34a70b76-ae34-4491-a010-8a06f817c725",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics\u2026",
+    "description": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:12:10.000Z",
+    "updatedAt": "2026-10-22T03:12:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-34a70b76-ae34-4491-a010-8a06f817c725"
+  },
   "item": [
     {
-      "id": "6596eff5-a772-419b-9c88-f673c6c9ea76",
-      "name": "Scenario Analysis",
-      "description": {
-        "content": "What-if scenario analysis for portfolios and securities",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "1794a864-0d97-4b8a-8aeb-d3079182ba4c",
-          "name": "Bloomberg Buyside Enterprise Solutions Run scenario analysis",
-          "request": {
-            "name": "Bloomberg Buyside Enterprise Solutions Run scenario analysis",
-            "description": {
-              "content": "Perform what-if scenario analysis on a portfolio or set of securities by applying hypothetical changes to market variables such as interest rates, credit spreads, equity prices, or volatility.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "scenarios",
-                "analyze"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"<string>\",\n      \"shockType\": \"<string>\",\n      \"value\": \"<number>\",\n      \"tenor\": \"<string>\",\n      \"currency\": \"<string>\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "scenarios",
+          "item": [
             {
-              "id": "d5d5f6b2-3122-4479-a477-1abfa55c2cac",
-              "name": "Scenario analysis results",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "scenarios",
-                    "analyze"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+              "name": "analyze",
+              "item": [
+                {
+                  "name": "Bloomberg Buyside Enterprise Solutions Run scenario analysis",
+                  "id": "4aae66af-4a7a-4c9a-8f5a-4b70cdd811ed",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"VOLATILITY\",\n      \"shockType\": \"OVERRIDE\",\n      \"value\": 203.42509026583411,\n      \"tenor\": \"string\",\n      \"currency\": \"string\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"portfolioId\": \"string\",\n  \"baseValue\": 1724.8362660531047,\n  \"scenarioValue\": 4147.553391920398,\n  \"pnlImpact\": 9761.239922410028,\n  \"pnlImpactPct\": 161.88615393689986,\n  \"securityImpacts\": [\n    {\n      \"security\": \"string\",\n      \"baseValue\": 4086.0604539251253,\n      \"scenarioValue\": 7759.4890275432535,\n      \"pnlImpact\": 9318.605710838207,\n      \"pnlImpactPct\": 2719.9926917593066\n    },\n    {\n      \"security\": \"string\",\n      \"baseValue\": 3199.47231388782,\n      \"scenarioValue\": 5459.945239052394,\n      \"pnlImpact\": 1038.2913877381861,\n      \"pnlImpactPct\": 5022.629752792899\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "d7acf524-28c0-43b9-b003-6b398e415415",
-              "name": "Invalid request parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "scenarios",
-                    "analyze"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"CREDIT_SPREAD\",\n      \"shockType\": \"ABSOLUTE\",\n      \"value\": \"<number>\",\n      \"tenor\": \"<string>\",\n      \"currency\": \"<string>\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/scenarios/analyze",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "scenarios",
+                        "analyze"
+                      ]
+                    },
+                    "description": "Perform what-if scenario analysis on a portfolio or set of securities by applying hypothetical changes to market variables such as interest rates, credit spreads, equity prices, or volatility."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"VOLATILITY\",\n      \"shockType\": \"OVERRIDE\",\n      \"value\": 203.42509026583411,\n      \"tenor\": \"string\",\n      \"currency\": \"string\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ce1ad481-1c88-458e-9608-0a1adf136e1a",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "scenarios",
-                    "analyze"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "response": [
+                    {
+                      "id": "12377e01-76e4-4753-b064-6de9e6574d36",
+                      "name": "Scenario analysis results",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"CREDIT_SPREAD\",\n      \"shockType\": \"ABSOLUTE\",\n      \"value\": \"<number>\",\n      \"tenor\": \"<string>\",\n      \"currency\": \"<string>\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/scenarios/analyze",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "scenarios",
+                            "analyze"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"portfolioId\": \"<string>\",\n  \"baseValue\": \"<number>\",\n  \"scenarioValue\": \"<number>\",\n  \"pnlImpact\": \"<number>\",\n  \"pnlImpactPct\": \"<number>\",\n  \"securityImpacts\": [\n    {\n      \"security\": \"<string>\",\n      \"baseValue\": \"<number>\",\n      \"scenarioValue\": \"<number>\",\n      \"pnlImpact\": \"<number>\",\n      \"pnlImpactPct\": \"<number>\"\n    },\n    {\n      \"security\": \"<string>\",\n      \"baseValue\": \"<number>\",\n      \"scenarioValue\": \"<number>\",\n      \"pnlImpact\": \"<number>\",\n      \"pnlImpactPct\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T03:12:11.000Z",
+                      "updatedAt": "2026-10-22T03:12:11.000Z",
+                      "uid": "35240-12377e01-76e4-4753-b064-6de9e6574d36"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"VOLATILITY\",\n      \"shockType\": \"OVERRIDE\",\n      \"value\": 203.42509026583411,\n      \"tenor\": \"string\",\n      \"currency\": \"string\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    {
+                      "id": "5c9750d3-824b-4dbc-90e4-268be81ce130",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"CREDIT_SPREAD\",\n      \"shockType\": \"ABSOLUTE\",\n      \"value\": \"<number>\",\n      \"tenor\": \"<string>\",\n      \"currency\": \"<string>\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/scenarios/analyze",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "scenarios",
+                            "analyze"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": [\n      {\n        \"field\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T03:12:11.000Z",
+                      "updatedAt": "2026-10-22T03:12:11.000Z",
+                      "uid": "35240-5c9750d3-824b-4dbc-90e4-268be81ce130"
+                    },
+                    {
+                      "id": "0022d192-656c-4fd3-b425-38c86fb53aaf",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"portfolioId\": \"<string>\",\n  \"shocks\": [\n    {\n      \"variable\": \"CREDIT_SPREAD\",\n      \"shockType\": \"ABSOLUTE\",\n      \"value\": \"<number>\",\n      \"tenor\": \"<string>\",\n      \"currency\": \"<string>\"\n    }\n  ],\n  \"securities\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/scenarios/analyze",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "scenarios",
+                            "analyze"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:12:11.000Z",
+                      "updatedAt": "2026-10-22T03:12:11.000Z",
+                      "uid": "35240-0022d192-656c-4fd3-b425-38c86fb53aaf"
                     }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-22T03:12:11.000Z",
+                  "updatedAt": "2026-10-22T03:12:11.000Z",
+                  "uid": "35240-4aae66af-4a7a-4c9a-8f5a-4b70cdd811ed"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "943f89a3-dc5b-4d17-b9ae-be1f649aa622",
+              "createdAt": "2026-10-22T03:12:11.000Z",
+              "updatedAt": "2026-10-22T03:12:11.000Z",
+              "uid": "35240-943f89a3-dc5b-4d17-b9ae-be1f649aa622"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "30ed298d-aeac-4b54-b70a-361d38bee05f",
+          "createdAt": "2026-10-22T03:12:11.000Z",
+          "updatedAt": "2026-10-22T03:12:11.000Z",
+          "uid": "35240-30ed298d-aeac-4b54-b70a-361d38bee05f"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.bloomberg.com/analytics",
-      "key": "baseUrl"
+      "id": "a3733fe7-d525-43b8-b0b9-ab68b869ae8c",
+      "createdAt": "2026-10-22T03:12:11.000Z",
+      "updatedAt": "2026-10-22T03:12:11.000Z",
+      "uid": "35240-a3733fe7-d525-43b8-b0b9-ab68b869ae8c"
     }
   ],
   "auth": {
@@ -230,17 +255,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "af728a96-6b0d-4ca6-8dd7-fefeb53d473a",
-    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Scenario Analysis API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bloomberg.com/analytics"
     }
-  }
+  ]
 }

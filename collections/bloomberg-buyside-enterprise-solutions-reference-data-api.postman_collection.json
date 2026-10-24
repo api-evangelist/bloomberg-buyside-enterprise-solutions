@@ -1,574 +1,617 @@
 {
+  "info": {
+    "_postman_id": "2bc5ce1b-fa8c-44dc-b81b-74dff3b69ae0",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Data\u2026",
+    "description": "Programmatic access to Bloomberg's financial data including reference data, historical pricing, corporate actions, and market data for portfolio management and analytics. Part of Bloomberg's buy-side enterprise solutions for asset managers, hedge funds, and institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:11:54.000Z",
+    "updatedAt": "2026-10-22T03:11:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2bc5ce1b-fa8c-44dc-b81b-74dff3b69ae0"
+  },
   "item": [
     {
-      "id": "bc412f9b-1242-43ed-85b0-93b1ff1e016b",
-      "name": "Reference Data",
-      "description": {
-        "content": "Security reference data including identifiers, classifications, and descriptive information",
-        "type": "text/plain"
-      },
+      "name": "data",
       "item": [
         {
-          "id": "92f22ae3-a883-4d35-8aa9-5ba46fc0a8f2",
-          "name": "Bloomberg Buyside Enterprise Solutions Get reference data for securities",
-          "request": {
-            "name": "Bloomberg Buyside Enterprise Solutions Get reference data for securities",
-            "description": {
-              "content": "Retrieve reference data fields for one or more securities. Returns static or slowly changing descriptive data such as identifiers, classifications, issue details, and corporate information.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "data",
-                "v1",
-                "reference"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "4e09fc70-c5fa-431a-93bb-d2bd1a86c456",
-              "name": "Reference data returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "reference"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+              "name": "reference",
+              "item": [
+                {
+                  "name": "Bloomberg Buyside Enterprise Solutions Get reference data for securities",
+                  "id": "3ba3a2a6-8dc4-4726-9d4d-56ad1917a35b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"fieldId\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"securities\": [\n    {\n      \"security\": \"string\",\n      \"fields\": {\n        \"key_0\": \"string\",\n        \"key_1\": false,\n        \"key_2\": \"string\",\n        \"key_3\": 7384,\n        \"key_4\": 6180\n      },\n      \"error\": {\n        \"code\": \"string\",\n        \"message\": \"string\"\n      }\n    },\n    {\n      \"security\": \"string\",\n      \"fields\": {\n        \"key_0\": 2404.599200085594\n      },\n      \"error\": {\n        \"code\": \"string\",\n        \"message\": \"string\"\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "36cfd2c6-a2a6-4511-b736-6dc9526ee0ae",
-              "name": "Invalid request parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "reference"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "url": {
+                      "raw": "{{baseUrl}}/data/v1/reference",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data",
+                        "v1",
+                        "reference"
+                      ]
+                    },
+                    "description": "Retrieve reference data fields for one or more securities. Returns static or slowly changing descriptive data such as identifiers, classifications, issue details, and corporate information."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"fieldId\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                  "response": [
+                    {
+                      "id": "1464cc7d-1ffc-4e4c-b428-79e7581bb063",
+                      "name": "Reference data returned successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/reference",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "reference"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"securities\": [\n    {\n      \"security\": \"<string>\",\n      \"fields\": {\n        \"ipsum6c1\": \"occaecat aute\",\n        \"sint_e\": -53100834,\n        \"pariatur_c\": \"occaecat cillum\",\n        \"occaecat_20\": false\n      },\n      \"error\": {\n        \"code\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    },\n    {\n      \"security\": \"<string>\",\n      \"fields\": {\n        \"non650\": \"minim non\",\n        \"in_8a4\": -56786023\n      },\n      \"error\": {\n        \"code\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T03:11:54.000Z",
+                      "updatedAt": "2026-10-22T03:11:54.000Z",
+                      "uid": "35240-1464cc7d-1ffc-4e4c-b428-79e7581bb063"
+                    },
+                    {
+                      "id": "7a6bfeba-de63-463d-bb2d-d18ec0489d2c",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/reference",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "reference"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": [\n      {\n        \"field\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T03:11:54.000Z",
+                      "updatedAt": "2026-10-22T03:11:54.000Z",
+                      "uid": "35240-7a6bfeba-de63-463d-bb2d-d18ec0489d2c"
+                    },
+                    {
+                      "id": "a04180dd-d104-4898-99d6-1453013fb0fd",
+                      "name": "Unauthorized - invalid or expired token",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/reference",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "reference"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:11:54.000Z",
+                      "updatedAt": "2026-10-22T03:11:54.000Z",
+                      "uid": "35240-a04180dd-d104-4898-99d6-1453013fb0fd"
+                    },
+                    {
+                      "id": "7d544147-bbb2-4eae-91d9-a5575c1eeb53",
+                      "name": "Forbidden - insufficient data entitlements",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/reference",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "reference"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:11:54.000Z",
+                      "updatedAt": "2026-10-22T03:11:54.000Z",
+                      "uid": "35240-7d544147-bbb2-4eae-91d9-a5575c1eeb53"
+                    },
+                    {
+                      "id": "82f3c270-6d93-4d62-9fd0-9939b78eda15",
+                      "name": "Rate limit exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"fieldId\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/reference",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "reference"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:11:54.000Z",
+                      "updatedAt": "2026-10-22T03:11:54.000Z",
+                      "uid": "35240-82f3c270-6d93-4d62-9fd0-9939b78eda15"
                     }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "createdAt": "2026-10-22T03:11:54.000Z",
+                  "updatedAt": "2026-10-22T03:11:54.000Z",
+                  "uid": "35240-3ba3a2a6-8dc4-4726-9d4d-56ad1917a35b"
                 }
               ],
-              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "74d1b15c-7f86-49d9-a248-d728c456d10c",
+              "createdAt": "2026-10-22T03:11:54.000Z",
+              "updatedAt": "2026-10-22T03:11:54.000Z",
+              "uid": "35240-74d1b15c-7f86-49d9-a248-d728c456d10c"
             },
             {
-              "id": "a6008184-24fc-4953-bea5-839eb46b2b8a",
-              "name": "Unauthorized - invalid or expired token",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "reference"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"fieldId\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
+              "name": "securities",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "name": "search",
+                  "item": [
+                    {
+                      "name": "Bloomberg Buyside Enterprise Solutions Search for securities",
+                      "id": "caa3b210-4f9e-4d0a-a79c-3894e1b46bf5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/securities/search?query=<string>&assetClass=Currency&limit=25&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "securities",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Security name, ticker, or identifier to search for",
+                              "key": "query",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter by asset class",
+                              "key": "assetClass",
+                              "value": "Currency"
+                            },
+                            {
+                              "description": "Maximum number of results",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Number of results to skip",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ]
+                        },
+                        "description": "Search for securities by name, ticker, ISIN, CUSIP, or other identifiers. Returns matching securities with key reference fields."
+                      },
+                      "response": [
+                        {
+                          "id": "e179d9e3-9ac9-431b-a67e-3957f768891a",
+                          "name": "Security search results",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/data/v1/securities/search?query=<string>&assetClass=Currency&limit=25&offset=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "data",
+                                "v1",
+                                "securities",
+                                "search"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Security name, ticker, or identifier to search for",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by asset class",
+                                  "key": "assetClass",
+                                  "value": "Currency"
+                                },
+                                {
+                                  "description": "Maximum number of results",
+                                  "key": "limit",
+                                  "value": "25"
+                                },
+                                {
+                                  "description": "Number of results to skip",
+                                  "key": "offset",
+                                  "value": "0"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"totalCount\": \"<integer>\",\n  \"securities\": [\n    {\n      \"ticker\": \"<string>\",\n      \"name\": \"<string>\",\n      \"assetClass\": \"<string>\",\n      \"exchange\": \"<string>\",\n      \"country\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"isin\": \"<string>\",\n      \"cusip\": \"<string>\",\n      \"figi\": \"<string>\"\n    },\n    {\n      \"ticker\": \"<string>\",\n      \"name\": \"<string>\",\n      \"assetClass\": \"<string>\",\n      \"exchange\": \"<string>\",\n      \"country\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"isin\": \"<string>\",\n      \"cusip\": \"<string>\",\n      \"figi\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-10-22T03:11:54.000Z",
+                          "updatedAt": "2026-10-22T03:11:54.000Z",
+                          "uid": "35240-e179d9e3-9ac9-431b-a67e-3957f768891a"
+                        },
+                        {
+                          "id": "ecc371c0-3204-4c08-838e-9f98d2372987",
+                          "name": "Invalid request parameters",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/data/v1/securities/search?query=<string>&assetClass=Currency&limit=25&offset=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "data",
+                                "v1",
+                                "securities",
+                                "search"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Security name, ticker, or identifier to search for",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by asset class",
+                                  "key": "assetClass",
+                                  "value": "Currency"
+                                },
+                                {
+                                  "description": "Maximum number of results",
+                                  "key": "limit",
+                                  "value": "25"
+                                },
+                                {
+                                  "description": "Number of results to skip",
+                                  "key": "offset",
+                                  "value": "0"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": [\n      {\n        \"field\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                          "createdAt": "2026-10-22T03:11:54.000Z",
+                          "updatedAt": "2026-10-22T03:11:54.000Z",
+                          "uid": "35240-ecc371c0-3204-4c08-838e-9f98d2372987"
+                        },
+                        {
+                          "id": "2c8e697b-c116-4d50-8fb4-ceec0a63a6c8",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/data/v1/securities/search?query=<string>&assetClass=Currency&limit=25&offset=0",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "data",
+                                "v1",
+                                "securities",
+                                "search"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Security name, ticker, or identifier to search for",
+                                  "key": "query",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Filter by asset class",
+                                  "key": "assetClass",
+                                  "value": "Currency"
+                                },
+                                {
+                                  "description": "Maximum number of results",
+                                  "key": "limit",
+                                  "value": "25"
+                                },
+                                {
+                                  "description": "Number of results to skip",
+                                  "key": "offset",
+                                  "value": "0"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T03:11:54.000Z",
+                          "updatedAt": "2026-10-22T03:11:54.000Z",
+                          "uid": "35240-2c8e697b-c116-4d50-8fb4-ceec0a63a6c8"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T03:11:54.000Z",
+                      "updatedAt": "2026-10-22T03:11:54.000Z",
+                      "uid": "35240-caa3b210-4f9e-4d0a-a79c-3894e1b46bf5"
+                    }
+                  ],
+                  "id": "23bb1ab4-4e54-4e2d-9849-fb61d3a83b13",
+                  "createdAt": "2026-10-22T03:11:54.000Z",
+                  "updatedAt": "2026-10-22T03:11:54.000Z",
+                  "uid": "35240-23bb1ab4-4e54-4e2d-9849-fb61d3a83b13"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "a5ee0158-4fed-4f5d-856d-3e336ffa409a",
-              "name": "Forbidden - insufficient data entitlements",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "reference"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"fieldId\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "30db6db0-c0b5-465b-99c0-e6fa59b63b08",
-              "name": "Rate limit exceeded",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "reference"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"overrides\": [\n    {\n      \"fieldId\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"fieldId\": \"string\",\n      \"value\": \"string\"\n    }\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "d6a5c3be-2e7d-4ee5-822e-54aac3cd1e49",
+              "createdAt": "2026-10-22T03:11:54.000Z",
+              "updatedAt": "2026-10-22T03:11:54.000Z",
+              "uid": "35240-d6a5c3be-2e7d-4ee5-822e-54aac3cd1e49"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "d0c1e9f7-7b74-48e6-9e8d-6ece0a5e1771",
-          "name": "Bloomberg Buyside Enterprise Solutions Search for securities",
-          "request": {
-            "name": "Bloomberg Buyside Enterprise Solutions Search for securities",
-            "description": {
-              "content": "Search for securities by name, ticker, ISIN, CUSIP, or other identifiers. Returns matching securities with key reference fields.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "data",
-                "v1",
-                "securities",
-                "search"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "query",
-                  "value": "<string>",
-                  "description": "(Required) Security name, ticker, or identifier to search for"
-                },
-                {
-                  "disabled": false,
-                  "key": "assetClass",
-                  "value": "<string>",
-                  "description": "Filter by asset class"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "25",
-                  "description": "Maximum number of results"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Number of results to skip"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "664dfb9c-afa3-49b1-8712-5a15783a01d2",
-              "name": "Security search results",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "securities",
-                    "search"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "query",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "assetClass",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"totalCount\": 5125,\n  \"securities\": [\n    {\n      \"ticker\": \"string\",\n      \"name\": \"string\",\n      \"assetClass\": \"string\",\n      \"exchange\": \"string\",\n      \"country\": \"string\",\n      \"currency\": \"string\",\n      \"isin\": \"string\",\n      \"cusip\": \"string\",\n      \"figi\": \"string\"\n    },\n    {\n      \"ticker\": \"string\",\n      \"name\": \"string\",\n      \"assetClass\": \"string\",\n      \"exchange\": \"string\",\n      \"country\": \"string\",\n      \"currency\": \"string\",\n      \"isin\": \"string\",\n      \"cusip\": \"string\",\n      \"figi\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "a3739b6d-861f-4f7b-bee7-8ed3e1316772",
-              "name": "Invalid request parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "securities",
-                    "search"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "query",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "assetClass",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8ce69a9f-777d-4812-9ee3-089e31c8502e",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "securities",
-                    "search"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "query",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "assetClass",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "25"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "d45cc459-8e16-40f8-b283-d5def894fc90",
+          "createdAt": "2026-10-22T03:11:54.000Z",
+          "updatedAt": "2026-10-22T03:11:54.000Z",
+          "uid": "35240-d45cc459-8e16-40f8-b283-d5def894fc90"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.bloomberg.com/analytics",
-      "key": "baseUrl"
+      "id": "b9015e55-9f5a-4b5d-bdeb-92d2d9a8d22d",
+      "createdAt": "2026-10-22T03:11:54.000Z",
+      "updatedAt": "2026-10-22T03:11:54.000Z",
+      "uid": "35240-b9015e55-9f5a-4b5d-bdeb-92d2d9a8d22d"
     }
   ],
   "auth": {
@@ -576,17 +619,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "9e552ffe-8cf9-49d1-afe3-3e2ab1251dbf",
-    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Reference Data API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bloomberg.com"
     }
-  }
+  ]
 }

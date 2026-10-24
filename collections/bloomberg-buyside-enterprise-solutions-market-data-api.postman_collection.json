@@ -1,326 +1,351 @@
 {
+  "info": {
+    "_postman_id": "b3067de7-bff7-4b14-84ca-f31910029994",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Data\u2026",
+    "description": "Programmatic access to Bloomberg's financial data including reference data, historical pricing, corporate actions, and market data for portfolio management and analytics. Part of Bloomberg's buy-side enterprise solutions for asset managers, hedge funds, and institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:11:15.000Z",
+    "updatedAt": "2026-10-22T03:11:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b3067de7-bff7-4b14-84ca-f31910029994"
+  },
   "item": [
     {
-      "id": "4dccb749-c43f-4d7e-b99d-726a0ded00ce",
-      "name": "Market Data",
-      "description": {
-        "content": "Real-time and delayed market data snapshots",
-        "type": "text/plain"
-      },
+      "name": "data",
       "item": [
         {
-          "id": "5b7d85c5-fb90-4fcd-86f2-0b2b13e0ee98",
-          "name": "Bloomberg Buyside Enterprise Solutions Get market data snapshot",
-          "request": {
-            "name": "Bloomberg Buyside Enterprise Solutions Get market data snapshot",
-            "description": {
-              "content": "Retrieve a snapshot of current or delayed market data for one or more securities, including last price, bid, ask, volume, and other real-time fields.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "data",
-                "v1",
-                "market"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "ab836ed9-62b7-436e-b340-3b9eb77450ef",
-              "name": "Market data snapshot returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "market"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+              "name": "market",
+              "item": [
+                {
+                  "name": "Bloomberg Buyside Enterprise Solutions Get market data snapshot",
+                  "id": "af97cc23-a231-471d-8bc8-353bcfdae662",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"securities\": [\n    {\n      \"security\": \"string\",\n      \"fields\": {\n        \"key_0\": \"string\",\n        \"key_1\": true\n      },\n      \"error\": {\n        \"code\": \"string\",\n        \"message\": \"string\"\n      }\n    },\n    {\n      \"security\": \"string\",\n      \"fields\": {\n        \"key_0\": true,\n        \"key_1\": 4507,\n        \"key_2\": 8139\n      },\n      \"error\": {\n        \"code\": \"string\",\n        \"message\": \"string\"\n      }\n    }\n  ],\n  \"timestamp\": \"1977-04-02T10:24:41.207Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "fea92ad2-5d2f-4d89-9c43-2005043202e8",
-              "name": "Invalid request parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "market"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "url": {
+                      "raw": "{{baseUrl}}/data/v1/market",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data",
+                        "v1",
+                        "market"
+                      ]
+                    },
+                    "description": "Retrieve a snapshot of current or delayed market data for one or more securities, including last price, bid, ask, volume, and other real-time fields."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8911bceb-4248-4e0f-b69e-3e9ac7d154f8",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "market"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "response": [
+                    {
+                      "id": "9b555211-a775-4817-8d1c-aa8f582e4546",
+                      "name": "Market data snapshot returned successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/market",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "market"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"securities\": [\n    {\n      \"security\": \"<string>\",\n      \"fields\": {\n        \"dolore_f\": -79121221\n      },\n      \"error\": {\n        \"code\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    },\n    {\n      \"security\": \"<string>\",\n      \"fields\": {\n        \"ete7\": 21514484.77014193\n      },\n      \"error\": {\n        \"code\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    }\n  ],\n  \"timestamp\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T03:11:16.000Z",
+                      "updatedAt": "2026-10-22T03:11:16.000Z",
+                      "uid": "35240-9b555211-a775-4817-8d1c-aa8f582e4546"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "3f014645-3894-453f-a6b2-fe95f2aafcbc",
-              "name": "Forbidden - insufficient data entitlements",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "market"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                    {
+                      "id": "ddff8002-266f-404d-9887-2ac97b4fb59e",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/market",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "market"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": [\n      {\n        \"field\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T03:11:16.000Z",
+                      "updatedAt": "2026-10-22T03:11:16.000Z",
+                      "uid": "35240-ddff8002-266f-404d-9887-2ac97b4fb59e"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "8d8a2db7-b2ee-4809-b114-b42789d4da75",
-              "name": "Rate limit exceeded",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "market"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                    {
+                      "id": "f25dc9ea-7403-4a01-94cb-893e2dd45b19",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/market",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "market"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:11:16.000Z",
+                      "updatedAt": "2026-10-22T03:11:16.000Z",
+                      "uid": "35240-f25dc9ea-7403-4a01-94cb-893e2dd45b19"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    {
+                      "id": "0a55c4a8-fd0a-4fcb-b289-316789770655",
+                      "name": "Forbidden - insufficient data entitlements",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/market",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "market"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:11:16.000Z",
+                      "updatedAt": "2026-10-22T03:11:16.000Z",
+                      "uid": "35240-0a55c4a8-fd0a-4fcb-b289-316789770655"
+                    },
+                    {
+                      "id": "ff8c3216-6bd5-4bdb-a074-f1e0fe86face",
+                      "name": "Rate limit exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/market",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "market"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:11:16.000Z",
+                      "updatedAt": "2026-10-22T03:11:16.000Z",
+                      "uid": "35240-ff8c3216-6bd5-4bdb-a074-f1e0fe86face"
                     }
-                  }
-                }
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-22T03:11:16.000Z",
+                  "updatedAt": "2026-10-22T03:11:16.000Z",
+                  "uid": "35240-af97cc23-a231-471d-8bc8-353bcfdae662"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "b27c9369-0f31-4683-b248-a4b146ae2298",
+              "createdAt": "2026-10-22T03:11:16.000Z",
+              "updatedAt": "2026-10-22T03:11:16.000Z",
+              "uid": "35240-b27c9369-0f31-4683-b248-a4b146ae2298"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "c4e741b8-597c-4e5a-8738-b0b12aa2a28e",
+          "createdAt": "2026-10-22T03:11:16.000Z",
+          "updatedAt": "2026-10-22T03:11:16.000Z",
+          "uid": "35240-c4e741b8-597c-4e5a-8738-b0b12aa2a28e"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.bloomberg.com/analytics",
-      "key": "baseUrl"
+      "id": "9c282fd6-0a30-43a7-84f0-f3f413928e2f",
+      "createdAt": "2026-10-22T03:11:16.000Z",
+      "updatedAt": "2026-10-22T03:11:16.000Z",
+      "uid": "35240-9c282fd6-0a30-43a7-84f0-f3f413928e2f"
     }
   ],
   "auth": {
@@ -328,17 +353,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "8782c77a-e226-45dc-8dbc-dd05df8464bb",
-    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Market Data API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bloomberg.com"
     }
-  }
+  ]
 }

@@ -1,405 +1,396 @@
 {
+  "info": {
+    "_postman_id": "64ed0d07-de72-428d-a4bf-66c7a409d4b9",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics\u2026",
+    "description": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:12:23.000Z",
+    "updatedAt": "2026-10-22T03:12:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-64ed0d07-de72-428d-a4bf-66c7a409d4b9"
+  },
   "item": [
     {
-      "id": "05123d7e-5cfa-484b-8813-5eb3088a4970",
-      "name": "Yield Curves",
-      "description": {
-        "content": "Yield curve construction and management",
-        "type": "text/plain"
-      },
+      "name": "v1",
       "item": [
         {
-          "id": "ff1beeb5-8515-49a4-82df-ef67b0d9df6f",
-          "name": "Bloomberg Buyside Enterprise Solutions List available yield curves",
-          "request": {
-            "name": "Bloomberg Buyside Enterprise Solutions List available yield curves",
-            "description": {
-              "content": "Retrieve a list of available yield curves, including sovereign, swap, and corporate curves for various currencies.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "yield-curves"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "currency",
-                  "value": "<string>",
-                  "description": "Filter by currency (ISO 4217)"
-                },
-                {
-                  "disabled": false,
-                  "key": "type",
-                  "value": "<string>",
-                  "description": "Filter by curve type"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "50"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "yield-curves",
+          "item": [
             {
-              "id": "266a3eb0-958d-43b6-90df-f6cf122a90bb",
-              "name": "List of yield curves",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "yield-curves"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "{curveId}",
+              "item": [
+                {
+                  "name": "Bloomberg Buyside Enterprise Solutions Get yield curve data",
+                  "id": "d06a1907-d818-4a56-aad6-f2cb4f576a69",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/yield-curves/:curveId?asOfDate=<date>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "yield-curves",
+                        ":curveId"
+                      ],
+                      "query": [
+                        {
+                          "description": "Curve date (defaults to most recent)",
+                          "key": "asOfDate",
+                          "value": "<date>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8ca9c2c2-7f8e-4f0d-bf60-1ce5abf667d2",
+                          "key": "curveId",
+                          "value": "<string>",
+                          "description": "(Required) Yield curve identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve the full yield curve data including term structure points, zero rates, forward rates, and discount factors for a specific curve as of a given date."
+                  },
+                  "response": [
                     {
-                      "key": "currency",
-                      "value": "<string>"
+                      "id": "5c10f931-a3f0-47c1-9dfa-efea20a9f062",
+                      "name": "Yield curve data",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/yield-curves/:curveId?asOfDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "yield-curves",
+                            ":curveId"
+                          ],
+                          "query": [
+                            {
+                              "description": "Curve date (defaults to most recent)",
+                              "key": "asOfDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "curveId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"currency\": \"<string>\",\n  \"type\": \"<string>\",\n  \"asOfDate\": \"<date>\",\n  \"points\": [\n    {\n      \"tenor\": \"<string>\",\n      \"maturityDate\": \"<date>\",\n      \"yieldRate\": \"<number>\",\n      \"zeroRate\": \"<number>\",\n      \"forwardRate\": \"<number>\",\n      \"discountFactor\": \"<number>\"\n    },\n    {\n      \"tenor\": \"<string>\",\n      \"maturityDate\": \"<date>\",\n      \"yieldRate\": \"<number>\",\n      \"zeroRate\": \"<number>\",\n      \"forwardRate\": \"<number>\",\n      \"discountFactor\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T03:12:23.000Z",
+                      "updatedAt": "2026-10-22T03:12:23.000Z",
+                      "uid": "35240-5c10f931-a3f0-47c1-9dfa-efea20a9f062"
                     },
                     {
-                      "key": "type",
-                      "value": "<string>"
+                      "id": "9afcc0a9-5250-47c4-9a51-a129985a5c75",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/yield-curves/:curveId?asOfDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "yield-curves",
+                            ":curveId"
+                          ],
+                          "query": [
+                            {
+                              "description": "Curve date (defaults to most recent)",
+                              "key": "asOfDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "curveId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:12:23.000Z",
+                      "updatedAt": "2026-10-22T03:12:23.000Z",
+                      "uid": "35240-9afcc0a9-5250-47c4-9a51-a129985a5c75"
                     },
                     {
-                      "key": "limit",
-                      "value": "50"
+                      "id": "6719f511-c64c-4205-9b01-60abc6ecc371",
+                      "name": "Yield curve not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/yield-curves/:curveId?asOfDate=<date>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "yield-curves",
+                            ":curveId"
+                          ],
+                          "query": [
+                            {
+                              "description": "Curve date (defaults to most recent)",
+                              "key": "asOfDate",
+                              "value": "<date>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "curveId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:12:23.000Z",
+                      "updatedAt": "2026-10-22T03:12:23.000Z",
+                      "uid": "35240-6719f511-c64c-4205-9b01-60abc6ecc371"
                     }
                   ],
-                  "variable": []
-                },
+                  "createdAt": "2026-10-22T03:12:23.000Z",
+                  "updatedAt": "2026-10-22T03:12:23.000Z",
+                  "uid": "35240-d06a1907-d818-4a56-aad6-f2cb4f576a69"
+                }
+              ],
+              "id": "5c135059-ea4c-40e2-ad9c-33192374fda0",
+              "createdAt": "2026-10-22T03:12:23.000Z",
+              "updatedAt": "2026-10-22T03:12:23.000Z",
+              "uid": "35240-5c135059-ea4c-40e2-ad9c-33192374fda0"
+            },
+            {
+              "name": "Bloomberg Buyside Enterprise Solutions List available yield curves",
+              "id": "dc1304d2-8fbc-4b53-825e-358cab5d3bb9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"curves\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"type\": \"CORPORATE\",\n      \"country\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"currency\": \"string\",\n      \"type\": \"SOVEREIGN\",\n      \"country\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ab7c69c5-d6a6-4fa8-8bcb-c2d5f618cfb3",
-              "name": "Unauthorized",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/v1/yield-curves?currency=<string>&type=MUNICIPAL&limit=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "v1",
                     "yield-curves"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "Filter by currency (ISO 4217)",
                       "key": "currency",
                       "value": "<string>"
                     },
                     {
+                      "description": "Filter by curve type",
                       "key": "type",
-                      "value": "<string>"
+                      "value": "MUNICIPAL"
                     },
                     {
                       "key": "limit",
                       "value": "50"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "9464a9c7-a791-41f6-a51d-4c4b899ca604",
-          "name": "Bloomberg Buyside Enterprise Solutions Get yield curve data",
-          "request": {
-            "name": "Bloomberg Buyside Enterprise Solutions Get yield curve data",
-            "description": {
-              "content": "Retrieve the full yield curve data including term structure points, zero rates, forward rates, and discount factors for a specific curve as of a given date.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "v1",
-                "yield-curves",
-                ":curveId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "asOfDate",
-                  "value": "<date>",
-                  "description": "Curve date (defaults to most recent)"
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "curveId",
-                  "description": "(Required) Yield curve identifier"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e24bd1c8-5fdf-4405-90d5-ea68c2e16b64",
-              "name": "Yield curve data",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "yield-curves",
-                    ":curveId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "asOfDate",
-                      "value": "<date>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "curveId",
-                      "description": "(Required) Yield curve identifier"
-                    }
                   ]
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                "description": "Retrieve a list of available yield curves, including sovereign, swap, and corporate curves for various currencies."
+              },
+              "response": [
+                {
+                  "id": "0ae04bdc-a521-46f0-a46d-2eebb29efd8f",
+                  "name": "List of yield curves",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/yield-curves?currency=<string>&type=MUNICIPAL&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "yield-curves"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by currency (ISO 4217)",
+                          "key": "currency",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by curve type",
+                          "key": "type",
+                          "value": "MUNICIPAL"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ]
+                    }
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"currency\": \"string\",\n  \"type\": \"string\",\n  \"asOfDate\": \"2015-01-29\",\n  \"points\": [\n    {\n      \"tenor\": \"string\",\n      \"maturityDate\": \"1953-03-25\",\n      \"yieldRate\": 2764.0835681495614,\n      \"zeroRate\": 2749.1186161204982,\n      \"forwardRate\": 8102.843073801453,\n      \"discountFactor\": 9639.696562629842\n    },\n    {\n      \"tenor\": \"string\",\n      \"maturityDate\": \"1984-12-21\",\n      \"yieldRate\": 519.8256552108327,\n      \"zeroRate\": 9349.39136292548,\n      \"forwardRate\": 5543.280480269565,\n      \"discountFactor\": 7703.870398136603\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ebc477d3-4964-4af4-b6a0-deb0cfeb4247",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "yield-curves",
-                    ":curveId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "asOfDate",
-                      "value": "<date>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "curveId",
-                      "description": "(Required) Yield curve identifier"
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"curves\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"type\": \"CORPORATE\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"type\": \"SOVEREIGN\",\n      \"country\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T03:12:23.000Z",
+                  "updatedAt": "2026-10-22T03:12:23.000Z",
+                  "uid": "35240-0ae04bdc-a521-46f0-a46d-2eebb29efd8f"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  "id": "945560d8-2224-454d-896c-515c41383369",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/yield-curves?currency=<string>&type=MUNICIPAL&limit=50",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "yield-curves"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by currency (ISO 4217)",
+                          "key": "currency",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by curve type",
+                          "key": "type",
+                          "value": "MUNICIPAL"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "50"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T03:12:23.000Z",
+                  "updatedAt": "2026-10-22T03:12:23.000Z",
+                  "uid": "35240-945560d8-2224-454d-896c-515c41383369"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "9d06e580-1b07-468d-8a18-5fd4aaafec48",
-              "name": "Yield curve not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "v1",
-                    "yield-curves",
-                    ":curveId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "asOfDate",
-                      "value": "<date>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "curveId",
-                      "description": "(Required) Yield curve identifier"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "createdAt": "2026-10-22T03:12:23.000Z",
+              "updatedAt": "2026-10-22T03:12:23.000Z",
+              "uid": "35240-dc1304d2-8fbc-4b53-825e-358cab5d3bb9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "cc7f6360-0d3a-4c1b-bfa3-25bb6c0d520d",
+          "createdAt": "2026-10-22T03:12:23.000Z",
+          "updatedAt": "2026-10-22T03:12:23.000Z",
+          "uid": "35240-cc7f6360-0d3a-4c1b-bfa3-25bb6c0d520d"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.bloomberg.com/analytics",
-      "key": "baseUrl"
+      "id": "f4932757-f89f-489f-a77d-349828b94cc0",
+      "createdAt": "2026-10-22T03:12:23.000Z",
+      "updatedAt": "2026-10-22T03:12:23.000Z",
+      "uid": "35240-f4932757-f89f-489f-a77d-349828b94cc0"
     }
   ],
   "auth": {
@@ -407,17 +398,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "729eb995-78a9-4498-91cd-c80e9c02d037",
-    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Yield Curves API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bloomberg.com/analytics"
     }
-  }
+  ]
 }

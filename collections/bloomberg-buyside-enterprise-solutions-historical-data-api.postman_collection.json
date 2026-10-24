@@ -1,326 +1,351 @@
 {
+  "info": {
+    "_postman_id": "a7bc62a4-7a9b-4d9e-84b3-2580ce26e085",
+    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Data\u2026",
+    "description": "Programmatic access to Bloomberg's financial data including reference data, historical pricing, corporate actions, and market data for portfolio management and analytics. Part of Bloomberg's buy-side enterprise solutions for asset managers, hedge funds, and institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T03:11:02.000Z",
+    "updatedAt": "2026-10-22T03:11:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a7bc62a4-7a9b-4d9e-84b3-2580ce26e085"
+  },
   "item": [
     {
-      "id": "bbc54f43-c8ff-4f34-92f9-c548670d220a",
-      "name": "Historical Data",
-      "description": {
-        "content": "Historical pricing, volume, and fundamental data for securities",
-        "type": "text/plain"
-      },
+      "name": "data",
       "item": [
         {
-          "id": "610f8d2d-292f-4b39-9459-05d1c7100503",
-          "name": "Bloomberg Buyside Enterprise Solutions Get historical data for securities",
-          "request": {
-            "name": "Bloomberg Buyside Enterprise Solutions Get historical data for securities",
-            "description": {
-              "content": "Retrieve historical end-of-day data for one or more securities over a specified date range. Supports pricing, volume, fundamental, and derived fields with configurable periodicity.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "data",
-                "v1",
-                "historical"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "abf668b4-3f0c-47d5-9395-818ffdafb248",
-              "name": "Historical data returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "historical"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+              "name": "historical",
+              "item": [
+                {
+                  "name": "Bloomberg Buyside Enterprise Solutions Get historical data for securities",
+                  "id": "7a9b25fb-0e37-40cc-9a53-5c047b5e1496",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"securities\": [\n    {\n      \"security\": \"string\",\n      \"data\": [\n        {\n          \"date\": \"1986-03-04\",\n          \"fields\": {\n            \"key_0\": true,\n            \"key_1\": 9981\n          }\n        },\n        {\n          \"date\": \"1951-05-19\",\n          \"fields\": {\n            \"key_0\": 4494,\n            \"key_1\": 6418\n          }\n        }\n      ]\n    },\n    {\n      \"security\": \"string\",\n      \"data\": [\n        {\n          \"date\": \"1959-08-12\",\n          \"fields\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        },\n        {\n          \"date\": \"2025-10-13\",\n          \"fields\": {\n            \"key_0\": 980,\n            \"key_1\": 2415.5342870463637\n          }\n        }\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "7741c82d-df88-41f0-bced-28a0f75db541",
-              "name": "Invalid request parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "historical"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
+                    "url": {
+                      "raw": "{{baseUrl}}/data/v1/historical",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "data",
+                        "v1",
+                        "historical"
+                      ]
+                    },
+                    "description": "Retrieve historical end-of-day data for one or more securities over a specified date range. Supports pricing, volume, fundamental, and derived fields with configurable periodicity."
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"details\": [\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      },\n      {\n        \"field\": \"string\",\n        \"message\": \"string\"\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "842ac61f-48fd-4850-a59c-a3dade9749b3",
-              "name": "Unauthorized",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "historical"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                  "response": [
+                    {
+                      "id": "7460966b-55de-47d5-8568-5c8e0cd73088",
+                      "name": "Historical data returned successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/historical",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "historical"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"securities\": [\n    {\n      \"security\": \"<string>\",\n      \"data\": [\n        {\n          \"date\": \"<date>\",\n          \"fields\": {\n            \"Excepteur5ca\": \"tempor dolore aliqua cillum\",\n            \"aliquae\": true\n          }\n        },\n        {\n          \"date\": \"<date>\",\n          \"fields\": {\n            \"id_c58\": \"et voluptate sed dolore\",\n            \"Duis_bd2\": \"aliquip sint non\"\n          }\n        }\n      ]\n    },\n    {\n      \"security\": \"<string>\",\n      \"data\": [\n        {\n          \"date\": \"<date>\",\n          \"fields\": {\n            \"dolore063\": -47248544\n          }\n        },\n        {\n          \"date\": \"<date>\",\n          \"fields\": {\n            \"ullamco_23\": true\n          }\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-10-22T03:11:03.000Z",
+                      "updatedAt": "2026-10-22T03:11:03.000Z",
+                      "uid": "35240-7460966b-55de-47d5-8568-5c8e0cd73088"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "c520d873-1446-4f56-9211-f64da97cd31c",
-              "name": "Forbidden - insufficient data entitlements",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "historical"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                    {
+                      "id": "7f4921fa-ff4b-4995-af80-1790e1e0b277",
+                      "name": "Invalid request parameters",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/historical",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "historical"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\",\n    \"details\": [\n      {\n        \"field\": \"<string>\",\n        \"message\": \"<string>\"\n      },\n      {\n        \"field\": \"<string>\",\n        \"message\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "createdAt": "2026-10-22T03:11:03.000Z",
+                      "updatedAt": "2026-10-22T03:11:03.000Z",
+                      "uid": "35240-7f4921fa-ff4b-4995-af80-1790e1e0b277"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Forbidden",
-              "code": 403,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            },
-            {
-              "id": "037dfa59-2cfd-404d-8618-7c048052728c",
-              "name": "Rate limit exceeded",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "data",
-                    "v1",
-                    "historical"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: bearer",
-                      "type": "text/plain"
+                    {
+                      "id": "cc7f053b-3b2d-42e4-ab4e-2f72e40a0c0e",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/historical",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "historical"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:11:03.000Z",
+                      "updatedAt": "2026-10-22T03:11:03.000Z",
+                      "uid": "35240-cc7f053b-3b2d-42e4-ab4e-2f72e40a0c0e"
                     },
-                    "key": "Authorization",
-                    "value": "Bearer <token>"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
+                    {
+                      "id": "d559fa51-4b6b-4d5a-bd7d-26ce6dfff328",
+                      "name": "Forbidden - insufficient data entitlements",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/historical",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "historical"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:11:03.000Z",
+                      "updatedAt": "2026-10-22T03:11:03.000Z",
+                      "uid": "35240-d559fa51-4b6b-4d5a-bd7d-26ce6dfff328"
+                    },
+                    {
+                      "id": "1d8ad767-d03e-4f7a-b574-21c91cd184c8",
+                      "name": "Rate limit exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"securities\": [\n    \"<string>\"\n  ],\n  \"fields\": [\n    \"<string>\"\n  ],\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"periodicity\": \"DAILY\",\n  \"adjustmentNormal\": false,\n  \"adjustmentAbnormal\": false,\n  \"adjustmentSplit\": true,\n  \"currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/data/v1/historical",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "data",
+                            "v1",
+                            "historical"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-10-22T03:11:03.000Z",
+                      "updatedAt": "2026-10-22T03:11:03.000Z",
+                      "uid": "35240-1d8ad767-d03e-4f7a-b574-21c91cd184c8"
                     }
-                  }
-                }
-              },
-              "status": "Too Many Requests",
-              "code": 429,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
+                  ],
+                  "createdAt": "2026-10-22T03:11:03.000Z",
+                  "updatedAt": "2026-10-22T03:11:03.000Z",
+                  "uid": "35240-7a9b25fb-0e37-40cc-9a53-5c047b5e1496"
                 }
               ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
+              "id": "1a5f0cad-4df9-4f7b-87ac-c7a245cd1b40",
+              "createdAt": "2026-10-22T03:11:03.000Z",
+              "updatedAt": "2026-10-22T03:11:03.000Z",
+              "uid": "35240-1a5f0cad-4df9-4f7b-87ac-c7a245cd1b40"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "a6ed643c-cd16-450e-893e-25fffaba1054",
+          "createdAt": "2026-10-22T03:11:03.000Z",
+          "updatedAt": "2026-10-22T03:11:03.000Z",
+          "uid": "35240-a6ed643c-cd16-450e-893e-25fffaba1054"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.bloomberg.com/analytics",
-      "key": "baseUrl"
+      "id": "b54aaecc-a30a-475d-bbd5-f8a18f9e9353",
+      "createdAt": "2026-10-22T03:11:03.000Z",
+      "updatedAt": "2026-10-22T03:11:03.000Z",
+      "uid": "35240-b54aaecc-a30a-475d-bbd5-f8a18f9e9353"
     }
   ],
   "auth": {
@@ -328,17 +353,15 @@
     "bearer": [
       {
         "key": "token",
-        "value": "{{bearerToken}}"
+        "value": "{{bearerToken}}",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "2ab712ca-ff8d-414d-8e50-ccf56db7dcb7",
-    "name": "Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Historical Data API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "Access to Bloomberg's analytics engine for fixed income, derivatives, and multi-asset calculations including scenario analysis, stress testing, yield curve construction, and pricing models. Part of Bloomberg's buy-side enterprise solutions for institutional investors.\n\nContact Support:\n Name: Bloomberg Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.bloomberg.com"
     }
-  }
+  ]
 }
