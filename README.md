@@ -1,4 +1,4 @@
-# Bloomberg Buyside Enterprise Solutions (bloomberg-buyside-enterprise-solutions)
+# Bloomberg Buyside Enterprise Solutions
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,90 +66,185 @@
 
 Bloomberg's enterprise solutions for buy-side firms including asset managers, hedge funds, and institutional investors, providing integrated workflows, data management, portfolio analytics, and trading capabilities.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bloomberg-buyside-enterprise-solutions/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bloomberg-buyside-enterprise-solutions/refs/heads/main/apis.yml)
+**Areas:** Analytics · Asset Management · Buy-Side · Enterprise Solutions · Financial Services · Market Data · Portfolio Management · Trading
 
-## Scope
+## Bloomberg Buyside Enterprise Solutions on APIs.io
 
-- **Type:** Index
+Everything profiled for Bloomberg Buyside Enterprise Solutions is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bloomberg-buyside-enterprise-solutions/](https://apis.io/providers/bloomberg-buyside-enterprise-solutions/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (24)
 
-- Analytics
-- Asset Management
-- Buy-Side
-- Enterprise Solutions
-- Financial Services
-- Market Data
-- Portfolio Management
-- Trading
+- [Bloomberg Data API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-data-api/) — Programmatic access to Bloomberg's financial data including reference data, historical pricing, corporate actions, and market data for portfolio management…
+- [Bloomberg Order Management API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-order-management-api/) — API for order and execution management, enabling algorithmic trading, smart order routing, and integration with trading platforms for buy-side workflows.
+- [Bloomberg Buyside Enterprise Solutions Allocations API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-allocations-api/) — Post-trade allocation of executions to portfolios
+- [Bloomberg Buyside Enterprise Solutions Benchmarks API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-benchmarks-api/) — Benchmark assignment and comparison
+- [Bloomberg Buyside Enterprise Solutions Blotters API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-blotters-api/) — Trading blotter views and filtering
+- [Bloomberg Buyside Enterprise Solutions Brokers API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-brokers-api/) — Broker routing and counterparty management
+- [Bloomberg Buyside Enterprise Solutions Compliance API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-compliance-api/) — Portfolio compliance rules and monitoring
+- [Bloomberg Buyside Enterprise Solutions Corporate Actions API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-corporate-actions-api/) — Corporate action events including dividends, splits, mergers, and restructurings
+- [Bloomberg Buyside Enterprise Solutions Derivatives API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-derivatives-api/) — Derivatives pricing, Greeks, and valuation models
+- [Bloomberg Buyside Enterprise Solutions Executions API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-executions-api/) — View execution reports and trade fills
+- [Bloomberg Buyside Enterprise Solutions Field Search API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-field-search-api/) — Search and discover available data fields
+- [Bloomberg Buyside Enterprise Solutions Fixed Income API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-fixed-income-api/) — Fixed income analytics including yield, duration, and spread calculations
+- [Bloomberg Buyside Enterprise Solutions Historical Data API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-historical-data-api/) — Historical pricing, volume, and fundamental data for securities
+- [Bloomberg Buyside Enterprise Solutions Holdings API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-holdings-api/) — Manage portfolio holdings and positions
+- [Bloomberg Buyside Enterprise Solutions Market Data API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-market-data-api/) — Real-time and delayed market data snapshots
+- [Bloomberg Buyside Enterprise Solutions Orders API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-orders-api/) — Create, manage, and monitor trading orders
+- [Bloomberg Buyside Enterprise Solutions Performance API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-performance-api/) — Portfolio performance measurement and attribution
+- [Bloomberg Buyside Enterprise Solutions Portfolios API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-portfolios-api/) — Create, read, update, and delete portfolio definitions
+- [Bloomberg Buyside Enterprise Solutions Pricing API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-pricing-api/) — Security pricing and valuation
+- [Bloomberg Buyside Enterprise Solutions Reference Data API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-reference-data-api/) — Security reference data including identifiers, classifications, and descriptive information
+- [Bloomberg Buyside Enterprise Solutions Risk API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-risk-api/) — Portfolio risk analytics and factor exposure
+- [Bloomberg Buyside Enterprise Solutions Scenario Analysis API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-scenario-analysis-api/) — What-if scenario analysis for portfolios and securities
+- [Bloomberg Buyside Enterprise Solutions Stress Testing API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-stress-testing-api/) — Stress testing against historical and hypothetical scenarios
+- [Bloomberg Buyside Enterprise Solutions Yield Curves API](https://apis.io/apis/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-yield-curves-api/) — Yield curve construction and management
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Bloomberg Data API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Programmatic access to Bloomberg's financial data including reference data, historical pricing, corporate actions, and market data for portfolio management and analytics.
+- [Bloomberg Buyside Enterprise Solutions Agentic Access](https://apis.io/agentic-access/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-agentic-access/)
 
-- **Human URL:** [https://www.bloomberg.com/professional/support/api-library/](https://www.bloomberg.com/professional/support/api-library/)
+#### JSON Schema (3)
 
-#### Tags
+The data models the API reads and writes.
 
-- Corporate Actions
-- Financial Data
-- Historical Data
-- Market Data
-- Reference Data
+- [Bloomberg Buyside Order](https://apis.io/schemas/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-order/)
+- [Bloomberg Buyside Portfolio](https://apis.io/schemas/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-portfolio/)
+- [Bloomberg Buyside Security](https://apis.io/schemas/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-security/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://www.bloomberg.com/professional/support/api-library/)
-- [Authentication](https://www.bloomberg.com/professional/support/api-library/#authentication)
-- [Postman Collection](collections/bloomberg-buyside-analytics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bloomberg-buyside-analytics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bloomberg-buyside-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bloomberg-buyside-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bloomberg-buyside-order-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bloomberg-buyside-order-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bloomberg-buyside-portfolio.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bloomberg-buyside-portfolio.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Linked-data contexts for the provider's vocabulary.
 
-### Bloomberg Order Management API
+- [Bloomberg Buyside Context](https://apis.io/jsonld/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-context/)
 
-API for order and execution management, enabling algorithmic trading, smart order routing, and integration with trading platforms for buy-side workflows.
+#### Collections (26)
 
-- **Human URL:** [https://www.bloomberg.com/professional/product/buy-side-trading/](https://www.bloomberg.com/professional/product/buy-side-trading/)
+Postman and Open Collection request collections.
 
-#### Tags
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-analytics/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Data API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-data/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-allocations-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Benchmarks API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-benchmarks-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Blotters API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-blotters-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Brokers API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-brokers-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Compliance API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-compliance-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Corporate Actions API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-corporate-actions-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Derivatives API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-derivatives-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Executions API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-executions-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Field Search API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-field-search-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Fixed Income API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-fixed-income-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Historical Data API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-historical-data-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Holdings API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-holdings-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Market Data API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-market-data-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Orders API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-orders-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Performance API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-performance-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Portfolios API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-portfolios-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Pricing API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-pricing-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Reference Data API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-reference-data-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Risk API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-risk-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Scenario Analysis API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-scenario-analysis-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Stress Testing API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-stress-testing-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Analytics Allocations Yield Curves API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-enterprise-solutions-yield-curves-api/)
+- [Bloomberg Buyside Enterprise Solutions Bloomberg Order Management API](https://apis.io/collections/bloomberg-buyside-enterprise-solutions/open-bloomberg-buyside-order-management/)
+- …and 1 more published on APIs.io
 
-- Algorithmic Trading
-- Execution
-- Order Management
-- Trading
+#### Governance rules (1)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://www.bloomberg.com/professional/support/api-library/)
-- [Postman Collection](collections/bloomberg-buyside-analytics.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bloomberg-buyside-analytics.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bloomberg-buyside-data.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bloomberg-buyside-data.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bloomberg-buyside-order-management.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bloomberg-buyside-order-management.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/bloomberg-buyside-portfolio.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bloomberg-buyside-portfolio.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Bloomberg Buyside Enterprise Solutions — jsonschema rules](https://apis.io/rules/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-jsonschema-spectral-rules/)
 
-## Common Properties
+#### Security (3)
 
-- [Getting Started](https://www.bloomberg.com/professional/support/api-library/)
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bloomberg Buyside Enterprise Solutions Authentication](https://apis.io/security/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-authentication/)
+- [Bloomberg Buyside Enterprise Solutions Domain Security](https://apis.io/security/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-domain-security/)
+- [Bloomberg Buyside Enterprise Solutions Vulnerability Disclosure](https://apis.io/security/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Bloomberg Buyside Enterprise Solutions Plans Pricing](https://apis.io/plans/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Bloomberg Buyside Enterprise Solutions Rate Limits](https://apis.io/rate-limits/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Bloomberg Buyside Enterprise Solutions Finops](https://apis.io/finops/bloomberg-buyside-enterprise-solutions/bloomberg-buyside-enterprise-solutions-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://bloomberg.com)
+- [Getting started](https://www.bloomberg.com/professional/support/api-library/)
 - [Support](https://www.bloomberg.com/professional/support/)
-- [Terms of Service](https://www.bloomberg.com/notices/tos/)
-- [Privacy Policy](https://www.bloomberg.com/privacy/)
+- [Terms of service](https://www.bloomberg.com/notices/tos/)
+- [Privacy policy](https://www.bloomberg.com/privacy/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 37.2** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 55.9 |
+| Contract governance | 9.8 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 38.1 |
+| Access clarity | 28.9 |
+
+**Agent readiness 25.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 34.3** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bloomberg-buyside-enterprise-solutions/](https://apis.io/providers/bloomberg-buyside-enterprise-solutions/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bloomberg Buyside Enterprise Solutions: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bloomberg-buyside-enterprise-solutions/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
